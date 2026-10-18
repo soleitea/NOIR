@@ -1,0 +1,563 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOIR | Manga & Manhwa</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg: #080711;
+  --panel: #111020;
+  --purple: #a58aff;
+  --silver: #d9d5e5;
+  --muted: #9691aa;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: #f6f3ff;
+  font-family: 'IBM Plex Sans Arabic', sans-serif;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  border-bottom: 1px solid #252137;
+  background: #0c0a17;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.logo {
+  font-size: 27px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.logo span { color: var(--purple); }
+
+.header-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+button, input { font: inherit; }
+
+button { cursor: pointer; }
+
+.icon {
+  border: 0;
+  background: none;
+  color: var(--silver);
+  font-size: 23px;
+}
+
+.login {
+  border: 1px solid var(--purple);
+  border-radius: 8px;
+  color: var(--purple);
+  background: transparent;
+  padding: 7px 11px;
+  font-size: 12px;
+}
+
+.hero {
+  padding: 30px 20px 25px;
+  background:
+    radial-gradient(ellipse at top left,
+    #30204e 0%, transparent 65%);
+}
+
+.eyebrow {
+  color: var(--purple);
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+h1 {
+  font-size: 43px;
+  line-height: 1.3;
+  margin: 15px 0;
+}
+
+.gradient {
+  background: linear-gradient(90deg,#eee9ff,#a58aff);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.hero p {
+  color: var(--muted);
+  line-height: 1.9;
+  font-size: 14px;
+  max-width: 440px;
+}
+
+.primary {
+  display: inline-block;
+  background: linear-gradient(120deg,#c9baff,#9676f2);
+  color: #171025;
+  padding: 12px 18px;
+  border: 0;
+  border-radius: 9px;
+  font-weight: bold;
+  text-decoration: none;
+  margin-top: 10px;
+}
+
+.secondary {
+  display: inline-block;
+  border: 1px solid #39324f;
+  color: var(--silver);
+  background: transparent;
+  padding: 11px 15px;
+  border-radius: 9px;
+  text-decoration: none;
+  margin-right: 6px;
+  font-size: 13px;
+}
+
+.hero-art {
+  margin: 30px auto 5px;
+  max-width: 420px;
+  height: 180px;
+  border-radius: 16px;
+  border: 1px solid #39304f;
+  overflow: hidden;
+  position: relative;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at 50% 40%,
+    #66518d 0%, #25203e 27%,
+    #100e1e 60%, #080711 100%);
+}
+
+.moon {
+  width: 125px;
+  height: 125px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 27%,
+    #e4ddff, #9585bb 15%,
+    #39304f 50%, #0b0914 76%);
+  box-shadow: 0 0 55px #9274ed55;
+}
+
+.art-text {
+  position: absolute;
+  bottom: 12px;
+  left: 14px;
+  color: #e5dfff;
+  font-size: 11px;
+  letter-spacing: 3px;
+}
+
+.section {
+  padding: 28px 16px;
+}
+
+.section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.section-head h2 {
+  font-size: 21px;
+  margin: 5px 0 16px;
+}
+
+.kicker {
+  color: var(--purple);
+  font-size: 11px;
+}
+
+.filters {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 5px 0 17px;
+}
+
+.filter {
+  flex-shrink: 0;
+  border: 1px solid #29243c;
+  border-radius: 8px;
+  background: #111020;
+  color: var(--muted);
+  padding: 8px 15px;
+  font-size: 12px;
+}
+
+.filter.active {
+  color: #171025;
+  background: var(--purple);
+  border-color: var(--purple);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 13px;
+}
+
+.card {
+  background: var(--panel);
+  border: 1px solid #29243b;
+  border-radius: 12px;
+  overflow: hidden;
+  min-width: 0;
+  transition: .2s;
+}
+
+.cover {
+  height: 205px;
+  display: grid;
+  place-items: center;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(145deg,var(--c1),var(--c2));
+}
+
+.cover::before {
+  content: "";
+  width: 150px;
+  height: 150px;
+  border: 1px solid #ffffff30;
+  border-radius: 50%;
+  position: absolute;
+  top: -35px;
+  right: -30px;
+  box-shadow: 0 0 0 20px #ffffff08,
+              0 0 0 40px #ffffff05;
+}
+
+.symbol {
+  font-size: 64px;
+  color: #ffffff30;
+  font-weight: bold;
+}
+
+.tag {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-size: 10px;
+  background: #090711bb;
+  border: 1px solid #ffffff35;
+  border-radius: 5px;
+  padding: 4px 7px;
+}
+
+.info { padding: 10px; }
+
+.info h3 {
+  font-size: 13px;
+  margin: 0 0 8px;
+}
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 5px;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.rating { color: #e6d39b; }
+
+.chapter {
+  border-top: 1px solid #29243b;
+  margin-top: 10px;
+  padding-top: 8px;
+  font-size: 10px;
+  color: var(--purple);
+}
+
+.banner {
+  margin: 15px 16px 35px;
+  padding: 22px;
+  border: 1px solid #45345f;
+  border-radius: 14px;
+  background: linear-gradient(120deg,#19132a,#100e1d);
+}
+
+.banner h2 { font-size: 22px; }
+
+.banner p {
+  font-size: 12px;
+  line-height: 1.9;
+  color: var(--muted);
+}
+
+footer {
+  padding: 25px 16px 100px;
+  border-top: 1px solid #29243b;
+  text-align: center;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.bottom-nav {
+  position: fixed;
+  z-index: 15;
+  bottom: 10px;
+  left: 12px;
+  right: 12px;
+  background: #171526f2;
+  backdrop-filter: blur(16px);
+  border: 1px solid #45405b;
+  border-radius: 18px;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 3px;
+  box-shadow: 0 8px 35px #0008;
+}
+
+.bottom-nav a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 10px;
+}
+
+.bottom-nav .selected { color: var(--purple); }
+
+.bottom-nav b { font-size: 20px; }
+
+.search-box {
+  padding: 12px 16px;
+  background: var(--panel);
+}
+
+.search-box input {
+  width: 100%;
+  border: 1px solid #39304f;
+  background: #080711;
+  color: white;
+  border-radius: 10px;
+  padding: 12px;
+  outline: none;
+}
+
+.hidden { display: none !important; }
+
+@media (min-width: 700px) {
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 55px;
+  }
+  .hero-art { width: 100%; height: 320px; }
+  .moon { width: 200px; height: 200px; }
+  .grid { grid-template-columns: repeat(4,minmax(0,1fr)); }
+  .cover { height: 260px; }
+  .section { padding: 35px 30px; }
+  .bottom-nav { display: none; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <a href="#" class="logo" style="text-decoration:none;color:white">
+    N<span>OIR.</span>
+  </a>
+  <div class="header-actions">
+    <button class="icon" id="searchBtn" aria-label="بحث">⌕</button>
+    <button class="icon" id="languageBtn">EN</button>
+    <button class="login" id="loginBtn">تسجيل الدخول</button>
+  </div>
+</header>
+
+<div class="search-box hidden" id="searchBox">
+  <input id="searchInput" placeholder="ابحثي عن مانهوا أو مانجا...">
+</div>
+
+<main>
+  <section class="hero" id="home">
+    <div>
+      <div class="eyebrow">✦ بوابتك إلى عوالم لا تنتهي</div>
+      <h1>اقرأ ما<br><span class="gradient">يتجاوز الخيال.</span></h1>
+      <p>
+        اكتشفي عوالم المانهوا والمانجا، تابعي أحدث الفصول،
+        واصنعي مكتبتك الخاصة في مكان واحد.
+      </p>
+      <a href="#library" class="primary">استكشفي المكتبة ↙</a>
+      <a href="#updates" class="secondary">أحدث الفصول</a>
+    </div>
+    <div class="hero-art">
+      <div class="moon"></div>
+      <div class="art-text">BEYOND THE DARK</div>
+    </div>
+  </section>
+
+  <section class="section" id="library">
+    <div class="section-head">
+      <div>
+        <div class="kicker">مختارة لك</div>
+        <h2>الأعمال الرائجة</h2>
+      </div>
+      <span class="kicker">NOIR COLLECTION</span>
+    </div>
+
+    <div class="filters">
+      <button class="filter active" data-filter="all">الكل</button>
+      <button class="filter" data-filter="action">أكشن</button>
+      <button class="filter" data-filter="fantasy">فانتازيا</button>
+      <button class="filter" data-filter="drama">دراما</button>
+      <button class="filter" data-filter="mystery">غموض</button>
+    </div>
+
+    <div class="grid" id="mangaGrid"></div>
+  </section>
+
+  <section class="banner" id="updates">
+    <div class="kicker">YOUR WORLD, YOUR WAY</div>
+    <h2>كل فصولك. مكان واحد.</h2>
+    <p>
+      احفظي أعمالك المفضلة، تابعي تقدمك في القراءة،
+      واكتشفي قصصًا جديدة تناسب ذوقك.
+    </p>
+    <button class="primary" id="createAccount">إنشاء حساب</button>
+  </section>
+</main>
+
+<footer>
+  <div class="logo">NOIR<span>.</span></div>
+  <p>مساحة لعشاق القصص المصورة.</p>
+  <p>© 2026 NOIR</p>
+</footer>
+
+<nav class="bottom-nav">
+  <a href="#home" class="selected"><b>⌂</b>الرئيسية</a>
+  <a href="#library"><b>▦</b>المكتبة</a>
+  <a href="#updates"><b>◈</b>اكتشف</a>
+  <a href="#library"><b>♡</b>مفضلتي</a>
+</nav>
+
+<script>
+const works = [
+  {ar:"ظل العرش",en:"Throne of Shadows",g:"fantasy",genre:"فانتازيا",ch:42,r:"9.4",s:"影",c1:"#493568",c2:"#11101f"},
+  {ar:"مدينة الرماد",en:"City of Ash",g:"action",genre:"أكشن",ch:18,r:"9.1",s:"灰",c1:"#57323e",c2:"#17101c"},
+  {ar:"اعتراف منتصف الليل",en:"Midnight Confession",g:"drama",genre:"دراما",ch:67,r:"8.9",s:"夜",c1:"#35445f",c2:"#111322"},
+  {ar:"الباب التاسع",en:"The Ninth Door",g:"mystery",genre:"غموض",ch:25,r:"9.6",s:"九",c1:"#493c69",c2:"#0c0b17"},
+  {ar:"سيف الشتاء",en:"Winter Blade",g:"action",genre:"أكشن",ch:31,r:"8.8",s:"剣",c1:"#38515d",c2:"#101923"},
+  {ar:"حديقة الأقمار",en:"Garden of Moons",g:"fantasy",genre:"فانتازيا",ch:12,r:"9.2",s:"月",c1:"#59456e",c2:"#17101f"},
+  {ar:"رسائل بلا اسم",en:"Letters Without Names",g:"drama",genre:"دراما",ch:54,r:"8.7",s:"文",c1:"#654640",c2:"#1b1118"},
+  {ar:"عين المتاهة",en:"Eye of the Maze",g:"mystery",genre:"غموض",ch:9,r:"9.0",s:"迷",c1:"#3b4264",c2:"#10111d"}
+];
+
+let lang = "ar";
+let filter = "all";
+
+function render() {
+  const query = document.getElementById("searchInput").value.toLowerCase();
+  const list = works.filter(w =>
+    (filter === "all" || w.g === filter) &&
+    (w.ar.includes(query) || w.en.toLowerCase().includes(query))
+  );
+
+  document.getElementById("mangaGrid").innerHTML = list.map(w => `
+    <article class="card">
+      <div class="cover" style="--c1:${w.c1};--c2:${w.c2}">
+        <div class="symbol">${w.s}</div>
+        <span class="tag">${lang === "ar" ? w.genre :
+          ({action:"Action",fantasy:"Fantasy",drama:"Drama",mystery:"Mystery"}[w.g])}</span>
+      </div>
+      <div class="info">
+        <h3>${lang === "ar" ? w.ar : w.en}</h3>
+        <div class="meta">
+          <span>${lang === "ar" ? "مانهوا" : "Manhwa"}</span>
+          <span class="rating">★ ${w.r}</span>
+        </div>
+        <div class="chapter">${lang === "ar" ? "الفصل" : "Chapter"} ${w.ch} ↗</div>
+      </div>
+    </article>
+  `).join("");
+
+  if (!list.length) {
+    document.getElementById("mangaGrid").innerHTML =
+      "<p>لا توجد نتائج.</p>";
+  }
+}
+
+document.querySelectorAll(".filter").forEach(btn => {
+  btn.addEventListener("click", () => {
+    filter = btn.dataset.filter;
+    document.querySelectorAll(".filter").forEach(b =>
+      b.classList.toggle("active", b === btn)
+    );
+    render();
+  });
+});
+
+document.getElementById("searchBtn").onclick = () => {
+  document.getElementById("searchBox").classList.toggle("hidden");
+  document.getElementById("searchInput").focus();
+};
+
+document.getElementById("searchInput").addEventListener("input", render);
+
+document.getElementById("languageBtn").onclick = () => {
+  lang = lang === "ar" ? "en" : "ar";
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+  document.getElementById("languageBtn").textContent =
+    lang === "ar" ? "EN" : "ع";
+  document.querySelector(".eyebrow").textContent =
+    lang === "ar" ? "✦ بوابتك إلى عوالم لا تنتهي" :
+    "✦ Your gateway to endless worlds";
+  document.querySelector("h1").innerHTML =
+    lang === "ar" ? 'اقرأ ما<br><span class="gradient">يتجاوز الخيال.</span>' :
+    'Read beyond<br><span class="gradient">imagination.</span>';
+  document.querySelector(".hero p").textContent =
+    lang === "ar" ?
+    "اكتشفي عوالم المانهوا والمانجا، تابعي أحدث الفصول، واصنعي مكتبتك الخاصة في مكان واحد." :
+    "Discover manga and manhwa, follow new chapters, and build your own library.";
+  document.querySelector(".primary").textContent =
+    lang === "ar" ? "استكشفي المكتبة ↙" : "Explore library ↙";
+  document.querySelector(".section-head h2").textContent =
+    lang === "ar" ? "الأعمال الرائجة" : "Trending titles";
+  document.querySelectorAll(".filter").forEach((b,i) => {
+    const ar = ["الكل","أكشن","فانتازيا","دراما","غموض"];
+    const en = ["All","Action","Fantasy","Drama","Mystery"];
+    b.textContent = lang === "ar" ? ar[i] : en[i];
+  });
+  document.getElementById("loginBtn").textContent =
+    lang === "ar" ? "تسجيل الدخول" : "Sign in";
+  document.getElementById("searchInput").placeholder =
+    lang === "ar" ? "ابحثي عن مانهوا أو مانجا..." : "Search manga or manhwa...";
+  render();
+};
+
+function showLogin() {
+  alert(lang === "ar" ?
+    "واجهة تسجيل الدخول تجريبية حاليًا. سنضيف الحسابات الحقيقية لاحقًا." :
+    "Sign-in is a preview only. Real accounts will be added later.");
+}
+
+document.getElementById("loginBtn").onclick = showLogin;
+document.getElementById("createAccount").onclick = showLogin;
+
+render();
+</script>
+</body>
+</html>
