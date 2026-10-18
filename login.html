@@ -1,0 +1,245 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOIR | الحساب</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap');
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background:
+    radial-gradient(ellipse at top, #30204e, transparent 65%),
+    #080711;
+  color: #f6f3ff;
+  font-family: 'IBM Plex Sans Arabic', sans-serif;
+}
+
+.card {
+  width: 100%;
+  max-width: 390px;
+  padding: 30px 24px;
+  background: #111020;
+  border: 1px solid #39304f;
+  border-radius: 18px;
+  box-shadow: 0 15px 50px #0006;
+}
+
+.logo {
+  text-align: center;
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  direction: ltr;
+}
+
+.logo span { color: #a58aff; }
+
+.subtitle {
+  text-align: center;
+  color: #9691aa;
+  font-size: 13px;
+  margin: 12px 0 25px;
+}
+
+.tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 22px;
+}
+
+.tabs button {
+  flex: 1;
+  padding: 11px;
+  border: 1px solid #39304f;
+  border-radius: 8px;
+  background: transparent;
+  color: #d9d5e5;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.tabs button.active {
+  background: #a58aff;
+  color: #080711;
+  border-color: #a58aff;
+}
+
+label {
+  display: block;
+  margin: 14px 0 7px;
+  font-size: 13px;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  background: #080711;
+  border: 1px solid #39304f;
+  border-radius: 8px;
+  color: white;
+  outline: none;
+}
+
+input:focus { border-color: #a58aff; }
+
+.submit {
+  width: 100%;
+  margin-top: 22px;
+  padding: 12px;
+  border: 0;
+  border-radius: 8px;
+  background: linear-gradient(120deg, #c9baff, #9676f2);
+  color: #171025;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.message {
+  margin-top: 15px;
+  font-size: 13px;
+  line-height: 1.8;
+  text-align: center;
+  color: #d9d5e5;
+}
+
+.back {
+  display: block;
+  margin-top: 20px;
+  text-align: center;
+  color: #a58aff;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.hidden { display: none !important; }
+</style>
+</head>
+
+<body>
+
+<main class="card">
+  <div class="logo">N<span>OIR.</span></div>
+  <p class="subtitle" id="subtitle">انضم إلى عالم NOIR</p>
+
+  <div class="tabs">
+    <button type="button" id="registerTab" class="active">
+      إنشاء حساب
+    </button>
+    <button type="button" id="loginTab">
+      تسجيل الدخول
+    </button>
+  </div>
+
+  <form id="accountForm">
+    <div id="nameGroup">
+      <label for="username">اسم المستخدم</label>
+      <input
+        id="username"
+        name="username"
+        type="text"
+        placeholder="اكتب اسمك"
+        autocomplete="username"
+        minlength="3"
+        required
+      >
+    </div>
+
+    <label for="email">البريد الإلكتروني</label>
+    <input
+      id="email"
+      name="email"
+      type="email"
+      placeholder="name@example.com"
+      autocomplete="email"
+      required
+    >
+
+    <label for="password">كلمة المرور</label>
+    <input
+      id="password"
+      name="password"
+      type="password"
+      placeholder="6 أحرف على الأقل"
+      autocomplete="new-password"
+      minlength="6"
+      required
+    >
+
+    <button class="submit" type="submit" id="submitBtn">
+      إنشاء حساب
+    </button>
+  </form>
+
+  <div class="message" id="message" aria-live="polite"></div>
+
+  <a href="index.html" class="back">← العودة إلى الصفحة الرئيسية</a>
+</main>
+
+<script>
+const registerTab = document.getElementById("registerTab");
+const loginTab = document.getElementById("loginTab");
+const nameGroup = document.getElementById("nameGroup");
+const username = document.getElementById("username");
+const password = document.getElementById("password");
+const form = document.getElementById("accountForm");
+const submitBtn = document.getElementById("submitBtn");
+const subtitle = document.getElementById("subtitle");
+const message = document.getElementById("message");
+
+let mode = "register";
+
+function setMode(newMode) {
+  mode = newMode;
+  message.textContent = "";
+
+  const isRegister = mode === "register";
+
+  registerTab.classList.toggle("active", isRegister);
+  loginTab.classList.toggle("active", !isRegister);
+
+  nameGroup.classList.toggle("hidden", !isRegister);
+  username.required = isRegister;
+
+  password.autocomplete = isRegister
+    ? "new-password"
+    : "current-password";
+
+  password.placeholder = isRegister
+    ? "6 أحرف على الأقل"
+    : "أدخل كلمة المرور";
+
+  submitBtn.textContent = isRegister
+    ? "إنشاء حساب"
+    : "تسجيل الدخول";
+
+  subtitle.textContent = isRegister
+    ? "انضم إلى عالم NOIR"
+    : "مرحبًا بعودتك إلى NOIR";
+}
+
+registerTab.addEventListener("click", () => setMode("register"));
+loginTab.addEventListener("click", () => setMode("login"));
+
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  if (!form.reportValidity()) return;
+
+  message.textContent =
+    "الواجهة جاهزة، لكن الحسابات غير مفعّلة بعد. يلزم ربط الصفحة بخدمة مصادقة لحفظ الحسابات وتسجيل الدخول فعليًا.";
+});
+</script>
+
+</body>
+</html>
