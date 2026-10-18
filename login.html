@@ -4,221 +4,204 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#080711">
+<meta name="theme-color" content="#08070c">
 <title>NOIR | تسجيل الدخول</title>
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap');
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
 
+<style>
 :root {
-  --bg: #080711;
-  --panel: #111020;
-  --purple: #a58aff;
-  --silver: #d9d5e5;
-  --muted: #9691aa;
+  --bg: #08070c;
+  --panel: #100e17;
+  --panel-light: #171321;
+  --purple: #a78bfa;
+  --purple-dark: #7851bd;
+  --silver: #e4e0ed;
+  --muted: #918a9f;
+  --border: #282231;
+  --danger: #ff8f9a;
+  --success: #b9e7ca;
 }
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  margin: 0;
   min-height: 100vh;
-  min-height: 100dvh;
+  font-family: "Cairo", sans-serif;
+  color: var(--silver);
+  background:
+    radial-gradient(
+      ellipse at 50% 0%,
+      rgba(110, 73, 160, 0.14),
+      transparent 48%
+    ),
+    var(--bg);
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 24px;
-  background:
-    radial-gradient(ellipse at 15% 10%, #30204e 0%, transparent 42%),
-    radial-gradient(ellipse at 90% 90%, #24153b 0%, transparent 38%),
-    var(--bg);
-  color: #f6f3ff;
-  font-family: 'IBM Plex Sans Arabic', sans-serif;
+  padding: 35px 18px;
 }
 
-button, input {
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input {
   font: inherit;
 }
 
-button, a {
-  -webkit-tap-highlight-color: transparent;
+button {
+  cursor: pointer;
 }
 
-.page {
+.top {
   width: 100%;
-  max-width: 1040px;
-  min-height: 570px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  overflow: hidden;
-  border: 1px solid #39304f;
-  border-radius: 22px;
-  background: #0d0b18;
-  box-shadow: 0 25px 90px #0008;
-}
-
-/* الجانب الفني */
-
-.art-side {
-  position: relative;
+  max-width: 430px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  min-height: 570px;
-  overflow: hidden;
-  background:
-    radial-gradient(circle at 50% 42%, #493365 0%, #21172f 30%, #100d1c 68%, #090711 100%);
-  border-left: 1px solid #39304f;
+  justify-content: space-between;
+  margin-bottom: 26px;
 }
 
-.art-side::before,
-.art-side::after {
+.brand {
+  direction: ltr;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 35px;
+  font-weight: 700;
+  letter-spacing: 5px;
+  color: #f0edf6;
+}
+
+.brand span {
+  color: var(--purple);
+}
+
+.home-link {
+  font-size: 12px;
+  color: var(--muted);
+  transition: color .2s;
+}
+
+.home-link:hover {
+  color: var(--silver);
+}
+
+.card {
+  width: 100%;
+  max-width: 430px;
+  background: linear-gradient(
+    145deg,
+    rgba(22, 18, 32, .98),
+    rgba(12, 10, 17, .99)
+  );
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 36px 34px 30px;
+  box-shadow:
+    0 25px 90px rgba(0, 0, 0, .38),
+    0 0 50px rgba(116, 76, 170, .045);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
   content: "";
   position: absolute;
-  border: 1px solid #a58aff24;
-  border-radius: 50%;
-  width: 340px;
-  height: 340px;
+  top: 0;
+  left: 22%;
+  right: 22%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--purple-dark),
+    transparent
+  );
 }
 
-.art-side::after {
-  width: 440px;
-  height: 440px;
-}
-
-.orbit {
-  position: absolute;
-  width: 270px;
-  height: 390px;
-  border: 1px solid #c7b3ff35;
-  border-radius: 50%;
-  transform: rotate(42deg);
-}
-
-.moon {
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;
-  position: relative;
-  z-index: 1;
-  background:
-    radial-gradient(circle at 30% 25%, #e8ddff 0%, #a58aff 8%, #5d437f 32%, #20152f 65%, #080711 82%);
-  box-shadow:
-    0 0 35px #a58aff55,
-    0 0 100px #8d63d444,
-    inset -20px -15px 35px #0008;
-}
-
-.art-caption {
-  position: absolute;
-  bottom: 25px;
-  left: 25px;
-  right: 25px;
-  text-align: center;
-  z-index: 3;
-}
-}
-
-.art-caption h2 {
-  direction: ltr;
-  font-size: 27px;
-  letter-spacing: 7px;
-  margin: 0 0 10px;
-}
-
-.art-caption h2 span {
-  color: var(--purple);
-}
-
-.art-caption p {
-  color: #aaa1bd;
-  font-size: 12px;
-  letter-spacing: 1px;
-  margin: 0;
-}
-
-/* نموذج تسجيل الدخول */
-
-.form-side {
+.symbol {
+  width: 42px;
+  height: 42px;
+  margin: 0 auto 18px;
+  border: 1px solid #403050;
+  border-radius: 13px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 48px 38px;
-}
-
-.form-content {
-  width: 100%;
-  max-width: 360px;
-}
-
-.logo {
-  direction: ltr;
-  text-align: center;
-  font-size: 32px;
-  font-weight: 700;
-  letter-spacing: 3px;
-  margin-bottom: 28px;
-}
-
-.logo span {
   color: var(--purple);
+  font-family: "Cormorant Garamond", serif;
+  font-size: 25px;
+  box-shadow: inset 0 0 20px #a78bfa08;
 }
 
 .heading {
-  font-size: 26px;
-  font-weight: 700;
-  margin: 0 0 8px;
+  text-align: center;
+  margin-bottom: 27px;
 }
 
-.subtitle {
-  font-size: 13px;
+.heading h1 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #f1edf8;
+  margin-bottom: 7px;
+}
+
+.heading p {
+  font-size: 12px;
   color: var(--muted);
-  margin: 0 0 28px;
   line-height: 1.9;
 }
 
 .field {
-  margin-bottom: 19px;
+  margin-bottom: 17px;
 }
 
 .field label {
   display: block;
-  margin-bottom: 9px;
-  font-size: 13px;
-  color: var(--silver);
+  margin-bottom: 8px;
+  font-size: 12px;
+  color: #d3cddd;
 }
 
 .input-wrap {
   position: relative;
 }
 
-.field input {
+.input-wrap input {
   display: block;
   width: 100%;
   height: 48px;
-  border: 1px solid #39304f;
-  border-radius: 9px;
+  background: #0b0911;
+  color: var(--silver);
+  border: 1px solid #30283c;
+  border-radius: 10px;
   outline: none;
-  padding: 0 13px;
-  background: #090813;
-  color: white;
+  padding: 0 14px;
+  font-size: 13px;
   transition: border-color .2s, box-shadow .2s;
 }
 
-.field input::placeholder {
-  color: #69647a;
-  font-size: 12px;
+.input-wrap input::placeholder {
+  color: #625a70;
 }
 
-.field input:focus {
-  border-color: var(--purple);
-  box-shadow: 0 0 0 3px #a58aff14;
+.input-wrap input:focus {
+  border-color: #8a69c4;
+  box-shadow: 0 0 0 3px #a78bfa12;
 }
 
-.password-input {
-  padding-left: 48px !important;
+.input-wrap input[type="password"],
+.input-wrap input.password-input {
+  padding-left: 65px;
 }
 
 .show-password {
@@ -226,232 +209,173 @@ button, a {
   left: 12px;
   top: 50%;
   transform: translateY(-50%);
-  color: var(--muted);
-  border: 0;
   background: transparent;
-  font-size: 17px;
-  padding: 4px;
+  border: 0;
+  color: var(--muted);
+  font-size: 11px;
 }
 
-.forgot-row {
+.show-password:hover {
+  color: var(--purple);
+}
+
+.form-options {
   display: flex;
-  justify-content: flex-start;
-  margin-top: -7px;
-  margin-bottom: 23px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 1px 0 22px;
+  font-size: 11px;
+}
+
+.remember {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--muted);
+}
+
+.remember input {
+  accent-color: var(--purple-dark);
 }
 
 .text-link {
   color: var(--purple);
-  font-size: 12px;
-  text-decoration: none;
+  transition: color .2s;
 }
 
 .text-link:hover {
-  color: #d4c5ff;
-  text-decoration: underline;
+  color: #d1bfff;
 }
 
-.submit {
+.primary {
   width: 100%;
-  min-height: 49px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-  border: 1px solid #c0aaff;
-  border-radius: 9px;
-  color: #171025;
-  background: linear-gradient(110deg, #d0c0ff, #a58aff 55%, #9270e8);
-  box-shadow: 0 0 20px #a58aff32;
-  font-weight: 700;
-  font-size: 14px;
-  transition: .2s;
-  cursor: pointer;
+  min-height: 48px;
+  border: 1px solid #b5a0ed;
+  border-radius: 10px;
+  background: linear-gradient(110deg, #b7a1ed, #9171cf);
+  color: #100b19;
+  font-size: 13px;
+  font-weight: 800;
+  transition: transform .2s, filter .2s;
 }
 
-.submit:hover {
-  box-shadow: 0 0 30px #a58aff65;
+.primary:hover {
+  filter: brightness(1.08);
   transform: translateY(-1px);
 }
 
-.submit .arrow {
-  font-size: 19px;
+.primary:disabled {
+  opacity: .6;
+  cursor: wait;
+  transform: none;
 }
 
-.divider {
+.separator {
   display: flex;
   align-items: center;
   gap: 13px;
   margin: 23px 0;
-  color: #89829c;
-  font-size: 12px;
+  color: #6e657c;
+  font-size: 11px;
 }
 
-.divider::before,
-.divider::after {
+.separator::before,
+.separator::after {
   content: "";
   flex: 1;
   height: 1px;
-  background: #30283f;
+  background: var(--border);
 }
 
-.google-btn {
+.secondary {
   width: 100%;
-  min-height: 47px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 11px;
-  background: #090813;
-  color: #f0ecfa;
-  border: 1px solid #514366;
-  border-radius: 9px;
-  font-size: 13px;
-  cursor: pointer;
-  transition: .2s;
+  min-height: 45px;
+  border: 1px solid #332b40;
+  border-radius: 10px;
+  background: #100d17;
+  color: #d6d0e0;
+  font-size: 12px;
+  transition: background .2s, border-color .2s;
 }
 
-.google-btn:hover {
-  border-color: var(--purple);
-  box-shadow: 0 0 16px #a58aff1b;
+.secondary:hover {
+  background: #191423;
+  border-color: #56436e;
 }
 
-.google-icon {
-  direction: ltr;
-  font-family: Arial, sans-serif;
-  font-size: 21px;
-  font-weight: bold;
-  background: conic-gradient(
-    from -45deg,
-    #4285F4 0deg 90deg,
-    #34A853 90deg 180deg,
-    #FBBC05 180deg 250deg,
-    #EA4335 250deg 310deg,
-    #4285F4 310deg 360deg
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.bottom-text {
-  margin: 25px 0 0;
+.switch-text {
   text-align: center;
   color: var(--muted);
   font-size: 12px;
+  margin-top: 25px;
 }
 
-.bottom-text a {
-  display: inline-block;
-  margin-right: 5px;
-  color: var(--purple);
-  text-decoration: none;
-  font-weight: 600;
+.switch-text a {
+  margin-right: 4px;
+  font-weight: 700;
 }
 
-.bottom-text a:hover {
-  text-decoration: underline;
-}
-
-.back {
-  display: block;
-  margin-top: 22px;
-  text-align: center;
-  color: #827a96;
-  text-decoration: none;
-  font-size: 12px;
-}
-
-.back:hover {
-  color: var(--silver);
-}
-
-.notice {
-  margin-top: 15px;
+.message {
+  display: none;
+  margin-bottom: 17px;
+  padding: 11px 12px;
+  border-radius: 9px;
   font-size: 12px;
   line-height: 1.8;
-  color: #d9d5e5;
-  text-align: center;
 }
 
-.hidden {
+.message.error {
+  display: block;
+  color: var(--danger);
+  background: #ff8f9a0d;
+  border: 1px solid #ff8f9a25;
+}
+
+.message.success {
+  display: block;
+  color: var(--success);
+  background: #b9e7ca0b;
+  border: 1px solid #b9e7ca22;
+}
+
+.footer {
+  margin-top: 24px;
+  text-align: center;
+  font-size: 10px;
+  line-height: 2;
+  color: #625a70;
+}
+
+.footer span {
+  color: #9385ac;
+  letter-spacing: 2px;
+}
+
+[hidden] {
   display: none !important;
 }
 
-@media (max-width: 760px) {
+@media (max-width: 480px) {
   body {
-    padding: 16px;
-    align-items: center;
+    padding: 24px 15px;
   }
 
-  .page {
-    max-width: 440px;
-    min-height: auto;
-    grid-template-columns: 1fr;
-    border-radius: 17px;
+  .top {
+    margin-bottom: 21px;
   }
 
-  .art-side {
-    min-height: 155px;
-    border-left: 0;
-    border-bottom: 1px solid #39304f;
+  .brand {
+    font-size: 31px;
   }
 
-  .art-side::before {
-    width: 180px;
-    height: 180px;
+  .card {
+    padding: 30px 22px 25px;
+    border-radius: 16px;
   }
 
-  .art-side::after {
-    width: 230px;
-    height: 230px;
-  }
-
-  .orbit {
-    width: 110px;
-    height: 180px;
-  }
-
-  .moon {
-    width: 82px;
-    height: 82px;
-  }
-
-  .art-caption {
-    bottom: 13px;
-  }
-
-  .art-caption h2 {
-    font-size: 17px;
-    letter-spacing: 5px;
-    margin-bottom: 3px;
-  }
-
-  .art-caption p {
-    font-size: 9px;
-  }
-
-  .form-side {
-    padding: 30px 23px;
-  }
-
-  .logo {
-    font-size: 27px;
-    margin-bottom: 20px;
-  }
-
-  .heading {
-    font-size: 23px;
-  }
-
-  .subtitle {
-    margin-bottom: 23px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    transition: none !important;
+  .heading h1 {
+    font-size: 22px;
   }
 }
 </style>
@@ -459,230 +383,277 @@ button, a {
 
 <body>
 
-<main class="page">
+<header class="top">
+  <a class="brand" href="index.html" aria-label="NOIR Home">
+    N<span>OIR.</span>
+  </a>
 
-  <section class="art-side" aria-label="NOIR">
-    <div class="orbit"></div>
-    <div class="moon"></div>
+  <a class="home-link" href="index.html">العودة للرئيسية ←</a>
+</header>
 
-    <div class="art-caption">
-      <h2>N<span>OIR.</span></h2>
-      <p>BEYOND THE DARK</p>
+<main class="card">
+
+  <div class="symbol" aria-hidden="true">N</div>
+
+  <div class="heading">
+    <h1 id="formTitle">مرحبًا بعودتك</h1>
+    <p id="formSubtitle">سجّل دخولك وتابع رحلتك في عالم NOIR.</p>
+  </div>
+
+  <div id="message" class="message" role="status" aria-live="polite"></div>
+
+  <form id="authForm" novalidate>
+
+    <div class="field" id="nameField" hidden>
+      <label for="name">اسم المستخدم</label>
+      <div class="input-wrap">
+        <input
+          id="name"
+          name="name"
+          type="text"
+          autocomplete="nickname"
+          placeholder="اكتب اسمك"
+        >
+      </div>
     </div>
-  </section>
 
-  <section class="form-side">
-    <div class="form-content">
-
-      <div class="logo">N<span>OIR.</span></div>
-
-      <h1 class="heading" id="heading">تسجيل الدخول</h1>
-      <p class="subtitle" id="subtitle">
-        أهلًا بعودتك. تابع رحلتك بين عوالم القصص.
-      </p>
-
-      <form id="accountForm">
-
-        <div class="field hidden" id="nameGroup">
-          <label for="username">اسم المستخدم</label>
-          <input
-            id="username"
-            name="username"
-            type="text"
-            placeholder="اكتب اسم المستخدم"
-            autocomplete="username"
-            minlength="3"
-          >
-        </div>
-
-        <div class="field">
-          <label for="email">البريد الإلكتروني</label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            placeholder="name@example.com"
-            autocomplete="email"
-            required
-          >
-        </div>
-
-        <div class="field">
-          <label for="password">كلمة المرور</label>
-
-          <div class="input-wrap">
-            <input
-              class="password-input"
-              id="password"
-              name="password"
-              type="password"
-              placeholder="أدخل كلمة المرور"
-              autocomplete="current-password"
-              minlength="6"
-              required
-            >
-
-            <button
-              type="button"
-              class="show-password"
-              id="togglePassword"
-              aria-label="إظهار كلمة المرور"
-              title="إظهار كلمة المرور"
-            >◉</button>
-          </div>
-        </div>
-
-        <div class="forgot-row" id="forgotRow">
-          <a href="#" class="text-link" id="forgotLink">
-            نسيت كلمة المرور؟
-          </a>
-        </div>
-
-        <button class="submit" type="submit" id="submitBtn">
-          <span id="submitText">تسجيل الدخول</span>
-          <span class="arrow">←</span>
-        </button>
-
-      </form>
-
-      <div class="divider" id="divider">أو</div>
-
-      <button class="google-btn" type="button" id="googleBtn">
-        <span class="google-icon" aria-hidden="true">G</span>
-        <span id="googleText">المتابعة باستخدام Google</span>
-      </button>
-
-      <p class="bottom-text">
-        <span id="bottomLabel">ليس لديك حساب؟</span>
-        <a href="#" id="switchLink">إنشاء حساب جديد</a>
-      </p>
-
-      <div class="notice" id="notice" aria-live="polite"></div>
-
-      <a href="index.html" class="back" id="backLink">
-        ← العودة إلى الصفحة الرئيسية
-      </a>
-
+    <div class="field">
+      <label for="email">البريد الإلكتروني</label>
+      <div class="input-wrap">
+        <input
+          id="email"
+          name="email"
+          type="email"
+          autocomplete="email"
+          placeholder="name@example.com"
+          required
+        >
+      </div>
     </div>
-  </section>
+
+    <div class="field" id="passwordField">
+      <label for="password">كلمة المرور</label>
+      <div class="input-wrap">
+        <input
+          id="password"
+          class="password-input"
+          name="password"
+          type="password"
+          autocomplete="current-password"
+          placeholder="أدخل كلمة المرور"
+          minlength="6"
+          required
+        >
+        <button
+          class="show-password"
+          type="button"
+          id="togglePassword"
+          aria-label="إظهار كلمة المرور"
+        >إظهار</button>
+      </div>
+    </div>
+
+    <div class="form-options" id="formOptions">
+      <label class="remember">
+        <input type="checkbox" id="remember">
+        تذكرني
+      </label>
+
+      <a href="#" class="text-link" id="forgotLink">نسيت كلمة المرور؟</a>
+    </div>
+
+    <button class="primary" type="submit" id="submitButton">
+      تسجيل الدخول
+    </button>
+
+  </form>
+
+  <div id="extraOptions">
+    <div class="separator">أو</div>
+    <button class="secondary" type="button" id="googleButton">
+      Continue with Google
+    </button>
+  </div>
+
+  <p class="switch-text" id="switchText">
+    ليس لديك حساب؟
+    <a href="#" class="text-link" id="switchLink">إنشاء حساب جديد</a>
+  </p>
 
 </main>
 
+<footer class="footer">
+  <span>NOIR</span>
+  <p>عالم آخر، خلف كل صفحة.</p>
+</footer>
+
 <script>
-const $ = id => document.getElementById(id);
+const authForm = document.getElementById("authForm");
+const formTitle = document.getElementById("formTitle");
+const formSubtitle = document.getElementById("formSubtitle");
+const nameField = document.getElementById("nameField");
+const nameInput = document.getElementById("name");
+const emailInput = document.getElementById("email");
+const passwordInput = document.getElementById("password");
+const passwordField = document.getElementById("passwordField");
+const formOptions = document.getElementById("formOptions");
+const extraOptions = document.getElementById("extraOptions");
+const submitButton = document.getElementById("submitButton");
+const switchText = document.getElementById("switchText");
+const switchLink = document.getElementById("switchLink");
+const forgotLink = document.getElementById("forgotLink");
+const togglePassword = document.getElementById("togglePassword");
+const message = document.getElementById("message");
+const googleButton = document.getElementById("googleButton");
 
-let mode = "login";
+let currentMode = "login";
 
-function setMode(newMode) {
-  mode = newMode;
-
-  const isLogin = mode === "login";
-  const isRegister = mode === "register";
-  const isForgot = mode === "forgot";
-
-  $("notice").textContent = "";
-
-  $("nameGroup").classList.toggle("hidden", !isRegister);
-  $("forgotRow").classList.toggle("hidden", !isLogin);
-  $("divider").classList.toggle("hidden", isForgot);
-  $("googleBtn").classList.toggle("hidden", isForgot);
-
-  $("username").required = isRegister;
-  $("username").disabled = !isRegister;
-
-  $("password").classList.toggle("hidden", isForgot);
-  $("password").required = !isForgot;
-  $("password").disabled = isForgot;
-
-  $("heading").textContent = isLogin
-    ? "تسجيل الدخول"
-    : isRegister
-      ? "إنشاء حساب جديد"
-      : "استعادة كلمة المرور";
-
-  $("subtitle").textContent = isLogin
-    ? "أهلًا بعودتك. تابع رحلتك بين عوالم القصص."
-    : isRegister
-      ? "أنشئ حسابك وابدأ رحلتك في عالم NOIR."
-      : "أدخل بريدك الإلكتروني لاستعادة حسابك.";
-
-  $("submitText").textContent = isLogin
-    ? "تسجيل الدخول"
-    : isRegister
-      ? "إنشاء حساب"
-      : "إرسال رابط الاستعادة";
-
-  $("togglePassword").classList.toggle("hidden", isForgot);
-
-  $("bottomLabel").textContent = isLogin
-    ? "ليس لديك حساب؟"
-    : isRegister
-      ? "لديك حساب بالفعل؟"
-      : "تذكرت كلمة المرور؟";
-
-  $("switchLink").textContent = isLogin
-    ? "إنشاء حساب جديد"
-    : isRegister
-      ? "تسجيل الدخول"
-      : "العودة لتسجيل الدخول";
-
-  $("switchLink").href = "#";
-
-  $("googleText").textContent = "المتابعة باستخدام Google";
+function showMessage(text, type = "error") {
+  message.textContent = text;
+  message.className = "message " + type;
 }
 
-$("switchLink").addEventListener("click", event => {
-  event.preventDefault();
+function clearMessage() {
+  message.textContent = "";
+  message.className = "message";
+}
+
+function setMode(mode) {
+  currentMode = mode;
+  clearMessage();
+  authForm.reset();
+
+  passwordInput.type = "password";
+  togglePassword.textContent = "إظهار";
+
+  nameField.hidden = mode !== "register";
+  passwordField.hidden = mode === "forgot";
+  formOptions.hidden = mode !== "login";
+  extraOptions.hidden = mode === "forgot";
+
+  nameInput.required = mode === "register";
+  passwordInput.required = mode !== "forgot";
+  passwordInput.autocomplete =
+    mode === "register" ? "new-password" : "current-password";
 
   if (mode === "login") {
-    setMode("register");
+    formTitle.textContent = "مرحبًا بعودتك";
+    formSubtitle.textContent =
+      "سجّل دخولك وتابع رحلتك في عالم NOIR.";
+    submitButton.textContent = "تسجيل الدخول";
+    switchText.innerHTML =
+      'ليس لديك حساب؟ <a href="#" class="text-link" id="switchLink">إنشاء حساب جديد</a>';
+  } else if (mode === "register") {
+    formTitle.textContent = "أنشئ حسابك";
+    formSubtitle.textContent =
+      "خطوتك الأولى نحو عالم NOIR.";
+    submitButton.textContent = "إنشاء الحساب";
+    switchText.innerHTML =
+      'لديك حساب بالفعل؟ <a href="#" class="text-link" id="switchLink">تسجيل الدخول</a>';
   } else {
-    setMode("login");
+    formTitle.textContent = "استعادة كلمة المرور";
+    formSubtitle.textContent =
+      "أدخل بريدك الإلكتروني لاستعادة حسابك.";
+    submitButton.textContent = "إرسال رابط الاستعادة";
+    switchText.innerHTML =
+      '<a href="#" class="text-link" id="switchLink">العودة إلى تسجيل الدخول</a>';
   }
+
+  bindSwitchLink();
+}
+
+function bindSwitchLink() {
+  const link = document.getElementById("switchLink");
+
+  link.addEventListener("click", function(event) {
+    event.preventDefault();
+
+    if (currentMode === "login") {
+      setMode("register");
+    } else {
+      setMode("login");
+    }
+  });
+}
+
+switchLink.addEventListener("click", function(event) {
+  event.preventDefault();
+  setMode("register");
 });
 
-$("forgotLink").addEventListener("click", event => {
+forgotLink.addEventListener("click", function(event) {
   event.preventDefault();
   setMode("forgot");
 });
 
-$("togglePassword").addEventListener("click", () => {
-  const input = $("password");
-  const showing = input.type === "text";
-
-  input.type = showing ? "password" : "text";
-  $("togglePassword").textContent = showing ? "◉" : "◎";
-  $("togglePassword").setAttribute(
+togglePassword.addEventListener("click", function() {
+  const isHidden = passwordInput.type === "password";
+  passwordInput.type = isHidden ? "text" : "password";
+  togglePassword.textContent = isHidden ? "إخفاء" : "إظهار";
+  togglePassword.setAttribute(
     "aria-label",
-    showing ? "إظهار كلمة المرور" : "إخفاء كلمة المرور"
+    isHidden ? "إخفاء كلمة المرور" : "إظهار كلمة المرور"
   );
 });
 
-$("accountForm").addEventListener("submit", event => {
+authForm.addEventListener("submit", function(event) {
   event.preventDefault();
+  clearMessage();
 
-  if (!$("accountForm").reportValidity()) return;
+  const email = emailInput.value.trim();
+  const password = passwordInput.value;
+  const name = nameInput.value.trim();
 
-  if (mode === "forgot") {
-    $("notice").textContent =
-      "واجهة الاستعادة جاهزة، لكن إرسال رابط الاستعادة يحتاج إلى ربط خدمة الحسابات.";
+  if (!email || !emailInput.validity.valid) {
+    showMessage("يرجى إدخال بريد إلكتروني صحيح.");
+    emailInput.focus();
     return;
   }
 
-  if (mode === "register") {
-    $("notice").textContent =
-      "تصميم التسجيل جاهز. لحفظ الحساب وإنشائه فعليًا، يجب ربط الموقع بخدمة مصادقة.";
+  if (currentMode === "register" && !name) {
+    showMessage("يرجى إدخال اسم المستخدم.");
+    nameInput.focus();
     return;
   }
 
-  $("notice").textContent =
-    "واجهة تسجيل الدخول جاهزة. التحقق من الحساب يتطلب ربط خدمة مصادقة.";
+  if (currentMode !== "forgot" && password.length < 6) {
+    showMessage("يجب أن تتكون كلمة المرور من 6 أحرف على الأقل.");
+    passwordInput.focus();
+    return;
+  }
+
+  /*
+    واجهة تجريبية فقط:
+    اربط هذا الجزء بخدمة مصادقة حقيقية مثل Firebase Auth.
+    لا تحفظ كلمات المرور في localStorage أو داخل المتصفح.
+  */
+
+  if (currentMode === "login") {
+    showMessage(
+      "واجهة تسجيل الدخول جاهزة، لكن يلزم ربط نظام Auth للتحقق من الحساب.",
+      "error"
+    );
+  } else if (currentMode === "register") {
+    showMessage(
+      "واجهة إنشاء الحساب جاهزة، لكن يلزم ربط نظام Auth لإنشاء حساب فعلي.",
+      "error"
+    );
+  } else {
+    showMessage(
+      "يلزم ربط نظام Auth لإرسال رابط استعادة كلمة المرور.",
+      "error"
+    );
+  }
 });
 
-$("googleBtn").addEventListener("click", () => {
-  $("notice").textContent =
-    "تسجيل الدخول عبر Google يحتاج إلى إعداد OAuth وربط المشروع بخدمة مصادقة.";
+googleButton.addEventListener("click", function() {
+  showMessage(
+    "تسجيل Google يحتاج إعداد مزود Google داخل نظام المصادقة.",
+    "error"
+  );
 });
+
+setMode("login");
 </script>
 
 </body>
