@@ -2,858 +2,520 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#09070e">
-  <title>NOIR — The Dark Library</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOIR | Manga & Manhwa</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Cinzel:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap');
 
-  <style>
-    :root {
-      --bg: #09070e;
-      --panel: #100d18;
-      --panel2: #171221;
-      --purple: #a78bfa;
-      --purple-dark: #6d42b8;
-      --silver: #d5d1e0;
-      --muted: #898394;
-      --border: rgba(190, 165, 255, .16);
-      --danger: #ff7890;
-    }
+:root {
+  --bg: #080711;
+  --panel: #111020;
+  --purple: #a58aff;
+  --silver: #d9d5e5;
+  --muted: #9691aa;
+}
 
-    * { box-sizing: border-box; }
+* { box-sizing: border-box; }
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      background:
-        radial-gradient(ellipse at 50% -20%, #2b1643 0%, transparent 50%),
-        var(--bg);
-      color: var(--silver);
-      font-family: "Cairo", sans-serif;
-    }
+html { scroll-behavior: smooth; }
 
-    button, input, select { font: inherit; }
-    button { cursor: pointer; }
-    a { color: inherit; text-decoration: none; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: #f6f3ff;
+  font-family: 'IBM Plex Sans Arabic', sans-serif;
+}
 
-    .topbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      padding: 16px 6%;
-      border-bottom: 1px solid var(--border);
-      background: rgba(9,7,14,.88);
-      position: sticky;
-      top: 0;
-      z-index: 5;
-      backdrop-filter: blur(16px);
-    }
+button, input { font: inherit; }
+button { cursor: pointer; }
 
-    .logo {
-      font-family: "Cinzel", serif;
-      font-size: 28px;
-      font-weight: 700;
-      letter-spacing: 5px;
-      color: #e4d6ff;
-      text-shadow: 0 0 24px #8754c777;
-    }
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 13px 17px;
+  border-bottom: 1px solid #252137;
+  background: #0c0a17;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
 
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-    }
+.logo {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  direction: ltr;
+}
 
-    .btn {
-      border: 1px solid var(--border);
-      color: var(--silver);
-      background: #171221;
-      padding: 8px 15px;
-      border-radius: 9px;
-      transition: .2s;
-    }
+.logo span { color: var(--purple); }
 
-    .btn:hover {
-      border-color: var(--purple);
-      transform: translateY(-1px);
-    }
+.header-actions {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+}
 
-    .btn-primary {
-      color: white;
-      background: linear-gradient(135deg, #7d50c5, #49276e);
-      border-color: #9d75d3;
-    }
+.icon {
+  border: 0;
+  background: none;
+  color: var(--silver);
+  font-size: 22px;
+  padding: 3px;
+}
 
-    .login-btn {
-      font-size: 12px;
-      padding: 6px 11px;
-      white-space: nowrap;
-    }
+.login {
+  display: inline-block;
+  text-decoration: none;
+  border: 1px solid var(--purple);
+  border-radius: 7px;
+  color: var(--purple);
+  background: transparent;
+  padding: 5px 9px;
+  font-size: 11px;
+  white-space: nowrap;
+  transition: .2s;
+}
 
-    .hero {
-      text-align: center;
-      padding: 76px 20px 58px;
-    }
+.login:hover {
+  background: var(--purple);
+  color: #080711;
+}
 
-    .eyebrow {
-      color: var(--purple);
-      letter-spacing: 4px;
-      font-size: 11px;
-      text-transform: uppercase;
-    }
+.search-box {
+  padding: 12px 16px;
+  background: var(--panel);
+  border-bottom: 1px solid #29243b;
+}
 
-    .hero h1 {
-      font-family: "Cinzel", serif;
-      font-size: clamp(43px, 9vw, 82px);
-      letter-spacing: 8px;
-      margin: 15px 0;
-      background: linear-gradient(110deg, #eee8ff, #a78bfa 50%, #6d42b8);
-      color: transparent;
-      background-clip: text;
-      -webkit-background-clip: text;
-    }
+.search-box input {
+  width: 100%;
+  border: 1px solid #39304f;
+  background: #080711;
+  color: white;
+  border-radius: 10px;
+  padding: 12px;
+  outline: none;
+}
 
-    .hero p {
-      color: var(--muted);
-      max-width: 520px;
-      margin: 0 auto 27px;
-      line-height: 2;
-      font-size: 14px;
-    }
+.search-box input:focus { border-color: var(--purple); }
+.hidden { display: none !important; }
 
-    .hero-actions {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
+.hero {
+  padding: 40px 21px 30px;
+  background: radial-gradient(ellipse at top left, #30204e 0%, transparent 65%);
+}
 
-    .section {
-      width: min(1100px, 90%);
-      margin: 0 auto 48px;
-    }
+.eyebrow {
+  color: var(--purple);
+  font-size: 12px;
+  letter-spacing: 1px;
+}
 
-    .section-heading {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 18px;
-    }
+h1 {
+  font-size: 43px;
+  line-height: 1.5;
+  margin: 15px 0;
+}
 
-    .section-heading h2 {
-      color: #eee8ff;
-      font-size: 20px;
-      margin: 0;
-    }
+.gradient {
+  background: linear-gradient(90deg, #eee9ff, #a58aff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
 
-    .section-heading span {
-      color: var(--purple);
-      font-size: 12px;
-    }
+.hero p {
+  color: var(--muted);
+  line-height: 2;
+  font-size: 14px;
+  max-width: 440px;
+}
 
-    .filters {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 20px;
-      flex-wrap: wrap;
-    }
+.primary, .secondary {
+  display: inline-block;
+  text-decoration: none;
+  border-radius: 9px;
+  margin-top: 10px;
+}
 
-    .filters input, .filters select {
-      min-width: 0;
-      flex: 1;
-      padding: 12px;
-      border: 1px solid var(--border);
-      border-radius: 9px;
-      background: var(--panel);
-      color: var(--silver);
-      outline: none;
-    }
+.primary {
+  background: linear-gradient(120deg, #c9baff, #9676f2);
+  color: #171025;
+  padding: 11px 17px;
+  border: 0;
+  font-weight: 700;
+  font-size: 13px;
+}
 
-    .filters input:focus, .filters select:focus,
-    .field input:focus {
-      border-color: var(--purple);
-    }
+.secondary {
+  border: 1px solid #39324f;
+  color: var(--silver);
+  background: transparent;
+  padding: 10px 14px;
+  margin-right: 6px;
+  font-size: 12px;
+}
 
-    .works-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-      gap: 16px;
-    }
+.hero-art {
+  margin: 32px auto 5px;
+  max-width: 440px;
+  height: 210px;
+  border-radius: 16px;
+  border: 1px solid #39304f;
+  overflow: hidden;
+  position: relative;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle at 50% 40%, #66518d 0%, #25203e 27%, #100e1e 60%, #080711 100%);
+}
 
-    .work-card {
-      border: 1px solid var(--border);
-      background: linear-gradient(150deg, #171221, #0e0b14);
-      border-radius: 13px;
-      padding: 20px;
-      min-height: 180px;
-      transition: .25s;
-    }
+.moon {
+  width: 125px;
+  height: 125px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 27%, #e4ddff, #9585bb 15%, #39304f 50%, #0b0914 76%);
+  box-shadow: 0 0 55px #9274ed55;
+  animation: glow 5s ease-in-out infinite alternate;
+}
 
-    .work-card:hover {
-      transform: translateY(-4px);
-      border-color: #8c65c5;
-    }
+@keyframes glow {
+  from { box-shadow: 0 0 35px #9274ed33; }
+  to { box-shadow: 0 0 70px #9274ed88; }
+}
 
-    .work-symbol {
-      font-size: 27px;
-      color: var(--purple);
-      margin-bottom: 10px;
-    }
+.art-text {
+  position: absolute;
+  bottom: 13px;
+  left: 15px;
+  color: #e5dfff;
+  font-size: 10px;
+  letter-spacing: 3px;
+  direction: ltr;
+}
 
-    .work-card h3 { margin: 5px 0; color: #eee8ff; }
-    .work-card p { font-size: 12px; line-height: 1.9; color: var(--muted); }
-    .tag { color: var(--purple); font-size: 11px; }
+.section { padding: 35px 18px; }
 
-    .empty-state {
-      grid-column: 1 / -1;
-      text-align: center;
-      border: 1px dashed var(--border);
-      border-radius: 12px;
-      padding: 34px 16px;
-      color: var(--muted);
-      line-height: 2;
-    }
+.section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
 
-    .account-strip {
-      display: none;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 13px 16px;
-      margin-bottom: 25px;
-      background: #130e1d;
-      font-size: 13px;
-      overflow-wrap: anywhere;
-    }
+.section-head h2 {
+  font-size: 21px;
+  margin: 5px 0 18px;
+}
 
-    footer {
-      text-align: center;
-      border-top: 1px solid var(--border);
-      color: var(--muted);
-      padding: 25px 12px;
-      font-size: 11px;
-      letter-spacing: 1px;
-    }
+.kicker {
+  color: var(--purple);
+  font-size: 11px;
+  letter-spacing: 1px;
+}
 
-    /* Login and signup modal */
-    .modal-backdrop {
-      position: fixed;
-      inset: 0;
-      z-index: 20;
-      background: rgba(0,0,0,.76);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 18px;
-      backdrop-filter: blur(8px);
-    }
+.empty-library {
+  min-height: 190px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 25px 18px;
+  border: 1px dashed #39304f;
+  border-radius: 14px;
+  background: linear-gradient(145deg, #111020, #0b0914);
+}
 
-    .modal-backdrop.open { display: flex; }
+.empty-icon {
+  font-size: 35px;
+  color: var(--purple);
+  margin-bottom: 10px;
+}
 
-    .modal {
-      position: relative;
-      width: min(420px, 100%);
-      max-height: 90vh;
-      overflow-y: auto;
-      border: 1px solid #674b8e;
-      border-radius: 17px;
-      padding: 28px;
-      background:
-        radial-gradient(ellipse at top, #29183d, transparent 55%),
-        #100d18;
-      box-shadow: 0 20px 80px #0009;
-    }
+.empty-library h3 {
+  font-size: 15px;
+  margin: 0 0 8px;
+}
 
-    .close-modal {
-      position: absolute;
-      top: 12px;
-      left: 12px;
-      border: 0;
-      background: transparent;
-      color: var(--muted);
-      font-size: 25px;
-    }
+.empty-library p {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.9;
+  margin: 0;
+}
 
-    .modal-logo {
-      font-family: "Cinzel", serif;
-      color: #d7c0ff;
-      letter-spacing: 4px;
-      font-size: 25px;
-      text-align: center;
-      margin: 5px 0 2px;
-    }
+.banner {
+  margin: 10px 17px 35px;
+  padding: 24px 20px;
+  border: 1px solid #45345f;
+  border-radius: 14px;
+  background: linear-gradient(120deg, #19132a, #100e1d);
+}
 
-    .modal-subtitle {
-      text-align: center;
-      color: var(--muted);
-      font-size: 12px;
-      margin-bottom: 22px;
-    }
+.banner h2 {
+  font-size: 21px;
+  margin: 12px 0;
+}
 
-    .tabs {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-      margin-bottom: 19px;
-    }
+.banner p {
+  font-size: 12px;
+  line-height: 2;
+  color: var(--muted);
+}
 
-    .tab {
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      background: #171221;
-      color: var(--muted);
-      padding: 9px;
-      font-size: 13px;
-    }
+footer {
+  padding: 25px 16px 100px;
+  border-top: 1px solid #29243b;
+  text-align: center;
+  color: var(--muted);
+  font-size: 11px;
+}
 
-    .tab.active {
-      background: #38234f;
-      color: #fff;
-      border-color: #8b65b9;
-    }
+footer .logo { color: white; }
 
-    .field { margin-bottom: 14px; }
+.bottom-nav {
+  position: fixed;
+  z-index: 15;
+  bottom: 10px;
+  left: 12px;
+  right: 12px;
+  background: #171526f2;
+  backdrop-filter: blur(16px);
+  border: 1px solid #45405b;
+  border-radius: 18px;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 3px;
+  box-shadow: 0 8px 35px #0008;
+}
 
-    .field label {
-      display: block;
-      font-size: 12px;
-      margin-bottom: 6px;
-      color: #d4c8e7;
-    }
+.bottom-nav a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 10px;
+}
 
-    .field input {
-      width: 100%;
-      background: #0b0910;
-      color: white;
-      border: 1px solid var(--border);
-      padding: 12px;
-      border-radius: 8px;
-      outline: none;
-      direction: ltr;
-      text-align: left;
-    }
+.bottom-nav .selected { color: var(--purple); }
+.bottom-nav b { font-size: 20px; }
 
-    .form-message {
-      display: none;
-      font-size: 12px;
-      line-height: 1.9;
-      padding: 10px;
-      border-radius: 8px;
-      margin: 12px 0;
-      overflow-wrap: anywhere;
-    }
+@media (min-width: 700px) {
+  header { padding: 15px 35px; }
 
-    .form-message.show { display: block; }
-    .form-message.error { color: #ffb5c2; background: #401522; }
-    .form-message.success { color: #c6f4d5; background: #123122; }
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 35px;
+    padding: 60px 7%;
+  }
 
-    .submit-btn { width: 100%; margin-top: 5px; }
+  h1 { font-size: 52px; }
 
-    .small-note {
-      color: var(--muted);
-      font-size: 10px;
-      text-align: center;
-      line-height: 1.8;
-      margin-top: 15px;
-    }
+  .hero-art {
+    width: 100%;
+    height: 320px;
+  }
 
-    @media (max-width: 520px) {
-      .topbar { padding: 13px 4%; }
-      .logo { font-size: 23px; letter-spacing: 3px; }
-      .hero { padding-top: 55px; }
-      .hero p { font-size: 13px; }
-      .section { width: 92%; }
-      .works-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .work-card { padding: 14px; }
-      .nav-actions { gap: 6px; }
-    }
-  </style>
+  .moon {
+    width: 190px;
+    height: 190px;
+  }
+
+  .section { padding: 40px 7%; }
+
+  .banner { margin: 20px 7% 45px; padding: 30px; }
+
+  .bottom-nav { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .moon { animation: none; }
+}
+</style>
 </head>
 
 <body>
-  <header class="topbar">
-    <a class="logo" href="#">NOIR</a>
 
-    <div class="nav-actions">
-      <button class="btn login-btn" id="loginBtn" type="button">
-        تسجيل الدخول
-      </button>
-      <button class="btn" id="languageBtn" type="button">EN</button>
-    </div>
-  </header>
+<header>
+  <a href="#home" class="logo" style="text-decoration:none;color:white">
+    N<span>OIR.</span>
+  </a>
 
-  <main>
-    <section class="hero">
-      <div class="eyebrow" id="heroEyebrow">BEYOND THE ORDINARY</div>
-      <h1>NOIR</h1>
+  <div class="header-actions">
+    <button class="icon" id="searchBtn" aria-label="بحث">⌕</button>
+    <button class="icon" id="languageBtn">EN</button>
+    <a href="login.html" class="login" id="loginBtn">تسجيل الدخول</a>
+  </div>
+</header>
+
+<div class="search-box hidden" id="searchBox">
+  <input id="searchInput" type="search"
+    placeholder="ابحثي عن مانهوا أو مانجا..." aria-label="البحث">
+</div>
+
+<main>
+  <section class="hero" id="home">
+    <div>
+      <div class="eyebrow" id="eyebrow">✦ بوابتك إلى عوالم لا تنتهي</div>
+
+      <h1 id="heroTitle">
+        اقرأ ما<br>
+        <span class="gradient">يتجاوز الخيال.</span>
+      </h1>
+
       <p id="heroDescription">
-        مكتبة لعوالم أخرى، حكايات مظلمة وشخصيات لا تُنسى.
-        اكتشف العمل الذي سيترك أثره فيك.
+        اكتشفي عوالم المانهوا والمانجا، وتعرّفي على قصص جديدة،
+        واستعدّي لرحلة بين الغموض والخيال.
       </p>
 
-      <div class="hero-actions">
-        <button class="btn btn-primary" id="exploreBtn" type="button">
-          استكشف المكتبة
-        </button>
-        <button class="btn" id="createAccount" type="button">
-          إنشاء حساب
-        </button>
-      </div>
-    </section>
-
-    <section class="section" id="library">
-      <div class="account-strip" id="accountStrip">
-        <div id="accountText"></div>
-        <button class="btn login-btn" id="logoutBtn" type="button" style="margin-top:10px">
-          تسجيل الخروج
-        </button>
-      </div>
-
-      <div class="section-heading">
-        <h2 id="libraryTitle">المكتبة</h2>
-        <span id="workCount">0 أعمال</span>
-      </div>
-
-      <div class="filters">
-        <input id="searchInput" type="search" placeholder="ابحث عن عمل..." aria-label="بحث">
-        <select id="genreFilter" aria-label="تصفية حسب النوع">
-          <option value="all">كل الأنواع</option>
-          <option value="Fantasy">فانتازيا</option>
-          <option value="Horror">رعب</option>
-          <option value="Action">أكشن</option>
-          <option value="Drama">دراما</option>
-          <option value="Mystery">غموض</option>
-        </select>
-      </div>
-
-      <div class="works-grid" id="worksGrid"></div>
-    </section>
-
-    <section class="section">
-      <div class="section-heading">
-        <h2 id="popularTitle">الأعمال الأكثر شعبية</h2>
-        <span>POPULAR</span>
-      </div>
-      <div class="works-grid" id="popularGrid"></div>
-    </section>
-  </main>
-
-  <footer>NOIR · A LIBRARY BEYOND THE DARK</footer>
-
-  <!-- Login and signup modal -->
-  <div class="modal-backdrop" id="authBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-    <div class="modal">
-      <button class="close-modal" id="closeModal" type="button" aria-label="إغلاق">×</button>
-
-      <div class="modal-logo" id="modalTitle">NOIR</div>
-      <div class="modal-subtitle" id="modalSubtitle">ادخل إلى عالمك الخاص</div>
-
-      <div class="tabs">
-        <button class="tab active" id="signinTab" type="button">تسجيل الدخول</button>
-        <button class="tab" id="signupTab" type="button">إنشاء حساب</button>
-      </div>
-
-      <form id="authForm">
-        <div class="field">
-          <label for="authEmail" id="emailLabel">البريد الإلكتروني</label>
-          <input id="authEmail" type="email" autocomplete="email" placeholder="you@example.com" required>
-        </div>
-
-        <div class="field">
-          <label for="authPassword" id="passwordLabel">كلمة المرور</label>
-          <input id="authPassword" type="password" autocomplete="current-password" minlength="6" required>
-        </div>
-
-        <div class="form-message" id="formMessage" role="status" aria-live="polite"></div>
-
-        <button class="btn btn-primary submit-btn" id="submitAuth" type="submit">
-          تسجيل الدخول
-        </button>
-      </form>
-
-      <div class="small-note" id="modalNote">
-        إنشاء الحساب يتطلب بريدًا إلكترونيًا صالحًا وكلمة مرور من 6 أحرف على الأقل.
-      </div>
+      <a href="#library" class="primary" id="exploreBtn">استكشفي المكتبة ↙</a>
+      <a href="#updates" class="secondary" id="latestBtn">عن NOIR</a>
     </div>
-  </div>
 
-  <!-- Supabase client library -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <div class="hero-art">
+      <div class="moon"></div>
+      <div class="art-text">BEYOND THE DARK</div>
+    </div>
+  </section>
 
-  <script>
-    /*
-      إعدادات مشروع Supabase.
-      المفتاح publishable مخصص للاستخدام في واجهة الموقع.
-      لا تضعي هنا أبدًا مفتاح service_role أو أي مفتاح سري.
-    */
-    const SUPABASE_URL = "https://hwmzmpzswwtysimoleju.supabase.co";
-    const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_Ttjnp9QSt2R80WAdxduT1w_al_KXLCY";
+  <section class="section" id="library">
+    <div class="section-head">
+      <div>
+        <div class="kicker" id="libraryKicker">عالم من القصص</div>
+        <h2 id="libraryTitle">المكتبة</h2>
+      </div>
+      <span class="kicker">NOIR COLLECTION</span>
+    </div>
 
-    const translations = {
-      ar: {
-        login: "تسجيل الدخول",
-        logout: "تسجيل الخروج",
-        signup: "إنشاء حساب",
-        heroEyebrow: "ما وراء المألوف",
-        heroDescription: "مكتبة لعوالم أخرى، حكايات مظلمة وشخصيات لا تُنسى. اكتشف العمل الذي سيترك أثره فيك.",
-        explore: "استكشف المكتبة",
-        library: "المكتبة",
-        search: "ابحث عن عمل...",
-        all: "كل الأنواع",
-        popular: "الأعمال الأكثر شعبية",
-        empty: "المكتبة فارغة حاليًا.<br>أضف أعمالك إلى قائمة works داخل الكود لتظهر هنا.",
-        noResults: "لم نعثر على أعمال تطابق بحثك.",
-        email: "البريد الإلكتروني",
-        password: "كلمة المرور",
-        subtitle: "ادخل إلى عالمك الخاص",
-        note: "استخدم بريدًا إلكترونيًا صالحًا وكلمة مرور من 6 أحرف على الأقل.",
-        loading: "لحظة...",
-        loginSuccess: "تم تسجيل الدخول بنجاح.",
-        signupSuccess: "تم إنشاء الحساب. إذا كان تأكيد البريد مفعّلًا، افتح بريدك الإلكتروني واضغط رابط التأكيد.",
-        logoutSuccess: "تم تسجيل الخروج.",
-        loggedAs: "تم تسجيل الدخول بالبريد:",
-        loginRequired: "يرجى تسجيل الدخول أولًا.",
-        genericError: "حدث خطأ. حاول مرة أخرى.",
-        invalidCredentials: "تعذر تسجيل الدخول. تحقق من البريد وكلمة المرور.",
-        alreadyRegistered: "قد يكون هذا البريد مسجلًا بالفعل. جرّب تسجيل الدخول.",
-        loggedOut: "أنت غير مسجل الدخول.",
-        works: "أعمال"
-      },
-      en: {
-        login: "Log in",
-        logout: "Log out",
-        signup: "Create account",
-        heroEyebrow: "BEYOND THE ORDINARY",
-        heroDescription: "A library of other worlds, dark stories, and unforgettable characters. Find the story that stays with you.",
-        explore: "Explore library",
-        library: "The Library",
-        search: "Search works...",
-        all: "All genres",
-        popular: "Popular Works",
-        empty: "The library is empty for now.<br>Add titles to the works array in the code to display them here.",
-        noResults: "No works match your search.",
-        email: "Email address",
-        password: "Password",
-        subtitle: "Enter your own world",
-        note: "Use a valid email and a password of at least 6 characters.",
-        loading: "Please wait...",
-        loginSuccess: "You are now logged in.",
-        signupSuccess: "Account created. If email confirmation is enabled, check your inbox for the confirmation link.",
-        logoutSuccess: "You have logged out.",
-        loggedAs: "Signed in as:",
-        loginRequired: "Please log in first.",
-        genericError: "Something went wrong. Please try again.",
-        invalidCredentials: "Could not log in. Check your email and password.",
-        alreadyRegistered: "This email may already be registered. Try logging in.",
-        loggedOut: "You are not signed in.",
-        works: "works"
-      }
-    };
+    <div class="empty-library">
+      <div class="empty-icon">✧</div>
+      <h3 id="emptyTitle">المكتبة تستعد لاستقبال قصصها</h3>
+      <p id="emptyDescription">
+        لا توجد أعمال هنا حتى الآن.<br>
+        ستظهر المانهوا والمانجا الجديدة هنا عند إضافتها.
+      </p>
+    </div>
+  </section>
 
-    // Add your library titles here.
-    const works = [
-      // Example:
-      // {
-      //   title: "Example Title",
-      //   genre: "Fantasy",
-      //   description: "A dark fantasy story.",
-      //   popular: true
-      // }
-    ];
+  <section class="banner" id="updates">
+    <div class="kicker">YOUR WORLD, YOUR WAY</div>
+    <h2 id="bannerTitle">عالمك، على طريقتك.</h2>
+    <p id="bannerDescription">
+      NOIR مساحة لعشاق المانهوا والمانجا،
+      حيث تبدأ كل قصة بعالم مختلف وتترك أثرًا خاصًا.
+    </p>
+  </section>
+</main>
 
-    let lang = "ar";
-    let authMode = "signin";
-    let currentUser = null;
-    let supabaseClient = null;
+<footer>
+  <div class="logo">N<span>OIR.</span></div>
+  <p id="footerDescription">مساحة لعشاق القصص المصورة.</p>
+  <p>© 2026 NOIR</p>
+</footer>
 
-    const $ = id => document.getElementById(id);
-    const t = key => translations[lang][key] || key;
+<nav class="bottom-nav">
+  <a href="#home" class="selected">
+    <b>⌂</b><span class="nav-home">الرئيسية</span>
+  </a>
+  <a href="#library">
+    <b>▦</b><span class="nav-library">المكتبة</span>
+  </a>
+  <a href="#updates">
+    <b>◈</b><span class="nav-discover">اكتشف</span>
+  </a>
+  <a href="login.html">
+    <b>♙</b><span class="nav-account">حسابي</span>
+  </a>
+</nav>
 
-    function showMessage(message, type = "error") {
-      const box = $("formMessage");
-      box.textContent = message;
-      box.className = "form-message show " + type;
-    }
+<script>
+let lang = "ar";
+const $ = id => document.getElementById(id);
 
-    function clearMessage() {
-      const box = $("formMessage");
-      box.textContent = "";
-      box.className = "form-message";
-    }
+$("searchBtn").addEventListener("click", () => {
+  $("searchBox").classList.toggle("hidden");
 
-    function openAuth(mode = "signin") {
-      setAuthMode(mode);
-      $("authBackdrop").classList.add("open");
-      clearMessage();
-    }
+  if (!$("searchBox").classList.contains("hidden")) {
+    $("searchInput").focus();
+  }
+});
 
-    function closeAuth() {
-      $("authBackdrop").classList.remove("open");
-    }
+$("languageBtn").addEventListener("click", () => {
+  lang = lang === "ar" ? "en" : "ar";
 
-    function setAuthMode(mode) {
-      authMode = mode;
-      const isSignup = mode === "signup";
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+  $("languageBtn").textContent = lang === "ar" ? "EN" : "ع";
 
-      $("signinTab").classList.toggle("active", !isSignup);
-      $("signupTab").classList.toggle("active", isSignup);
-      $("submitAuth").textContent = isSignup ? t("signup") : t("login");
-      $("passwordLabel").textContent = t("password");
-      $("emailLabel").textContent = t("email");
-      $("modalSubtitle").textContent = t("subtitle");
-      $("modalNote").textContent = t("note");
-      $("authPassword").autocomplete = isSignup ? "new-password" : "current-password";
-      clearMessage();
-    }
+  $("loginBtn").textContent =
+    lang === "ar" ? "تسجيل الدخول" : "Sign in";
 
-    function updateAccountUI() {
-      const strip = $("accountStrip");
-      const loginBtn = $("loginBtn");
+  $("eyebrow").textContent = lang === "ar"
+    ? "✦ بوابتك إلى عوالم لا تنتهي"
+    : "✦ Your gateway to endless worlds";
 
-      if (currentUser) {
-        strip.style.display = "block";
-        $("accountText").textContent = t("loggedAs") + " " + currentUser.email;
-        loginBtn.textContent = t("logout");
-        $("logoutBtn").style.display = "inline-block";
-      } else {
-        strip.style.display = "none";
-        loginBtn.textContent = t("login");
-      }
-    }
+  $("heroTitle").innerHTML = lang === "ar"
+    ? 'اقرأ ما<br><span class="gradient">يتجاوز الخيال.</span>'
+    : 'Read beyond<br><span class="gradient">imagination.</span>';
 
-    function renderWorks() {
-      const search = $("searchInput").value.trim().toLowerCase();
-      const genre = $("genreFilter").value;
+  $("heroDescription").textContent = lang === "ar"
+    ? "اكتشفي عوالم المانهوا والمانجا، وتعرّفي على قصص جديدة، واستعدّي لرحلة بين الغموض والخيال."
+    : "Discover manga and manhwa, explore new stories, and prepare for a journey through mystery and imagination.";
 
-      const filtered = works.filter(work => {
-        const title = (work.title || "").toLowerCase();
-        const description = (work.description || "").toLowerCase();
-        const matchesSearch = title.includes(search) || description.includes(search);
-        const matchesGenre = genre === "all" || work.genre === genre;
-        return matchesSearch && matchesGenre;
-      });
+  $("exploreBtn").textContent = lang === "ar"
+    ? "استكشفي المكتبة ↙" : "Explore the library ↙";
 
-      $("workCount").textContent = works.length + " " + t("works");
-      renderGrid("worksGrid", filtered);
+  $("latestBtn").textContent = lang === "ar" ? "عن NOIR" : "About NOIR";
 
-      const popular = works.filter(work => work.popular);
-      renderGrid("popularGrid", popular, true);
-    }
+  $("libraryKicker").textContent = lang === "ar"
+    ? "عالم من القصص" : "A WORLD OF STORIES";
 
-    function renderGrid(containerId, items, isPopular = false) {
-      const grid = $(containerId);
-      grid.replaceChildren();
+  $("libraryTitle").textContent = lang === "ar" ? "المكتبة" : "The Library";
 
-      if (!items.length) {
-        const empty = document.createElement("div");
-        empty.className = "empty-state";
-        empty.innerHTML = works.length === 0
-          ? t("empty")
-          : t("noResults");
-        grid.appendChild(empty);
-        return;
-      }
+  $("emptyTitle").textContent = lang === "ar"
+    ? "المكتبة تستعد لاستقبال قصصها"
+    : "The library awaits its stories";
 
-      items.forEach(work => {
-        const card = document.createElement("article");
-        card.className = "work-card";
+  $("emptyDescription").innerHTML = lang === "ar"
+    ? "لا توجد أعمال هنا حتى الآن.<br>ستظهر المانهوا والمانجا الجديدة هنا عند إضافتها."
+    : "There are no titles here yet.<br>New manga and manhwa will appear here when added.";
 
-        const symbol = document.createElement("div");
-        symbol.className = "work-symbol";
-        symbol.textContent = "✧";
+  $("bannerTitle").textContent = lang === "ar"
+    ? "عالمك، على طريقتك." : "Your world, your way.";
 
-        const title = document.createElement("h3");
-        title.textContent = work.title || "Untitled";
+  $("bannerDescription").textContent = lang === "ar"
+    ? "NOIR مساحة لعشاق المانهوا والمانجا، حيث تبدأ كل قصة بعالم مختلف وتترك أثرًا خاصًا."
+    : "NOIR is a space for manga and manhwa lovers, where every story opens a different world.";
 
-        const tag = document.createElement("div");
-        tag.className = "tag";
-        tag.textContent = work.genre || "Mystery";
+  $("footerDescription").textContent = lang === "ar"
+    ? "مساحة لعشاق القصص المصورة."
+    : "A space for comic story lovers.";
 
-        const description = document.createElement("p");
-        description.textContent = work.description || "";
+  document.querySelector(".nav-home").textContent =
+    lang === "ar" ? "الرئيسية" : "Home";
 
-        card.append(symbol, title, tag, description);
-        grid.appendChild(card);
-      });
-    }
+  document.querySelector(".nav-library").textContent =
+    lang === "ar" ? "المكتبة" : "Library";
 
-    function updateLanguage() {
-      const isArabic = lang === "ar";
-      document.documentElement.lang = lang;
-      document.documentElement.dir = isArabic ? "rtl" : "ltr";
+  document.querySelector(".nav-discover").textContent =
+    lang === "ar" ? "اكتشف" : "Discover";
 
-      $("languageBtn").textContent = isArabic ? "EN" : "عربي";
-      $("heroEyebrow").textContent = t("heroEyebrow");
-      $("heroDescription").textContent = t("heroDescription");
-      $("exploreBtn").textContent = t("explore");
-      $("libraryTitle").textContent = t("library");
-      $("popularTitle").textContent = t("popular");
-      $("searchInput").placeholder = t("search");
-      $("loginBtn").textContent = currentUser ? t("logout") : t("login");
-      $("createAccount").textContent = t("signup");
-      $("logoutBtn").textContent = t("logout");
+  document.querySelector(".nav-account").textContent =
+    lang === "ar" ? "حسابي" : "Account";
 
-      $("genreFilter").options[0].textContent = t("all");
-      $("signinTab").textContent = t("login");
-      $("signupTab").textContent = t("signup");
+  $("searchInput").placeholder = lang === "ar"
+    ? "ابحثي عن مانهوا أو مانجا..."
+    : "Search manga or manhwa...";
+});
+</script>
 
-      setAuthMode(authMode);
-      updateAccountUI();
-      renderWorks();
-    }
-
-    async function handleAuthSubmit(event) {
-      event.preventDefault();
-      clearMessage();
-
-      if (!supabaseClient) {
-        showMessage("تعذر الاتصال بخدمة الحسابات. تحقق من إعدادات Supabase والاتصال بالإنترنت.");
-        return;
-      }
-
-      const email = $("authEmail").value.trim();
-      const password = $("authPassword").value;
-      const submit = $("submitAuth");
-
-      submit.disabled = true;
-      submit.textContent = t("loading");
-
-      try {
-        if (authMode === "signup") {
-          const { data, error } = await supabaseClient.auth.signUp({
-            email,
-            password,
-            options: {
-              emailRedirectTo: "https://soleitea.github.io/NOIR/"
-            }
-          });
-
-          if (error) throw error;
-
-          if (data.session) {
-            currentUser = data.session.user;
-            updateAccountUI();
-            showMessage(t("signupSuccess"), "success");
-          } else {
-            showMessage(t("signupSuccess"), "success");
-          }
-        } else {
-          const { data, error } = await supabaseClient.auth.signInWithPassword({
-            email,
-            password
-          });
-
-          if (error) throw error;
-
-          currentUser = data.user;
-          updateAccountUI();
-          showMessage(t("loginSuccess"), "success");
-
-          setTimeout(closeAuth, 900);
-        }
-      } catch (error) {
-        let message = error.message || t("genericError");
-
-        if (authMode === "signin" &&
-            /invalid login credentials/i.test(message)) {
-          message = t("invalidCredentials");
-        }
-
-        if (/already registered/i.test(message)) {
-          message = t("alreadyRegistered");
-        }
-
-        showMessage(message, "error");
-      } finally {
-        submit.disabled = false;
-        submit.textContent = authMode === "signup" ? t("signup") : t("login");
-      }
-    }
-
-    async function logout() {
-      if (!supabaseClient || !currentUser) {
-        openAuth("signin");
-        return;
-      }
-
-      const { error } = await supabaseClient.auth.signOut();
-
-      if (error) {
-        alert(error.message || t("genericError"));
-        return;
-      }
-
-      currentUser = null;
-      updateAccountUI();
-    }
-
-    // Buttons and page interactions
-    $("loginBtn").addEventListener("click", () => {
-      if (currentUser) logout();
-      else openAuth("signin");
-    });
-
-    $("createAccount").addEventListener("click", () => openAuth("signup"));
-    $("closeModal").addEventListener("click", closeAuth);
-    $("signinTab").addEventListener("click", () => setAuthMode("signin"));
-    $("signupTab").addEventListener("click", () => setAuthMode("signup"));
-    $("authForm").addEventListener("submit", handleAuthSubmit);
-    $("logoutBtn").addEventListener("click", logout);
-    $("searchInput").addEventListener("input", renderWorks);
-    $("genreFilter").addEventListener("change", renderWorks);
-
-    $("exploreBtn").addEventListener("click", () => {
-      $("library").scrollIntoView({ behavior: "smooth" });
-    });
-
-    $("languageBtn").addEventListener("click", () => {
-      lang = lang === "ar" ? "en" : "ar";
-      updateLanguage();
-    });
-
-    $("authBackdrop").addEventListener("click", event => {
-      if (event.target === $("authBackdrop")) closeAuth();
-    });
-
-    document.addEventListener("keydown", event => {
-      if (event.key === "Escape") closeAuth();
-    });
-
-    // Initialize Supabase and restore the current session, if any.
-    try {
-      if (window.supabase && SUPABASE_URL.startsWith("https://") &&
-          SUPABASE_PUBLISHABLE_KEY.startsWith("sb_publishable_")) {
-        supabaseClient = window.supabase.createClient(
-          SUPABASE_URL,
-          SUPABASE_PUBLISHABLE_KEY
-        );
-
-        supabaseClient.auth.getSession().then(({ data, error }) => {
-          if (error) {
-            console.error("Session error:", error.message);
-            return;
-          }
-
-          currentUser = data.session ? data.session.user : null;
-          updateAccountUI();
-        });
-
-        supabaseClient.auth.onAuthStateChange((_event, session) => {
-          currentUser = session ? session.user : null;
-          updateAccountUI();
-        });
-      } else {
-        console.error("Supabase settings are missing or invalid.");
-      }
-    } catch (error) {
-      console.error("Supabase initialization failed:", error);
-    }
-
-    updateLanguage();
-  </script>
 </body>
 </html>
