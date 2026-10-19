@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -5,76 +6,452 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#090711">
 <title>NOIR | حسابي</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-:root{--bg:#08070d;--panel:#100d18;--panel2:#171221;--purple:#bd91ff;--purple2:#8c5be8;--muted:#a89bb8;--line:#322542;--pink:#ff8fae;--radius:24px}
+:root{
+  --bg:#08070d;
+  --panel:#100d18;
+  --panel2:#171221;
+  --purple:#bd91ff;
+  --purple2:#8c5be8;
+  --muted:#a89bb8;
+  --line:#322542;
+  --pink:#ff8fae;
+  --radius:24px;
+}
+
 *{box-sizing:border-box}
-body{margin:0;min-height:100vh;color:#f8f3ff;font-family:Cairo,sans-serif;background:radial-gradient(ellipse at 50% -10%,#42235d 0,transparent 40%),radial-gradient(ellipse at 100% 65%,#20102f 0,transparent 35%),var(--bg);transition:background .3s}
+
+body{
+  margin:0;
+  min-height:100vh;
+  color:#f8f3ff;
+  font-family:Cairo,sans-serif;
+  background:
+    radial-gradient(ellipse at 50% -10%,#42235d 0,transparent 40%),
+    radial-gradient(ellipse at 100% 65%,#20102f 0,transparent 35%),
+    var(--bg);
+  transition:background .3s;
+}
+
 button,input,textarea{font:inherit}
 button{cursor:pointer}
-button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--purple);outline-offset:3px}
-.page{width:min(560px,100%);margin:auto;padding:22px 17px 35px}
-.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
-.brand{direction:ltr;font:800 25px Arial,sans-serif;letter-spacing:7px;color:#f1e5ff;text-shadow:0 0 24px #bd91ff55}
+
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible{
+  outline:2px solid var(--purple);
+  outline-offset:3px;
+}
+
+.page{
+  width:min(560px,100%);
+  margin:auto;
+  padding:22px 17px 35px;
+}
+
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:20px;
+}
+
+.brand{
+  direction:ltr;
+  font:800 25px Arial,sans-serif;
+  letter-spacing:7px;
+  color:#f1e5ff;
+  text-shadow:0 0 24px #bd91ff55;
+}
+
 .top-actions{display:flex;gap:8px}
-.icon-btn{width:42px;height:42px;border:1px solid var(--line);border-radius:14px;background:#ffffff07;color:#eadbff;font-size:19px;transition:.2s}
-.icon-btn:hover{background:#bd91ff1c;transform:translateY(-2px)}
-.hero{position:relative;overflow:hidden;border:1px solid #64478377;border-radius:30px;background:linear-gradient(155deg,#1b1427f5,#0d0b13 72%);box-shadow:0 24px 70px #0007,inset 0 1px #ffffff0c}
-.cover{height:145px;position:relative;background:radial-gradient(ellipse at 50% 0%,#8f56d866,transparent 65%),linear-gradient(120deg,#21132f,#100d18 70%);background-size:cover;background-position:center}
-.cover:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#100d18,transparent 75%)}
-.cover-label{position:absolute;z-index:1;top:15px;left:16px;display:flex;gap:7px}
-.small-action{border:1px solid #ffffff26;background:#0b0819b8;color:#f4eaff;border-radius:12px;padding:7px 10px;font-size:11px;backdrop-filter:blur(8px)}
-.profile-content{position:relative;text-align:center;padding:0 22px 24px}
-.avatar-wrap{width:122px;height:122px;margin:-64px auto 12px;position:relative;z-index:2}
-.avatar{width:100%;height:100%;border-radius:50%;border:3px solid var(--purple);padding:4px;background:#110c19;box-shadow:0 0 0 6px #bd91ff12,0 0 35px #a66bff42;overflow:hidden;display:grid;place-items:center;font-size:40px}
-.avatar img{width:100%;height:100%;border-radius:50%;object-fit:cover}
-.upload{position:absolute;left:-3px;bottom:4px;width:36px;height:36px;display:grid;place-items:center;border:2px solid #100d18;border-radius:50%;background:var(--purple);color:#170e23;font-size:17px;cursor:pointer}
-.kicker{font-size:10px;letter-spacing:4px;color:var(--purple);direction:ltr;margin:4px 0 9px}
-h1{font-size:27px;line-height:1.35;margin:0;font-weight:800;overflow-wrap:anywhere}
-.username{direction:ltr;unicode-bidi:plaintext;color:var(--purple);font-size:15px;margin:4px 0 12px}
-.bio{color:#bcb0ca;font-size:12px;line-height:1.8;max-width:340px;margin:0 auto 14px;overflow-wrap:anywhere}
-.badges{display:flex;justify-content:center;gap:7px;flex-wrap:wrap}
-.pill{display:inline-flex;align-items:center;gap:6px;border:1px solid #bd91ff38;background:#bd91ff0e;color:#e0caff;border-radius:30px;padding:6px 13px;font-size:11px}
-.pill.online:before{content:"";width:6px;height:6px;border-radius:50%;background:#9ee8bd;box-shadow:0 0 8px #9ee8bd}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:20px 0 0}
-.stat{border:1px solid #ffffff0c;background:#ffffff04;border-radius:17px;padding:12px 5px}
-.stat strong{display:block;color:#f3eaff;font-size:18px;line-height:1.4}
-.stat span{display:block;color:var(--muted);font-size:10px;margin-top:3px}
+
+.icon-btn{
+  width:42px;
+  height:42px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:#ffffff07;
+  color:#eadbff;
+  font-size:19px;
+  transition:.2s;
+}
+
+.icon-btn:hover{
+  background:#bd91ff1c;
+  transform:translateY(-2px);
+}
+
+.hero{
+  position:relative;
+  overflow:hidden;
+  border:1px solid #64478377;
+  border-radius:30px;
+  background:linear-gradient(155deg,#1b1427f5,#0d0b13 72%);
+  box-shadow:0 24px 70px #0007,inset 0 1px #ffffff0c;
+}
+
+.cover{
+  height:145px;
+  position:relative;
+  background:
+    radial-gradient(ellipse at 50% 0%,#8f56d866,transparent 65%),
+    linear-gradient(120deg,#21132f,#100d18 70%);
+  background-size:cover;
+  background-position:center;
+}
+
+.cover:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(0deg,#100d18,transparent 75%);
+  pointer-events:none;
+}
+
+.cover-label{
+  position:absolute;
+  z-index:1;
+  top:15px;
+  left:16px;
+  display:flex;
+  gap:7px;
+}
+
+.small-action{
+  border:1px solid #ffffff26;
+  background:#0b0819b8;
+  color:#f4eaff;
+  border-radius:12px;
+  padding:7px 10px;
+  font-size:11px;
+  backdrop-filter:blur(8px);
+}
+
+.profile-content{
+  position:relative;
+  text-align:center;
+  padding:0 22px 24px;
+}
+
+.avatar-wrap{
+  width:122px;
+  height:122px;
+  margin:-64px auto 12px;
+  position:relative;
+  z-index:2;
+}
+
+.avatar{
+  width:100%;
+  height:100%;
+  border-radius:50%;
+  border:3px solid var(--purple);
+  padding:4px;
+  background:#110c19;
+  box-shadow:0 0 0 6px #bd91ff12,0 0 35px #a66bff42;
+  overflow:hidden;
+  display:grid;
+  place-items:center;
+  font-size:40px;
+}
+
+.avatar img{
+  width:100%;
+  height:100%;
+  border-radius:50%;
+  object-fit:cover;
+}
+
+.upload{
+  position:absolute;
+  left:-3px;
+  bottom:4px;
+  width:36px;
+  height:36px;
+  display:grid;
+  place-items:center;
+  border:2px solid #100d18;
+  border-radius:50%;
+  background:var(--purple);
+  color:#170e23;
+  font-size:17px;
+  cursor:pointer;
+}
+
+.kicker{
+  font-size:10px;
+  letter-spacing:4px;
+  color:var(--purple);
+  direction:ltr;
+  margin:4px 0 9px;
+}
+
+h1{
+  font-size:27px;
+  line-height:1.35;
+  margin:0;
+  font-weight:800;
+  overflow-wrap:anywhere;
+}
+
+.username{
+  direction:ltr;
+  unicode-bidi:plaintext;
+  color:var(--purple);
+  font-size:15px;
+  margin:4px 0 12px;
+}
+
+.bio{
+  color:#bcb0ca;
+  font-size:12px;
+  line-height:1.8;
+  max-width:340px;
+  margin:0 auto 14px;
+  overflow-wrap:anywhere;
+}
+
+.badges{
+  display:flex;
+  justify-content:center;
+  gap:7px;
+  flex-wrap:wrap;
+}
+
+.pill{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  border:1px solid #bd91ff38;
+  background:#bd91ff0e;
+  color:#e0caff;
+  border-radius:30px;
+  padding:6px 13px;
+  font-size:11px;
+}
+
+.pill.online:before{
+  content:"";
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:#9ee8bd;
+  box-shadow:0 0 8px #9ee8bd;
+}
+
+.pill.inactive:before{
+  content:"";
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:#ff8fae;
+  box-shadow:0 0 8px #ff8fae;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
+  margin:20px 0 0;
+}
+
+.stat{
+  min-width:0;
+  border:1px solid #bd91ff20;
+  background:#ffffff04;
+  border-radius:17px;
+  padding:14px 8px;
+}
+
+.stat strong{
+  display:block;
+  color:var(--purple);
+  font-size:17px;
+  line-height:1.6;
+  overflow-wrap:anywhere;
+}
+
+.stat span{
+  display:block;
+  color:var(--muted);
+  font-size:11px;
+  margin-top:3px;
+}
+
 .section{margin-top:24px}
-.section-head{display:flex;align-items:center;justify-content:space-between;margin:0 4px 12px}
-.section-head h2{font-size:13px;font-weight:600;color:#b7a8c7;margin:0}
-.section-head span{font-size:10px;color:#78678d;direction:ltr;letter-spacing:1px}
-.menu{display:flex;flex-direction:column;gap:10px}
-.menu-item{display:flex;align-items:center;gap:13px;width:100%;text-align:right;color:#f5efff;background:linear-gradient(115deg,#17121f,#110e17);border:1px solid #ffffff0b;border-radius:20px;padding:13px;transition:transform .2s,border-color .2s,background .2s}
-.menu-item:hover{border-color:#bd91ff65;background:#1d1728;transform:translateY(-2px)}
-.menu-icon{flex-shrink:0;width:47px;height:47px;border-radius:15px;display:grid;place-items:center;background:#a66bff13;border:1px solid #a66bff18;color:#d0adff;font-size:22px}
+
+.section-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin:0 4px 12px;
+}
+
+.section-head h2{
+  font-size:13px;
+  font-weight:600;
+  color:#b7a8c7;
+  margin:0;
+}
+
+.section-head span{
+  font-size:10px;
+  color:#78678d;
+  direction:ltr;
+  letter-spacing:1px;
+}
+
+.menu{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.menu-item{
+  display:flex;
+  align-items:center;
+  gap:13px;
+  width:100%;
+  text-align:right;
+  color:#f5efff;
+  background:linear-gradient(115deg,#17121f,#110e17);
+  border:1px solid #ffffff0b;
+  border-radius:20px;
+  padding:13px;
+  transition:transform .2s,border-color .2s,background .2s;
+}
+
+.menu-item:hover{
+  border-color:#bd91ff65;
+  background:#1d1728;
+  transform:translateY(-2px);
+}
+
+.menu-icon{
+  flex-shrink:0;
+  width:47px;
+  height:47px;
+  border-radius:15px;
+  display:grid;
+  place-items:center;
+  background:#a66bff13;
+  border:1px solid #a66bff18;
+  color:#d0adff;
+  font-size:22px;
+}
+
 .menu-text{flex:1;min-width:0}
-.menu-text strong{display:block;font-size:14px;font-weight:700}
-.menu-text small{display:block;color:var(--muted);font-size:10px;margin-top:3px}
+
+.menu-text strong{
+  display:block;
+  font-size:14px;
+  font-weight:700;
+}
+
+.menu-text small{
+  display:block;
+  color:var(--muted);
+  font-size:10px;
+  margin-top:3px;
+}
+
 .arrow{color:#8e7ba2;font-size:22px}
-.logout .menu-icon{background:#ff789012;color:var(--pink)}
+
+.logout .menu-icon{
+  background:#ff789012;
+  color:var(--pink);
+}
+
 .logout .menu-text strong{color:var(--pink)}
-#status{font-size:11px;color:#d8c0ff;margin-top:12px;min-height:18px;text-align:center}
-footer{text-align:center;color:#71627e;font-size:9px;letter-spacing:2px;margin-top:22px;direction:ltr}
+
+#status{
+  font-size:11px;
+  color:#d8c0ff;
+  margin-top:12px;
+  min-height:18px;
+  text-align:center;
+}
+
+footer{
+  text-align:center;
+  color:#71627e;
+  font-size:9px;
+  letter-spacing:2px;
+  margin-top:22px;
+  direction:ltr;
+}
+
 input[type=file]{display:none}
-body.light{--bg:#f3eef9;--panel:#fff;--panel2:#f7f1ff;--muted:#756782;--line:#d8c8e9;color:#21172c;background:radial-gradient(ellipse at 50% 0%,#e1c8ff,transparent 45%),#f5f0fa}
-body.light .hero{background:linear-gradient(155deg,#fff,#f8f3ff);box-shadow:0 20px 55px #4b2c641c}
-body.light .cover{background:radial-gradient(ellipse at 50% 0%,#d3b0ff,transparent 65%),#e9dcf8}
-body.light .cover:after{background:linear-gradient(0deg,#fff,transparent 75%)}
-body.light .brand,body.light h1,body.light .stat strong{color:#261633}
-body.light .menu-item,body.light .stat{background:#ffffffb8;border-color:#e7ddef;color:#281b32}
+
+body.light{
+  --bg:#f3eef9;
+  --panel:#fff;
+  --panel2:#f7f1ff;
+  --muted:#756782;
+  --line:#d8c8e9;
+  color:#21172c;
+  background:radial-gradient(ellipse at 50% 0%,#e1c8ff,transparent 45%),#f5f0fa;
+}
+
+body.light .hero{
+  background:linear-gradient(155deg,#fff,#f8f3ff);
+  box-shadow:0 20px 55px #4b2c641c;
+}
+
+body.light .cover{
+  background:radial-gradient(ellipse at 50% 0%,#d3b0ff,transparent 65%),#e9dcf8;
+}
+
+body.light .cover:after{
+  background:linear-gradient(0deg,#fff,transparent 75%);
+}
+
+body.light .brand,
+body.light h1,
+body.light .stat strong{
+  color:#261633;
+}
+
+body.light .menu-item,
+body.light .stat{
+  background:#ffffffb8;
+  border-color:#e7ddef;
+  color:#281b32;
+}
+
 body.light .profile-content .bio{color:#786986}
-@media(max-width:380px){.page{padding:15px 11px 25px}.profile-content{padding-inline:14px}.cover{height:125px}.avatar-wrap{width:108px;height:108px;margin-top:-57px}.menu-item{padding:10px;gap:9px}.menu-icon{width:42px;height:42px}.menu-text small{font-size:9px}}
-@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+@media(max-width:380px){
+  .page{padding:15px 11px 25px}
+  .profile-content{padding-inline:14px}
+  .cover{height:125px}
+  .avatar-wrap{
+    width:108px;
+    height:108px;
+    margin-top:-57px;
+  }
+  .menu-item{padding:10px;gap:9px}
+  .menu-icon{width:42px;height:42px}
+  .menu-text small{font-size:9px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  *{transition:none!important}
+}
 </style>
 </head>
 
 <body>
 <main class="page">
+
 <header class="topbar">
   <div class="brand">NOIR</div>
+
   <div class="top-actions">
     <button class="icon-btn" id="themeBtn" aria-label="تغيير المظهر" title="تغيير المظهر">☼</button>
     <button class="icon-btn" id="backBtn" aria-label="العودة" title="العودة">‹</button>
@@ -82,6 +459,7 @@ body.light .profile-content .bio{color:#786986}
 </header>
 
 <section class="hero">
+
   <div class="cover" id="cover">
     <div class="cover-label">
       <button class="small-action" id="coverBtn">✦ تغيير الغلاف</button>
@@ -91,61 +469,104 @@ body.light .profile-content .bio{color:#786986}
   <input id="coverInput" type="file" accept="image/png,image/jpeg,image/webp">
 
   <div class="profile-content">
+
     <div class="avatar-wrap">
       <div class="avatar" id="avatar">✦</div>
+
       <label class="upload" for="avatarInput" title="تغيير الصورة" aria-label="تغيير الصورة">✎</label>
       <input id="avatarInput" type="file" accept="image/png,image/jpeg,image/webp,image/gif">
     </div>
 
     <div class="kicker">NOIR MEMBER</div>
+
     <h1 id="displayName">عضو NOIR</h1>
     <div class="username" id="username">@member</div>
     <p class="bio" id="bio">أضف نبذة قصيرة تعبّر عنك ✨</p>
 
     <div class="badges">
       <span class="pill" id="memberBadge">✦ عضو NOIR</span>
-      <span class="pill online" id="accountBadge">حسابك</span>
-      <button class="small-action" id="editBioBtn" style="background:#bd91ff14;border-color:#bd91ff45;color:#e0caff">تعديل</button>
+      <span class="pill online" id="accountBadge">نشط</span>
+      <button class="small-action" id="editBioBtn" style="background:#bd91ff14;border-color:#bd91ff45;color:#e0caff">تعديل النبذة</button>
     </div>
 
     <div class="stats">
-      <div class="stat"><strong id="daysCount">—</strong><span>أيام العضوية</span></div>
-      <div class="stat"><strong id="joinedDate">—</strong><span>تاريخ الانضمام</span></div>
-      <div class="stat"><strong>✦</strong><span>هوية NOIR</span></div>
+
+      <div class="stat">
+        <strong id="daysCount">—</strong>
+        <span>أيام العضوية</span>
+      </div>
+
+      <div class="stat">
+        <strong id="joinedDate">—</strong>
+        <span>تاريخ الانضمام</span>
+      </div>
+
+      <div class="stat">
+        <strong id="accountStatus">نشط</strong>
+        <span>حالة الحساب</span>
+      </div>
+
+      <div class="stat">
+        <strong id="memberLevel">المبتدئ</strong>
+        <span>مستوى العضوية</span>
+      </div>
+
     </div>
   </div>
 </section>
 
 <section class="section">
-  <div class="section-head"><h2>إدارة الحساب</h2><span>ACCOUNT</span></div>
+
+  <div class="section-head">
+    <h2>إدارة الحساب</h2>
+    <span>ACCOUNT</span>
+  </div>
+
   <nav class="menu">
+
     <button class="menu-item" id="profileBtn">
       <span class="menu-icon">♙</span>
-      <span class="menu-text"><strong>الملف الشخصي</strong><small>تعديل الاسم والنبذة والصورة</small></span>
+      <span class="menu-text">
+        <strong>الملف الشخصي</strong>
+        <small>تعديل الاسم والنبذة والصورة</small>
+      </span>
       <span class="arrow">‹</span>
     </button>
 
     <button class="menu-item" id="settingsMenuBtn">
       <span class="menu-icon">⚙</span>
-      <span class="menu-text"><strong>الإعدادات</strong><small>تخصيص تجربة NOIR</small></span>
+      <span class="menu-text">
+        <strong>الإعدادات</strong>
+        <small>تخصيص تجربة NOIR</small>
+      </span>
       <span class="arrow">‹</span>
     </button>
 
     <button class="menu-item logout" id="logoutBtn">
       <span class="menu-icon">↪</span>
-      <span class="menu-text"><strong>تسجيل الخروج</strong><small>الخروج من حسابك</small></span>
+      <span class="menu-text">
+        <strong>تسجيل الخروج</strong>
+        <small>الخروج من حسابك</small>
+      </span>
       <span class="arrow">‹</span>
     </button>
+
   </nav>
 </section>
 
 <div id="status" role="status" aria-live="polite"></div>
 <footer>NOIR • YOUR PROFILE. YOUR IDENTITY.</footer>
+
 </main>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
-import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+
+import {
+  getAuth,
+  onAuthStateChanged,
+  signOut
+} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyC1UPtUUM5C8UNLCdG5aH2ihKfHzyCEWUU",
@@ -159,36 +580,197 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+
 const OWNER_UID = "kjZAcu0Bw1TZCXslJx0IhPO16232";
+
 const $ = id => document.getElementById(id);
 const status = $("status");
+
 let currentUser = null;
+
+/* أسماء المستويات والنقاط المطلوبة */
+const LEVELS = [
+  { name: "المبتدئ", min: 0 },
+  { name: "نشط", min: 100 },
+  { name: "متميز", min: 300 },
+  { name: "نخبة", min: 600 },
+  { name: "أسطوري", min: 1000 }
+];
 
 function getUsername(user) {
   const saved = localStorage.getItem("noir_username_" + user.uid);
+
   if (saved) return saved;
-  return (user.displayName || "").trim().replace(/\s+/g, "").toLowerCase() || "member";
+
+  return (user.displayName || "")
+    .trim()
+    .replace(/\s+/g, "")
+    .toLowerCase() || "member";
 }
 
 function showImage(container, url, fallback) {
   container.replaceChildren();
+
   if (!url) {
     container.textContent = fallback;
     return;
   }
+
   const img = document.createElement("img");
   img.src = url;
   img.alt = "الصورة الشخصية";
+
   img.onerror = () => {
     container.replaceChildren();
     container.textContent = fallback;
   };
+
   container.appendChild(img);
 }
 
+/* قراءة نقاط النشاط المسجلة على هذا الجهاز */
+function getActivityPoints(uid) {
+  const key = "noir_activity_points_" + uid;
+  const points = Number(localStorage.getItem(key) || 0);
+
+  return Number.isFinite(points) && points > 0
+    ? Math.floor(points)
+    : 0;
+}
+
+/* تحديد المستوى من مجموع النقاط */
+function getLevel(points) {
+  let level = LEVELS[0];
+
+  for (const item of LEVELS) {
+    if (points >= item.min) {
+      level = item;
+    }
+  }
+
+  return level;
+}
+
+/* تحديث حالة الحساب ومستواه */
+function renderMembership(user) {
+  const isOwner = user.uid === OWNER_UID;
+
+  const accountStatus = localStorage.getItem(
+    "noir_account_status_" + user.uid
+  ) || "نشط";
+
+  $("accountStatus").textContent = accountStatus;
+  $("accountBadge").textContent = accountStatus;
+
+  $("accountBadge").classList.toggle(
+    "online",
+    accountStatus === "نشط"
+  );
+
+  $("accountBadge").classList.toggle(
+    "inactive",
+    accountStatus !== "نشط"
+  );
+
+  if (isOwner) {
+    $("memberLevel").textContent = "المالك 👑";
+    $("memberBadge").textContent = "✦ مالك NOIR";
+    $("memberBadge").style.borderColor = "#d9b66f";
+    $("memberBadge").style.color = "#f2d58a";
+    $("memberLevel").style.color = "#f2d58a";
+    return;
+  }
+
+  const points = getActivityPoints(user.uid);
+  const level = getLevel(points);
+
+  $("memberLevel").textContent = level.name;
+  $("memberLevel").style.color = "";
+  $("memberBadge").textContent = "✦ عضو NOIR";
+}
+
+/*
+  تسجيل نشاط محلي.
+  يمكن استدعاء هذه الدالة من صفحات الموقع الأخرى عند ربط النشاط بها.
+  هذه النسخة لا تتحقق من النشاط على خادم، لذلك ليست نظام نقاط آمنًا
+  أو متزامنًا بين الأجهزة.
+*/
+function trackLocalActivity(activityName) {
+  if (!currentUser || currentUser.uid === OWNER_UID) return;
+
+  const uid = currentUser.uid;
+  const day = new Date().toISOString().slice(0, 10);
+  const dailyKey = "noir_activity_daily_" + uid + "_" + day;
+  const actionKey = "noir_activity_actions_" + uid + "_" + day;
+
+  let actions = {};
+
+  try {
+    actions = JSON.parse(localStorage.getItem(actionKey) || "{}");
+  } catch {
+    actions = {};
+  }
+
+  /*
+    لا نمنح نقاطًا متكررة بلا حد لنفس النشاط في اليوم.
+    النقاط هنا نموذج أولي، ويجب نقل التحقق إلى Firebase عند بناء
+    نظام النشاط الفعلي.
+  */
+  const limits = {
+    login: 1,
+    profile_edit: 2,
+    post: 5,
+    comment: 5,
+    reaction: 10,
+    reply: 5,
+    visit_section: 5,
+    other: 3
+  };
+
+  const pointsByAction = {
+    login: 5,
+    profile_edit: 2,
+    post: 10,
+    comment: 3,
+    reaction: 1,
+    reply: 3,
+    visit_section: 1,
+    other: 1
+  };
+
+  const name = limits[activityName] !== undefined
+    ? activityName
+    : "other";
+
+  const used = Number(actions[name] || 0);
+
+  if (used >= limits[name]) return;
+
+  actions[name] = used + 1;
+  localStorage.setItem(actionKey, JSON.stringify(actions));
+
+  const oldPoints = getActivityPoints(uid);
+  const newPoints = oldPoints + pointsByAction[name];
+
+  localStorage.setItem(
+    "noir_activity_points_" + uid,
+    String(newPoints)
+  );
+
+  localStorage.setItem(dailyKey, "1");
+  renderMembership(currentUser);
+}
+
+/* إتاحة واجهة تسجيل النشاط لصفحات NOIR الأخرى */
+window.NOIRTrackActivity = trackLocalActivity;
+
 function renderUser(user) {
   const isOwner = user.uid === OWNER_UID;
-  $("memberBadge").textContent = isOwner ? "✦ مالك NOIR" : "✦ عضو NOIR";
+
+  $("memberBadge").textContent = isOwner
+    ? "✦ مالك NOIR"
+    : "✦ عضو NOIR";
+
   $("displayName").textContent = user.displayName || "عضو NOIR";
   $("username").textContent = "@" + getUsername(user);
 
@@ -199,29 +781,47 @@ function renderUser(user) {
   );
 
   const bio = localStorage.getItem("noir_bio_" + user.uid);
-  if (bio) $("bio").textContent = bio;
+
+  if (bio) {
+    $("bio").textContent = bio;
+  }
 
   const cover = localStorage.getItem("noir_cover_" + user.uid);
-  if (cover) $("cover").style.backgroundImage = `url("${cover}")`;
 
-  const created = user.metadata?.creationTime ? new Date(user.metadata.creationTime) : null;
+  if (cover) {
+    $("cover").style.backgroundImage = `url("${cover}")`;
+  }
+
+  const created = user.metadata?.creationTime
+    ? new Date(user.metadata.creationTime)
+    : null;
+
   if (created && !Number.isNaN(created.getTime())) {
     $("daysCount").textContent = Math.max(
       0,
       Math.floor((Date.now() - created.getTime()) / 86400000)
     );
+
     $("joinedDate").textContent = created.toLocaleDateString("ar", {
       year: "numeric",
       month: "short"
     });
   }
 
-  if (localStorage.getItem("noir_theme_" + user.uid) === "light") {
+  if (
+    localStorage.getItem("noir_theme_" + user.uid) === "light"
+  ) {
     document.body.classList.add("light");
     $("themeBtn").textContent = "☾";
+  } else {
+    document.body.classList.remove("light");
+    $("themeBtn").textContent = "☼";
   }
+
+  renderMembership(user);
 }
 
+/* تسجيل الدخول والتحقق من الحساب */
 onAuthStateChanged(auth, user => {
   if (!user) {
     location.replace("login.html");
@@ -231,12 +831,31 @@ onAuthStateChanged(auth, user => {
   currentUser = user;
   renderUser(user);
 
-  const savedAccent = localStorage.getItem("noir_accent_" + user.uid);
+  /*
+    مكافأة تسجيل دخول مرة واحدة في اليوم على هذا الجهاز.
+    هذه المكافأة محلية وليست تحققًا آمنًا من الخادم.
+  */
+  const day = new Date().toISOString().slice(0, 10);
+  const loginKey = "noir_login_reward_" + user.uid + "_" + day;
+
+  if (!localStorage.getItem(loginKey)) {
+    localStorage.setItem(loginKey, "1");
+    trackLocalActivity("login");
+  }
+
+  const savedAccent = localStorage.getItem(
+    "noir_accent_" + user.uid
+  );
+
   if (savedAccent) {
-    document.documentElement.style.setProperty("--purple", savedAccent);
+    document.documentElement.style.setProperty(
+      "--purple",
+      savedAccent
+    );
   }
 });
 
+/* قراءة الصور */
 function readImage(file, maxMB = 3) {
   return new Promise((resolve, reject) => {
     if (!file || !file.type.startsWith("image/")) {
@@ -244,24 +863,38 @@ function readImage(file, maxMB = 3) {
     }
 
     if (file.size > maxMB * 1024 * 1024) {
-      return reject(new Error(`حجم الصورة يجب ألا يتجاوز ${maxMB} ميجابايت.`));
+      return reject(
+        new Error(`حجم الصورة يجب ألا يتجاوز ${maxMB} ميجابايت.`)
+      );
     }
 
     const reader = new FileReader();
+
     reader.onload = () => resolve(reader.result);
     reader.onerror = () => reject(new Error("تعذرت قراءة الصورة."));
+
     reader.readAsDataURL(file);
   });
 }
 
+/* تحديث الصورة الشخصية */
 $("avatarInput").addEventListener("change", async e => {
   try {
     if (!currentUser || !e.target.files?.[0]) return;
+
     status.textContent = "جارٍ تحديث الصورة...";
 
     const data = await readImage(e.target.files[0]);
-    localStorage.setItem("noir_avatar_" + currentUser.uid, data);
+
+    localStorage.setItem(
+      "noir_avatar_" + currentUser.uid,
+      data
+    );
+
     showImage($("avatar"), data, "✦");
+
+    trackLocalActivity("profile_edit");
+
     status.textContent = "تم تحديث الصورة على هذا الجهاز ✨";
   } catch (err) {
     status.textContent = err.message || "تعذر تحديث الصورة.";
@@ -270,16 +903,29 @@ $("avatarInput").addEventListener("change", async e => {
   e.target.value = "";
 });
 
-$("coverBtn").addEventListener("click", () => $("coverInput").click());
+/* اختيار الغلاف */
+$("coverBtn").addEventListener("click", () => {
+  $("coverInput").click();
+});
 
+/* تحديث الغلاف */
 $("coverInput").addEventListener("change", async e => {
   try {
     if (!currentUser || !e.target.files?.[0]) return;
+
     status.textContent = "جارٍ تحديث الغلاف...";
 
     const data = await readImage(e.target.files[0], 3);
-    localStorage.setItem("noir_cover_" + currentUser.uid, data);
+
+    localStorage.setItem(
+      "noir_cover_" + currentUser.uid,
+      data
+    );
+
     $("cover").style.backgroundImage = `url("${data}")`;
+
+    trackLocalActivity("profile_edit");
+
     status.textContent = "تم تحديث الغلاف على هذا الجهاز ✨";
   } catch (err) {
     status.textContent = err.message || "تعذر تحديث الصورة.";
@@ -288,39 +934,64 @@ $("coverInput").addEventListener("change", async e => {
   e.target.value = "";
 });
 
+/* تعديل النبذة */
 $("editBioBtn").addEventListener("click", () => {
   if (!currentUser) return;
 
-  const old = localStorage.getItem("noir_bio_" + currentUser.uid) || "";
-  const next = prompt("اكتب نبذة قصيرة عنك (حتى 160 حرفًا):", old);
+  const old = localStorage.getItem(
+    "noir_bio_" + currentUser.uid
+  ) || "";
+
+  const next = prompt(
+    "اكتب نبذة قصيرة عنك (حتى 160 حرفًا):",
+    old
+  );
 
   if (next === null) return;
 
   const trimmed = next.trim().slice(0, 160);
-  localStorage.setItem("noir_bio_" + currentUser.uid, trimmed);
-  $("bio").textContent = trimmed || "أضف نبذة قصيرة تعبّر عنك ✨";
+
+  localStorage.setItem(
+    "noir_bio_" + currentUser.uid,
+    trimmed
+  );
+
+  $("bio").textContent =
+    trimmed || "أضف نبذة قصيرة تعبّر عنك ✨";
+
+  trackLocalActivity("profile_edit");
+
   status.textContent = "تم تحديث النبذة على هذا الجهاز.";
 });
 
+/* تغيير المظهر */
 $("themeBtn").addEventListener("click", () => {
   if (!currentUser) return;
 
   const light = document.body.classList.toggle("light");
-  localStorage.setItem("noir_theme_" + currentUser.uid, light ? "light" : "dark");
+
+  localStorage.setItem(
+    "noir_theme_" + currentUser.uid,
+    light ? "light" : "dark"
+  );
+
   $("themeBtn").textContent = light ? "☾" : "☼";
-  status.textContent = light ? "تم تفعيل المظهر الفاتح." : "تم تفعيل المظهر الداكن.";
+
+  status.textContent = light
+    ? "تم تفعيل المظهر الفاتح."
+    : "تم تفعيل المظهر الداكن.";
 });
 
+/* الانتقال إلى الملف الشخصي والإعدادات */
 $("profileBtn").addEventListener("click", () => {
   location.href = "edit-profile.html";
 });
 
-function openSettings() {
+$("settingsMenuBtn").addEventListener("click", () => {
   location.href = "settings.html";
-}
+});
 
-$("settingsMenuBtn").addEventListener("click", openSettings);
-
+/* تسجيل الخروج */
 $("logoutBtn").addEventListener("click", async () => {
   if (!confirm("هل تريد تسجيل الخروج؟")) return;
 
@@ -333,10 +1004,15 @@ $("logoutBtn").addEventListener("click", async () => {
   }
 });
 
+/* العودة */
 $("backBtn").addEventListener("click", () => {
-  if (history.length > 1) history.back();
-  else location.href = "index.html";
+  if (history.length > 1) {
+    history.back();
+  } else {
+    location.href = "index.html";
+  }
 });
 </script>
+
 </body>
 </html>
