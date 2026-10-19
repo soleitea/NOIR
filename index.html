@@ -4,340 +4,454 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080711">
 <title>NOIR | Manga & Manhwa</title>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap');
 
 :root {
-  --bg: #080711;
-  --panel: #111020;
-  --purple: #a58aff;
-  --silver: #d9d5e5;
-  --muted: #9691aa;
+  --bg:#080711;
+  --panel:#111020;
+  --purple:#a58aff;
+  --silver:#d9d5e5;
+  --muted:#9691aa;
 }
 
-* { box-sizing: border-box; }
-
-html { scroll-behavior: smooth; }
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
 
 body {
-  margin: 0;
-  background: var(--bg);
-  color: #f6f3ff;
-  font-family: 'IBM Plex Sans Arabic', sans-serif;
+  margin:0;
+  background:var(--bg);
+  color:#f6f3ff;
+  font-family:'IBM Plex Sans Arabic',sans-serif;
 }
 
-button, input { font: inherit; }
-button { cursor: pointer; }
+button,input { font:inherit; }
+button { cursor:pointer; }
+
+.hidden { display:none !important; }
 
 header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 13px 17px;
-  border-bottom: 1px solid #252137;
-  background: #0c0a17;
-  position: sticky;
-  top: 0;
-  z-index: 10;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:13px 17px;
+  border-bottom:1px solid #252137;
+  background:#0c0a17;
+  position:sticky;
+  top:0;
+  z-index:20;
 }
 
 .logo {
-  font-size: 26px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  direction: ltr;
+  font-size:26px;
+  font-weight:700;
+  letter-spacing:2px;
+  direction:ltr;
+  flex-shrink:0;
 }
 
-.logo span { color: var(--purple); }
+.logo span { color:var(--purple); }
 
 .header-actions {
-  display: flex;
-  gap: 9px;
-  align-items: center;
+  display:flex;
+  gap:9px;
+  align-items:center;
 }
 
 .icon {
-  border: 0;
-  background: none;
-  color: var(--silver);
-  font-size: 22px;
-  padding: 3px;
+  border:0;
+  background:none;
+  color:var(--silver);
+  font-size:22px;
+  padding:5px;
 }
 
 .login {
-  display: inline-block;
-  text-decoration: none;
-  border: 1px solid var(--purple);
-  border-radius: 7px;
-  color: var(--purple);
-  background: transparent;
-  padding: 5px 9px;
-  font-size: 11px;
-  white-space: nowrap;
-  transition: .2s;
+  display:inline-block;
+  text-decoration:none;
+  border:1px solid var(--purple);
+  border-radius:7px;
+  color:var(--purple);
+  background:transparent;
+  padding:6px 10px;
+  font-size:11px;
+  white-space:nowrap;
+  transition:.2s;
 }
 
 .login:hover {
-  background: var(--purple);
-  color: #080711;
+  background:var(--purple);
+  color:#080711;
 }
 
+/* Account avatar and dropdown */
+.account-wrap {
+  position:relative;
+  display:flex;
+  align-items:center;
+}
+
+.account-avatar-btn {
+  width:40px;
+  height:40px;
+  padding:0;
+  overflow:hidden;
+  border-radius:50%;
+  border:2px solid var(--purple);
+  background:linear-gradient(145deg,#39234f,#17111f);
+  color:#e3ceff;
+  display:grid;
+  place-items:center;
+  font-size:22px;
+  box-shadow:0 0 18px #a58aff35;
+}
+
+.account-avatar-btn img,
+.account-mini-avatar img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.account-avatar-btn:hover {
+  box-shadow:0 0 24px #a58aff75;
+}
+
+.account-menu {
+  position:absolute;
+  top:calc(100% + 12px);
+  left:0;
+  width:245px;
+  padding:12px;
+  border:1px solid #49365f;
+  border-radius:16px;
+  background:#151120;
+  box-shadow:0 15px 45px #000a;
+  z-index:50;
+}
+
+.account-info {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:7px 5px 13px;
+  min-width:0;
+}
+
+.account-mini-avatar {
+  width:43px;
+  height:43px;
+  flex-shrink:0;
+  overflow:hidden;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:#30203f;
+  color:#dfcaff;
+  font-size:22px;
+}
+
+.account-info-text { flex:1; min-width:0; }
+
+.account-info-text strong,
+.account-info-text small {
+  display:block;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+.account-info-text strong {
+  font-size:13px;
+  color:#fff;
+}
+
+.account-info-text small {
+  color:#bda2e5;
+  font-size:11px;
+  direction:ltr;
+  text-align:right;
+}
+
+.account-menu-divider {
+  height:1px;
+  background:#ffffff13;
+  margin:3px 0 8px;
+}
+
+.account-menu-item {
+  display:block;
+  width:100%;
+  padding:11px;
+  border:0;
+  border-radius:9px;
+  background:transparent;
+  text-align:right;
+  color:#eee6fa;
+  font-size:13px;
+}
+
+.account-menu-item:hover { background:#b78aff15; }
+.account-menu-item.danger { color:#ff91ac; }
+
 .search-box {
-  padding: 12px 16px;
-  background: var(--panel);
-  border-bottom: 1px solid #29243b;
+  padding:12px 16px;
+  background:var(--panel);
+  border-bottom:1px solid #29243b;
 }
 
 .search-box input {
-  width: 100%;
-  border: 1px solid #39304f;
-  background: #080711;
-  color: white;
-  border-radius: 10px;
-  padding: 12px;
-  outline: none;
+  width:100%;
+  border:1px solid #39304f;
+  background:#080711;
+  color:white;
+  border-radius:10px;
+  padding:12px;
+  outline:none;
 }
 
-.search-box input:focus { border-color: var(--purple); }
-.hidden { display: none !important; }
+.search-box input:focus { border-color:var(--purple); }
 
 .hero {
-  padding: 40px 21px 30px;
-  background: radial-gradient(ellipse at top left, #30204e 0%, transparent 65%);
+  padding:40px 21px 30px;
+  background:radial-gradient(ellipse at top left,#30204e 0%,transparent 65%);
 }
 
 .eyebrow {
-  color: var(--purple);
-  font-size: 12px;
-  letter-spacing: 1px;
+  color:var(--purple);
+  font-size:12px;
+  letter-spacing:1px;
 }
 
 h1 {
-  font-size: 43px;
-  line-height: 1.5;
-  margin: 15px 0;
+  font-size:43px;
+  line-height:1.5;
+  margin:15px 0;
 }
 
 .gradient {
-  background: linear-gradient(90deg, #eee9ff, #a58aff);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  background:linear-gradient(90deg,#eee9ff,#a58aff);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
 }
 
 .hero p {
-  color: var(--muted);
-  line-height: 2;
-  font-size: 14px;
-  max-width: 440px;
+  color:var(--muted);
+  line-height:2;
+  font-size:14px;
+  max-width:440px;
 }
 
-.primary, .secondary {
-  display: inline-block;
-  text-decoration: none;
-  border-radius: 9px;
-  margin-top: 10px;
+.primary,.secondary {
+  display:inline-block;
+  text-decoration:none;
+  border-radius:9px;
+  margin-top:10px;
 }
 
 .primary {
-  background: linear-gradient(120deg, #c9baff, #9676f2);
-  color: #171025;
-  padding: 11px 17px;
-  border: 0;
-  font-weight: 700;
-  font-size: 13px;
+  background:linear-gradient(120deg,#c9baff,#9676f2);
+  color:#171025;
+  padding:11px 17px;
+  border:0;
+  font-weight:700;
+  font-size:13px;
 }
 
 .secondary {
-  border: 1px solid #39324f;
-  color: var(--silver);
-  background: transparent;
-  padding: 10px 14px;
-  margin-right: 6px;
-  font-size: 12px;
+  border:1px solid #39324f;
+  color:var(--silver);
+  background:transparent;
+  padding:10px 14px;
+  margin-right:6px;
+  font-size:12px;
 }
 
 .hero-art {
-  margin: 32px auto 5px;
-  max-width: 440px;
-  height: 210px;
-  border-radius: 16px;
-  border: 1px solid #39304f;
-  overflow: hidden;
-  position: relative;
-  display: grid;
-  place-items: center;
-  background: radial-gradient(circle at 50% 40%, #66518d 0%, #25203e 27%, #100e1e 60%, #080711 100%);
+  margin:32px auto 5px;
+  max-width:440px;
+  height:210px;
+  border-radius:16px;
+  border:1px solid #39304f;
+  overflow:hidden;
+  position:relative;
+  display:grid;
+  place-items:center;
+  background:radial-gradient(circle at 50% 40%,#66518d 0%,#25203e 27%,#100e1e 60%,#080711 100%);
 }
 
 .moon {
-  width: 125px;
-  height: 125px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 32% 27%, #e4ddff, #9585bb 15%, #39304f 50%, #0b0914 76%);
-  box-shadow: 0 0 55px #9274ed55;
-  animation: glow 5s ease-in-out infinite alternate;
+  width:125px;
+  height:125px;
+  border-radius:50%;
+  background:radial-gradient(circle at 32% 27%,#e4ddff,#9585bb 15%,#39304f 50%,#0b0914 76%);
+  box-shadow:0 0 55px #9274ed55;
+  animation:glow 5s ease-in-out infinite alternate;
 }
 
 @keyframes glow {
-  from { box-shadow: 0 0 35px #9274ed33; }
-  to { box-shadow: 0 0 70px #9274ed88; }
+  from { box-shadow:0 0 35px #9274ed33; }
+  to { box-shadow:0 0 70px #9274ed88; }
 }
 
 .art-text {
-  position: absolute;
-  bottom: 13px;
-  left: 15px;
-  color: #e5dfff;
-  font-size: 10px;
-  letter-spacing: 3px;
-  direction: ltr;
+  position:absolute;
+  bottom:13px;
+  left:15px;
+  color:#e5dfff;
+  font-size:10px;
+  letter-spacing:3px;
+  direction:ltr;
 }
 
-.section { padding: 35px 18px; }
+.section { padding:35px 18px; }
 
 .section-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
 }
 
 .section-head h2 {
-  font-size: 21px;
-  margin: 5px 0 18px;
+  font-size:21px;
+  margin:5px 0 18px;
 }
 
 .kicker {
-  color: var(--purple);
-  font-size: 11px;
-  letter-spacing: 1px;
+  color:var(--purple);
+  font-size:11px;
+  letter-spacing:1px;
 }
 
 .empty-library {
-  min-height: 190px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 25px 18px;
-  border: 1px dashed #39304f;
-  border-radius: 14px;
-  background: linear-gradient(145deg, #111020, #0b0914);
+  min-height:190px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:25px 18px;
+  border:1px dashed #39304f;
+  border-radius:14px;
+  background:linear-gradient(145deg,#111020,#0b0914);
 }
 
 .empty-icon {
-  font-size: 35px;
-  color: var(--purple);
-  margin-bottom: 10px;
+  font-size:35px;
+  color:var(--purple);
+  margin-bottom:10px;
 }
 
 .empty-library h3 {
-  font-size: 15px;
-  margin: 0 0 8px;
+  font-size:15px;
+  margin:0 0 8px;
 }
 
 .empty-library p {
-  color: var(--muted);
-  font-size: 12px;
-  line-height: 1.9;
-  margin: 0;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.9;
+  margin:0;
 }
 
 .banner {
-  margin: 10px 17px 35px;
-  padding: 24px 20px;
-  border: 1px solid #45345f;
-  border-radius: 14px;
-  background: linear-gradient(120deg, #19132a, #100e1d);
+  margin:10px 17px 35px;
+  padding:24px 20px;
+  border:1px solid #45345f;
+  border-radius:14px;
+  background:linear-gradient(120deg,#19132a,#100e1d);
 }
 
 .banner h2 {
-  font-size: 21px;
-  margin: 12px 0;
+  font-size:21px;
+  margin:12px 0;
 }
 
 .banner p {
-  font-size: 12px;
-  line-height: 2;
-  color: var(--muted);
+  font-size:12px;
+  line-height:2;
+  color:var(--muted);
 }
 
 footer {
-  padding: 25px 16px 100px;
-  border-top: 1px solid #29243b;
-  text-align: center;
-  color: var(--muted);
-  font-size: 11px;
+  padding:25px 16px 100px;
+  border-top:1px solid #29243b;
+  text-align:center;
+  color:var(--muted);
+  font-size:11px;
 }
 
-footer .logo { color: white; }
+footer .logo { color:white; }
 
 .bottom-nav {
-  position: fixed;
-  z-index: 15;
-  bottom: 10px;
-  left: 12px;
-  right: 12px;
-  background: #171526f2;
-  backdrop-filter: blur(16px);
-  border: 1px solid #45405b;
-  border-radius: 18px;
-  display: flex;
-  justify-content: space-around;
-  padding: 10px 3px;
-  box-shadow: 0 8px 35px #0008;
+  position:fixed;
+  z-index:15;
+  bottom:10px;
+  left:12px;
+  right:12px;
+  background:#171526f2;
+  backdrop-filter:blur(16px);
+  border:1px solid #45405b;
+  border-radius:18px;
+  display:flex;
+  justify-content:space-around;
+  padding:10px 3px;
+  box-shadow:0 8px 35px #0008;
 }
 
 .bottom-nav a {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 3px;
-  color: var(--muted);
-  text-decoration: none;
-  font-size: 10px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:3px;
+  color:var(--muted);
+  text-decoration:none;
+  font-size:10px;
 }
 
-.bottom-nav .selected { color: var(--purple); }
-.bottom-nav b { font-size: 20px; }
+.bottom-nav .selected { color:var(--purple); }
+.bottom-nav b { font-size:20px; }
 
-@media (min-width: 700px) {
-  header { padding: 15px 35px; }
+[dir="ltr"] .account-menu-item { text-align:left; }
+
+@media(min-width:700px) {
+  header { padding:15px 35px; }
 
   .hero {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    gap: 35px;
-    padding: 60px 7%;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    align-items:center;
+    gap:35px;
+    padding:60px 7%;
   }
 
-  h1 { font-size: 52px; }
+  h1 { font-size:52px; }
 
-  .hero-art {
-    width: 100%;
-    height: 320px;
-  }
-
-  .moon {
-    width: 190px;
-    height: 190px;
-  }
-
-  .section { padding: 40px 7%; }
-
-  .banner { margin: 20px 7% 45px; padding: 30px; }
-
-  .bottom-nav { display: none; }
+  .hero-art { width:100%; height:320px; }
+  .moon { width:190px; height:190px; }
+  .section { padding:40px 7%; }
+  .banner { margin:20px 7% 45px; padding:30px; }
+  .bottom-nav { display:none; }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  .moon { animation: none; }
+@media(max-width:380px) {
+  header { padding:12px 10px; }
+  .header-actions { gap:5px; }
+  .logo { font-size:23px; }
+  .login { padding:6px 7px; font-size:10px; }
+  .account-menu { left:-4px; width:225px; }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  html { scroll-behavior:auto; }
+  .moon { animation:none; }
 }
 </style>
 </head>
@@ -352,7 +466,35 @@ footer .logo { color: white; }
   <div class="header-actions">
     <button class="icon" id="searchBtn" aria-label="بحث">⌕</button>
     <button class="icon" id="languageBtn">EN</button>
+
     <a href="login.html" class="login" id="loginBtn">تسجيل الدخول</a>
+
+    <div class="account-wrap hidden" id="accountWrap">
+      <button class="account-avatar-btn" id="accountAvatarBtn"
+        aria-label="قائمة الحساب" aria-expanded="false">
+        ✦
+      </button>
+
+      <div class="account-menu hidden" id="accountMenu">
+        <div class="account-info">
+          <div class="account-mini-avatar" id="menuAvatar">✦</div>
+          <div class="account-info-text">
+            <strong id="menuName">عضو NOIR</strong>
+            <small id="menuUsername">@member</small>
+          </div>
+        </div>
+
+        <div class="account-menu-divider"></div>
+
+        <button class="account-menu-item" id="openProfileBtn">
+          ♙ &nbsp; <span id="profileLabel">الملف الشخصي</span>
+        </button>
+
+        <button class="account-menu-item danger" id="menuLogoutBtn">
+          ↪ &nbsp; <span id="logoutLabel">تسجيل الخروج</span>
+        </button>
+      </div>
+    </div>
   </div>
 </header>
 
@@ -431,18 +573,143 @@ footer .logo { color: white; }
   <a href="#updates">
     <b>◈</b><span class="nav-discover">اكتشف</span>
   </a>
-  <a href="login.html">
+  <a href="profile.html" id="bottomAccountLink">
     <b>♙</b><span class="nav-account">حسابي</span>
   </a>
 </nav>
 
-<script>
-let lang = "ar";
+<script type="module">
+import { initializeApp, getApps, getApp } from
+  "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+
+import {
+  getAuth,
+  onAuthStateChanged,
+  signOut
+} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyC1UPtUUM5C8UNLCdG5aH2ihKfHzyCEWUU",
+  authDomain: "noir-f2c25.firebaseapp.com",
+  projectId: "noir-f2c25",
+  storageBucket: "noir-f2c25.firebasestorage.app",
+  messagingSenderId: "106946634819",
+  appId: "1:106946634819:web:e62c3a7698d93fd8cee0f6",
+  measurementId: "G-116459HDRC"
+};
+
+const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
+const auth = getAuth(app);
 const $ = id => document.getElementById(id);
+
+let lang = "ar";
+
+function getUsername(user) {
+  const saved = localStorage.getItem("noir_username_" + user.uid);
+  if (saved) return saved;
+
+  // بديل مؤقت إن لم يُحفظ اليوزر نيم في صفحة تعديل الملف الشخصي.
+  return (user.displayName || "member")
+    .trim()
+    .replace(/\s+/g, "")
+    .toLowerCase();
+}
+
+function setAvatar(element, url) {
+  element.replaceChildren();
+
+  if (!url) {
+    element.textContent = "✦";
+    return;
+  }
+
+  const img = document.createElement("img");
+  img.src = url;
+  img.alt = "الصورة الشخصية";
+
+  img.onerror = () => {
+    element.replaceChildren();
+    element.textContent = "✦";
+  };
+
+  element.appendChild(img);
+}
+
+function renderAccount(user) {
+  const loginBtn = $("loginBtn");
+  const accountWrap = $("accountWrap");
+  const bottomLink = $("bottomAccountLink");
+
+  if (!user) {
+    loginBtn.classList.remove("hidden");
+    accountWrap.classList.add("hidden");
+    $("accountMenu").classList.add("hidden");
+
+    $("accountAvatarBtn").setAttribute("aria-expanded", "false");
+    bottomLink.href = "login.html";
+    return;
+  }
+
+  loginBtn.classList.add("hidden");
+  accountWrap.classList.remove("hidden");
+  bottomLink.href = "profile.html";
+
+  $("menuName").textContent = user.displayName || "عضو NOIR";
+  $("menuUsername").textContent = "@" + getUsername(user);
+
+  // نفس مفتاح الأفتار المستخدم في صفحة الحساب المحلية.
+  const localAvatar = localStorage.getItem("noir_avatar_" + user.uid);
+  const avatarUrl = localAvatar || user.photoURL || "";
+
+  setAvatar($("accountAvatarBtn"), avatarUrl);
+  setAvatar($("menuAvatar"), avatarUrl);
+}
+
+onAuthStateChanged(auth, user => {
+  renderAccount(user);
+});
+
+$("accountAvatarBtn").addEventListener("click", event => {
+  event.stopPropagation();
+
+  const menu = $("accountMenu");
+  const open = menu.classList.contains("hidden");
+
+  menu.classList.toggle("hidden", !open);
+  $("accountAvatarBtn").setAttribute("aria-expanded", String(open));
+});
+
+$("accountMenu").addEventListener("click", event => {
+  event.stopPropagation();
+});
+
+document.addEventListener("click", () => {
+  $("accountMenu").classList.add("hidden");
+  $("accountAvatarBtn").setAttribute("aria-expanded", "false");
+});
+
+$("openProfileBtn").addEventListener("click", () => {
+  location.href = "profile.html";
+});
+
+$("menuLogoutBtn").addEventListener("click", async () => {
+  const message = lang === "ar" ? "هل تريد تسجيل الخروج؟" : "Sign out?";
+  if (!confirm(message)) return;
+
+  try {
+    await signOut(auth);
+    $("accountMenu").classList.add("hidden");
+    // Firebase يعيد إظهار زر تسجيل الدخول تلقائيًا.
+  } catch (error) {
+    console.error(error);
+    alert(lang === "ar"
+      ? "تعذر تسجيل الخروج. حاول مرة أخرى."
+      : "Could not sign out. Please try again.");
+  }
+});
 
 $("searchBtn").addEventListener("click", () => {
   $("searchBox").classList.toggle("hidden");
-
   if (!$("searchBox").classList.contains("hidden")) {
     $("searchInput").focus();
   }
@@ -455,8 +722,9 @@ $("languageBtn").addEventListener("click", () => {
   document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
   $("languageBtn").textContent = lang === "ar" ? "EN" : "ع";
 
-  $("loginBtn").textContent =
-    lang === "ar" ? "تسجيل الدخول" : "Sign in";
+  $("loginBtn").textContent = lang === "ar" ? "تسجيل الدخول" : "Sign in";
+  $("profileLabel").textContent = lang === "ar" ? "الملف الشخصي" : "Profile";
+  $("logoutLabel").textContent = lang === "ar" ? "تسجيل الخروج" : "Sign out";
 
   $("eyebrow").textContent = lang === "ar"
     ? "✦ بوابتك إلى عوالم لا تنتهي"
@@ -474,10 +742,7 @@ $("languageBtn").addEventListener("click", () => {
     ? "استكشفي المكتبة ↙" : "Explore the library ↙";
 
   $("latestBtn").textContent = lang === "ar" ? "عن NOIR" : "About NOIR";
-
-  $("libraryKicker").textContent = lang === "ar"
-    ? "عالم من القصص" : "A WORLD OF STORIES";
-
+  $("libraryKicker").textContent = lang === "ar" ? "عالم من القصص" : "A WORLD OF STORIES";
   $("libraryTitle").textContent = lang === "ar" ? "المكتبة" : "The Library";
 
   $("emptyTitle").textContent = lang === "ar"
@@ -489,7 +754,8 @@ $("languageBtn").addEventListener("click", () => {
     : "There are no titles here yet.<br>New manga and manhwa will appear here when added.";
 
   $("bannerTitle").textContent = lang === "ar"
-    ? "عالمك، على طريقتك." : "Your world, your way.";
+    ? "عالمك، على طريقتك."
+    : "Your world, your way.";
 
   $("bannerDescription").textContent = lang === "ar"
     ? "NOIR مساحة لعشاق المانهوا والمانجا، حيث تبدأ كل قصة بعالم مختلف وتترك أثرًا خاصًا."
@@ -499,17 +765,10 @@ $("languageBtn").addEventListener("click", () => {
     ? "مساحة لعشاق القصص المصورة."
     : "A space for comic story lovers.";
 
-  document.querySelector(".nav-home").textContent =
-    lang === "ar" ? "الرئيسية" : "Home";
-
-  document.querySelector(".nav-library").textContent =
-    lang === "ar" ? "المكتبة" : "Library";
-
-  document.querySelector(".nav-discover").textContent =
-    lang === "ar" ? "اكتشف" : "Discover";
-
-  document.querySelector(".nav-account").textContent =
-    lang === "ar" ? "حسابي" : "Account";
+  document.querySelector(".nav-home").textContent = lang === "ar" ? "الرئيسية" : "Home";
+  document.querySelector(".nav-library").textContent = lang === "ar" ? "المكتبة" : "Library";
+  document.querySelector(".nav-discover").textContent = lang === "ar" ? "اكتشف" : "Discover";
+  document.querySelector(".nav-account").textContent = lang === "ar" ? "حسابي" : "Account";
 
   $("searchInput").placeholder = lang === "ar"
     ? "ابحثي عن مانهوا أو مانجا..."
