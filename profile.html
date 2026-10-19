@@ -1,0 +1,488 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#090711">
+<title>NOIR | حسابي</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg:#090711;
+  --panel:#15101f;
+  --purple:#b78aff;
+  --muted:#9b8eac;
+  --border:rgba(183,138,255,.2);
+}
+
+* { box-sizing:border-box; }
+
+body {
+  margin:0;
+  min-height:100vh;
+  color:#f8f3ff;
+  font-family:'Cairo',sans-serif;
+  background:
+    radial-gradient(ellipse at 50% 0%,#301844 0%,transparent 48%),
+    radial-gradient(ellipse at 0% 75%,#201032 0%,transparent 35%),
+    var(--bg);
+}
+
+button,input { font:inherit; }
+button { cursor:pointer; }
+
+.page {
+  width:min(480px,100%);
+  margin:auto;
+  padding:25px 20px 40px;
+}
+
+header {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:30px;
+}
+
+.logo {
+  direction:ltr;
+  font-family:Arial,sans-serif;
+  font-size:26px;
+  font-weight:800;
+  letter-spacing:6px;
+  color:#e3ceff;
+  text-shadow:0 0 25px #a66bff55;
+}
+
+.header-actions { display:flex;gap:10px; }
+
+.icon-btn {
+  width:43px;
+  height:43px;
+  border:1px solid var(--border);
+  border-radius:14px;
+  background:#ffffff07;
+  color:#d5b8ff;
+  font-size:20px;
+}
+
+.icon-btn:hover { background:#b78aff15; }
+
+.profile {
+  position:relative;
+  overflow:hidden;
+  text-align:center;
+  padding:27px 18px 25px;
+  border:1px solid var(--border);
+  border-radius:27px;
+  background:linear-gradient(145deg,#1c1528ed,#100d17f5);
+  box-shadow:0 20px 65px #0005;
+  backdrop-filter:blur(18px);
+}
+
+.profile::before {
+  content:"";
+  position:absolute;
+  width:220px;
+  height:220px;
+  border-radius:50%;
+  background:#9d5aff19;
+  filter:blur(50px);
+  top:-150px;
+  left:calc(50% - 110px);
+  pointer-events:none;
+}
+
+.eyebrow {
+  position:relative;
+  font-size:10px;
+  letter-spacing:3px;
+  color:var(--purple);
+  direction:ltr;
+}
+
+.avatar-wrap {
+  width:112px;
+  height:112px;
+  margin:24px auto 17px;
+  position:relative;
+}
+
+.avatar {
+  width:100%;
+  height:100%;
+  border-radius:50%;
+  border:2px solid #bd91ff;
+  background:linear-gradient(145deg,#39234f,#17111f);
+  box-shadow:0 0 0 6px #b78aff0c,0 0 30px #a96bff40;
+  display:grid;
+  place-items:center;
+  font-size:39px;
+  overflow:hidden;
+}
+
+.avatar img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.upload {
+  position:absolute;
+  left:-3px;
+  bottom:0;
+  width:36px;
+  height:36px;
+  border:2px solid #17111f;
+  border-radius:50%;
+  background:var(--purple);
+  color:#170e23;
+  font-size:18px;
+  display:grid;
+  place-items:center;
+  cursor:pointer;
+}
+
+h1 {
+  position:relative;
+  font-size:24px;
+  line-height:1.5;
+  margin:0;
+  font-weight:800;
+  overflow-wrap:anywhere;
+}
+
+.username {
+  direction:ltr;
+  unicode-bidi:plaintext;
+  color:#c4a0ff;
+  font-size:14px;
+  margin-top:3px;
+  overflow-wrap:anywhere;
+}
+
+.member {
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  margin-top:14px;
+  padding:5px 17px;
+  border:1px solid #b78aff35;
+  background:#a96bff12;
+  border-radius:30px;
+  color:#d6baff;
+  font-size:12px;
+}
+
+.divider {
+  height:1px;
+  background:var(--border);
+  margin:25px 0;
+}
+
+.section-title {
+  text-align:right;
+  color:var(--muted);
+  font-size:13px;
+  margin:0 4px 13px;
+}
+
+.menu {
+  display:flex;
+  flex-direction:column;
+  gap:11px;
+}
+
+.menu-item {
+  display:flex;
+  align-items:center;
+  gap:13px;
+  width:100%;
+  text-align:right;
+  color:#f5efff;
+  background:#15121d;
+  border:1px solid #ffffff0a;
+  border-radius:17px;
+  padding:14px;
+  transition:background .2s,border-color .2s,transform .2s;
+}
+
+.menu-item:hover {
+  border-color:#b78aff55;
+  background:#1d1729;
+  transform:translateY(-1px);
+}
+
+.menu-icon {
+  flex-shrink:0;
+  width:44px;
+  height:44px;
+  border-radius:14px;
+  display:grid;
+  place-items:center;
+  background:#a66bff14;
+  border:1px solid #a66bff14;
+  color:#c8a5ff;
+  font-size:21px;
+}
+
+.menu-text { flex:1; }
+
+.menu-text strong {
+  display:block;
+  font-size:14px;
+  font-weight:700;
+}
+
+.menu-text small {
+  display:block;
+  color:var(--muted);
+  font-size:11px;
+  margin-top:3px;
+}
+
+.arrow {
+  color:#8c7a9f;
+  font-size:22px;
+}
+
+.logout .menu-icon {
+  background:#ff789012;
+  color:#ff91ac;
+}
+
+.logout .menu-text strong { color:#ff91ac; }
+
+#status {
+  font-size:12px;
+  color:#d5b8ff;
+  margin-top:13px;
+  min-height:18px;
+}
+
+footer {
+  text-align:center;
+  color:#756781;
+  font-size:10px;
+  letter-spacing:2px;
+  margin-top:27px;
+  direction:ltr;
+}
+
+input[type=file] { display:none; }
+
+@media(max-width:360px) {
+  .page { padding:18px 12px 30px; }
+  .profile { padding:23px 13px; }
+  h1 { font-size:21px; }
+  .menu-item { padding:11px;gap:10px; }
+  .menu-text small { font-size:10px; }
+}
+</style>
+</head>
+
+<body>
+<main class="page">
+
+  <header>
+    <div class="logo">NOIR</div>
+    <div class="header-actions">
+      <button class="icon-btn" id="settingsBtn" aria-label="الإعدادات">⚙</button>
+      <button class="icon-btn" id="backBtn" aria-label="العودة">‹</button>
+    </div>
+  </header>
+
+  <section class="profile">
+    <div class="eyebrow">YOUR PERSONAL SPACE</div>
+
+    <div class="avatar-wrap">
+      <div class="avatar" id="avatar">✦</div>
+      <label class="upload" for="avatarInput" title="تغيير الصورة">✎</label>
+      <input id="avatarInput" type="file" accept="image/png,image/jpeg,image/webp,image/gif">
+    </div>
+
+    <h1 id="displayName">عضو NOIR</h1>
+    <div class="username" id="username">@member</div>
+    <div class="member">✦ عضو</div>
+
+    <div class="divider"></div>
+
+    <div class="section-title">مساحتك الشخصية</div>
+
+    <nav class="menu">
+      <button class="menu-item" id="profileBtn">
+        <span class="menu-icon">♙</span>
+        <span class="menu-text">
+          <strong>الملف الشخصي</strong>
+          <small>تعديل الاسم واليوزر نيم والصورة</small>
+        </span>
+        <span class="arrow">‹</span>
+      </button>
+
+      <button class="menu-item" id="settingsMenuBtn">
+        <span class="menu-icon">⚙</span>
+        <span class="menu-text">
+          <strong>الإعدادات</strong>
+          <small>تخصيص تجربة NOIR</small>
+        </span>
+        <span class="arrow">‹</span>
+      </button>
+
+      <button class="menu-item logout" id="logoutBtn">
+        <span class="menu-icon">↪</span>
+        <span class="menu-text">
+          <strong>تسجيل الخروج</strong>
+          <small>الخروج من حسابك</small>
+        </span>
+        <span class="arrow">‹</span>
+      </button>
+    </nav>
+
+    <div id="status" role="status" aria-live="polite"></div>
+  </section>
+
+  <footer>NOIR • YOUR SPACE. YOUR IDENTITY.</footer>
+</main>
+
+<script type="module">
+import { initializeApp } from
+  "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+
+import {
+  getAuth,
+  onAuthStateChanged,
+  signOut
+} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyC1UPtUUM5C8UNLCdG5aH2ihKfHzyCEWUU",
+  authDomain: "noir-f2c25.firebaseapp.com",
+  projectId: "noir-f2c25",
+  storageBucket: "noir-f2c25.firebasestorage.app",
+  messagingSenderId: "106946634819",
+  appId: "1:106946634819:web:e62c3a7698d93fd8cee0f6",
+  measurementId: "G-116459HDRC"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+const $ = id => document.getElementById(id);
+const status = $("status");
+
+let currentUser = null;
+
+function getUsername(user) {
+  // يُفضّل تخزين username في قاعدة بيانات المستخدم.
+  // displayName هنا مجرد بديل مؤقت إذا لم يوجد username.
+  const saved = localStorage.getItem("noir_username_" + user.uid);
+  if (saved) return saved;
+
+  const name = user.displayName || "";
+  return name.trim().replace(/\s+/g, "").toLowerCase() || "member";
+}
+
+function renderUser(user) {
+  $("displayName").textContent = user.displayName || "عضو NOIR";
+  $("username").textContent = "@" + getUsername(user);
+
+  const savedAvatar = localStorage.getItem("noir_avatar_" + user.uid);
+  showAvatar(savedAvatar || user.photoURL || "");
+}
+
+function showAvatar(url) {
+  const avatar = $("avatar");
+  avatar.replaceChildren();
+
+  if (url) {
+    const img = document.createElement("img");
+    img.src = url;
+    img.alt = "الصورة الشخصية";
+    img.onerror = () => {
+      avatar.replaceChildren();
+      avatar.textContent = "✦";
+    };
+    avatar.appendChild(img);
+  } else {
+    avatar.textContent = "✦";
+  }
+}
+
+onAuthStateChanged(auth, user => {
+  if (!user) {
+    location.replace("login.html");
+    return;
+  }
+
+  currentUser = user;
+  renderUser(user);
+});
+
+$("avatarInput").addEventListener("change", async event => {
+  const file = event.target.files?.[0];
+  if (!file || !currentUser) return;
+
+  if (!file.type.startsWith("image/")) {
+    status.textContent = "اختر ملف صورة صالحًا.";
+    return;
+  }
+
+  if (file.size > 3 * 1024 * 1024) {
+    status.textContent = "حجم الصورة يجب ألا يتجاوز 3 ميجابايت.";
+    event.target.value = "";
+    return;
+  }
+
+  try {
+    status.textContent = "جارٍ حفظ الصورة...";
+
+    const dataUrl = await new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+
+    localStorage.setItem("noir_avatar_" + currentUser.uid, dataUrl);
+    showAvatar(dataUrl);
+    status.textContent = "تم تحديث الأفتار بنجاح ✨";
+  } catch (error) {
+    console.error(error);
+    status.textContent = "تعذر حفظ الصورة. جرّب صورة أصغر.";
+  }
+
+  event.target.value = "";
+});
+
+$("logoutBtn").addEventListener("click", async () => {
+  if (!confirm("هل تريد تسجيل الخروج؟")) return;
+
+  try {
+    await signOut(auth);
+    location.replace("login.html");
+  } catch (error) {
+    console.error(error);
+    status.textContent = "تعذر تسجيل الخروج. حاول مرة أخرى.";
+  }
+});
+
+$("profileBtn").addEventListener("click", () => {
+  location.href = "edit-profile.html";
+});
+
+function openSettings() {
+  location.href = "settings.html";
+}
+
+$("settingsBtn").addEventListener("click", openSettings);
+$("settingsMenuBtn").addEventListener("click", openSettings);
+
+$("backBtn").addEventListener("click", () => {
+  if (history.length > 1) history.back();
+  else location.href = "index.html";
+});
+</script>
+</body>
+</html>
