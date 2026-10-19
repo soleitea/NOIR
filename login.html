@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -7,488 +8,107 @@
 <title>NOIR | تسجيل الدخول</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root {
-  --bg: #08070c;
-  --purple: #a78bfa;
-  --purple2: #8156d8;
-  --silver: #e9e4f2;
-  --muted: #9690a5;
-  --border: #30263f;
-  --danger: #ff9aa5;
-  --success: #b9e7ca;
+  --bg:#08070c; --purple:#a78bfa; --silver:#e9e4f2;
+  --muted:#9690a5; --danger:#ff9aa5; --success:#b9e7ca;
 }
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  min-height: 100%;
-  background: var(--bg);
-}
-
+* { box-sizing:border-box; margin:0; padding:0; }
 body {
-  margin: 0;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 30px 18px 22px;
-  color: var(--silver);
-  font-family: "Cairo", sans-serif;
-  background:
-    radial-gradient(ellipse at 50% 8%, #39205255, transparent 42%),
-    radial-gradient(ellipse at 50% 100%, #20133344, transparent 45%),
-    var(--bg);
+  min-height:100vh; display:flex; flex-direction:column;
+  align-items:center; justify-content:center; padding:25px 15px;
+  color:var(--silver); font-family:Cairo,sans-serif;
+  background:radial-gradient(ellipse at 50% 8%,#39205255,transparent 42%),#08070c;
 }
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-button, input {
-  font: inherit;
-}
-
-button {
-  cursor: pointer;
-}
-
-.top, .card, .footer {
-  position: relative;
-  z-index: 1;
-}
-
-.top {
-  width: 100%;
-  max-width: 480px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 18px;
-  padding: 0 4px;
-}
-
-.brand {
-  font-family: "Cormorant Garamond", serif;
-  font-size: 36px;
-  font-weight: 700;
-  letter-spacing: 5px;
-  direction: ltr;
-  color: #f3effb;
-}
-
-.brand span {
-  color: var(--purple);
-}
-
-.top-actions {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.home-link, .language {
-  font-size: 12px;
-  color: var(--muted);
-  transition: color .2s;
-}
-
-.home-link:hover, .language:hover {
-  color: var(--purple);
-}
-
-.language {
-  background: transparent;
-  border: 1px solid #3b304b;
-  border-radius: 7px;
-  padding: 5px 9px;
-}
-
+a { color:inherit; text-decoration:none; }
+button,input { font:inherit; }
+button { cursor:pointer; }
+.top,.card,.footer { width:100%; max-width:460px; }
+.top { display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; padding:0 5px; }
+.brand { font:700 35px "Cormorant Garamond",serif; letter-spacing:5px; direction:ltr; }
+.brand span { color:var(--purple); }
+.language { background:transparent; border:1px solid #3b304b; border-radius:7px; padding:5px 10px; color:var(--muted); }
+.home-link { color:var(--muted); font-size:12px; }
+.top-actions { display:flex; align-items:center; gap:12px; }
 .card {
-  width: 100%;
-  max-width: 480px;
-  padding: 34px clamp(22px, 6vw, 42px) 30px;
-  border: 1px solid #3a2d4b;
-  border-radius: 20px;
-  background: linear-gradient(145deg, #100d17f7, #09080efc);
-  box-shadow:
-    0 28px 100px #0009,
-    0 0 55px #9568df0c;
-  overflow: hidden;
+  position:relative; padding:34px clamp(20px,6vw,40px) 30px;
+  border:1px solid #3a2d4b; border-radius:20px;
+  background:linear-gradient(145deg,#100d17f7,#09080efc);
+  box-shadow:0 28px 100px #0009; overflow:hidden;
 }
-
-.card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 18%;
-  right: 18%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, #b79aff, transparent);
-}
-
-.close {
-  position: absolute;
-  top: 12px;
-  inset-inline-end: 14px;
-  border: 0;
-  background: none;
-  color: var(--purple);
-  font-size: 24px;
-  line-height: 1;
-  padding: 4px;
-}
-
 .brand-large {
-  direction: ltr;
-  text-align: center;
-  font-family: "Cormorant Garamond", serif;
-  font-size: clamp(49px, 11vw, 65px);
-  font-weight: 700;
-  letter-spacing: 4px;
-  line-height: 1.05;
-  color: #f4efff;
-  margin: 5px 0 9px;
-  text-shadow: 0 0 24px #b99aff24;
+  text-align:center; direction:ltr;
+  font:700 clamp(50px,11vw,65px) "Cormorant Garamond",serif;
+  letter-spacing:4px; margin:5px 0 9px;
 }
-
 .brand-large span {
-  background: linear-gradient(130deg, #fff, #c4a8ff 60%, #8d68dc);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  background:linear-gradient(130deg,#fff,#c4a8ff 60%,#8d68dc);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
 }
-
-.tagline {
-  text-align: center;
-  font-size: 10px;
-  letter-spacing: 4px;
-  color: #8f829f;
-  margin-bottom: 20px;
-  direction: ltr;
-}
-
-.heading {
-  text-align: center;
-  margin-bottom: 24px;
-}
-
-.heading h1 {
-  font-size: 25px;
-  line-height: 1.5;
-  font-weight: 700;
-  color: #f2edf9;
-  margin-bottom: 3px;
-}
-
-.heading p {
-  font-size: 12px;
-  line-height: 1.9;
-  color: var(--muted);
-}
-
-.tabs {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  border-bottom: 1px solid #342b40;
-  margin-bottom: 25px;
-}
-
-.tab {
-  position: relative;
-  background: transparent;
-  border: 0;
-  padding: 11px 5px 13px;
-  color: var(--muted);
-  font-size: 13px;
-}
-
-.tab[aria-selected="true"] {
-  color: var(--purple);
-  font-weight: 700;
-}
-
-.tab[aria-selected="true"]::after {
-  content: "";
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #c9a9ff, #8658d9);
-  box-shadow: 0 0 13px #a78bfa55;
-}
-
-.field {
-  margin-bottom: 16px;
-}
-
-.field label {
-  display: block;
-  margin-bottom: 7px;
-  font-size: 12px;
-  color: #d8d0e4;
-}
-
-.input-wrap {
-  position: relative;
-}
-
+.tagline { text-align:center; font-size:10px; letter-spacing:4px; color:#8f829f; margin-bottom:20px; direction:ltr; }
+.heading { text-align:center; margin-bottom:24px; }
+.heading h1 { font-size:25px; color:#f2edf9; }
+.heading p { font-size:12px; line-height:1.9; color:var(--muted); }
+.tabs { display:grid; grid-template-columns:1fr 1fr; border-bottom:1px solid #342b40; margin-bottom:24px; }
+.tab { position:relative; background:none; border:0; padding:12px 5px; color:var(--muted); font-size:13px; }
+.tab[aria-selected="true"] { color:var(--purple); font-weight:700; }
+.tab[aria-selected="true"]::after { content:""; position:absolute; bottom:-1px; left:0; right:0; height:3px; background:var(--purple); }
+.field { margin-bottom:16px; }
+.field label { display:block; margin-bottom:7px; font-size:12px; color:#d8d0e4; }
+.input-wrap { position:relative; }
 .input-wrap input {
-  width: 100%;
-  height: 49px;
-  background: #09080f;
-  color: var(--silver);
-  border: 1px solid #342a43;
-  border-radius: 11px;
-  outline: none;
-  padding: 0 14px;
-  font-size: 13px;
-  transition: border-color .2s, box-shadow .2s;
+  width:100%; height:49px; background:#09080f; color:var(--silver);
+  border:1px solid #342a43; border-radius:11px; outline:none;
+  padding:0 14px; font-size:13px;
 }
-
-.input-wrap input::placeholder {
-  color: #71697f;
-}
-
-.input-wrap input:focus {
-  border-color: #a080e4;
-  box-shadow: 0 0 0 3px #a78bfa17;
-}
-
-.password-input {
-  padding-inline-end: 65px !important;
-}
-
-.show-password {
-  position: absolute;
-  inset-inline-end: 11px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: transparent;
-  border: 0;
-  color: #a99bbd;
-  font-size: 11px;
-}
-
-.show-password:hover {
-  color: var(--purple);
-}
-
-.form-options {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  margin: 2px 0 21px;
-  font-size: 11px;
-}
-
-.remember {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  color: var(--muted);
-}
-
-.remember input {
-  accent-color: var(--purple2);
-}
-
-.text-link {
-  color: var(--purple);
-  transition: color .2s;
-}
-
-.text-link:hover {
-  color: #dacaff;
-}
-
+.input-wrap input:focus { border-color:#a080e4; box-shadow:0 0 0 3px #a78bfa17; }
+.input-wrap input::placeholder { color:#71697f; }
+.password-input { padding-inline-end:65px!important; }
+.show-password { position:absolute; inset-inline-end:11px; top:50%; transform:translateY(-50%); background:none; border:0; color:#a99bbd; font-size:11px; }
+.form-options { display:flex; align-items:center; justify-content:space-between; gap:10px; margin:2px 0 21px; font-size:11px; }
+.remember { display:flex; align-items:center; gap:7px; color:var(--muted); }
+.remember input { accent-color:#8156d8; }
+.text-link { color:var(--purple); }
 .primary {
-  width: 100%;
-  min-height: 51px;
-  border: 1px solid #bba4f4;
-  border-radius: 11px;
-  background: linear-gradient(110deg, #c19df5, #a080ed 52%, #8259df);
-  color: #130d20;
-  font-size: 14px;
-  font-weight: 800;
-  box-shadow: 0 7px 24px #8d63dc25;
-  transition: filter .2s, transform .2s;
+  width:100%; min-height:51px; border:1px solid #bba4f4; border-radius:11px;
+  background:linear-gradient(110deg,#c19df5,#a080ed 52%,#8259df);
+  color:#130d20; font-size:14px; font-weight:800;
 }
-
-.primary:hover {
-  filter: brightness(1.08);
-  transform: translateY(-1px);
-}
-
-.separator {
-  display: flex;
-  align-items: center;
-  gap: 13px;
-  margin: 21px 0;
-  color: #8c819b;
-  font-size: 11px;
-}
-
-.separator::before, .separator::after {
-  content: "";
-  height: 1px;
-  flex: 1;
-  background: #342b40;
-}
-
-.secondary {
-  width: 100%;
-  min-height: 47px;
-  border: 1px solid #514363;
-  border-radius: 11px;
-  background: #0d0b13;
-  color: #e0d9eb;
-  font-size: 12px;
-  transition: background .2s, border-color .2s;
-}
-
-.secondary:hover {
-  background: #171120;
-  border-color: #8b6bc2;
-}
-
-.google-g {
-  font-family: Arial, sans-serif;
-  font-weight: 700;
-  font-size: 18px;
-  margin-inline-end: 10px;
-  background: conic-gradient(from -45deg, #4285f4 0 25%, #34a853 0 50%, #fbbc05 0 75%, #ea4335 0);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  display: inline-block;
-  vertical-align: middle;
-}
-
-.switch-text {
-  text-align: center;
-  color: var(--muted);
-  font-size: 12px;
-  margin: 24px 0 0;
-}
-
-.switch-text a {
-  font-weight: 700;
-  margin-inline-start: 5px;
-}
-
-.message {
-  display: none;
-  margin-bottom: 15px;
-  padding: 10px 12px;
-  border-radius: 9px;
-  font-size: 12px;
-  line-height: 1.8;
-}
-
-.message.error, .message.success {
-  display: block;
-}
-
-.message.error {
-  color: var(--danger);
-  background: #ff8f9a0d;
-  border: 1px solid #ff8f9a25;
-}
-
-.message.success {
-  color: var(--success);
-  background: #b9e7ca0b;
-  border: 1px solid #b9e7ca22;
-}
-
-.footer {
-  margin-top: 21px;
-  text-align: center;
-  color: #716780;
-  font-size: 10px;
-  line-height: 2.2;
-}
-
-.footer .ornament {
-  color: var(--purple);
-  font-size: 16px;
-  letter-spacing: 8px;
-}
-
-.footer .copyright {
-  direction: ltr;
-  letter-spacing: 2px;
-  font-family: "Cormorant Garamond", serif;
-  font-size: 12px;
-  color: #8e829f;
-}
-
-[hidden] {
-  display: none !important;
-}
-
-@media (max-width: 480px) {
-  body {
-    padding: 18px 13px 16px;
-  }
-
-  .top {
-    margin-bottom: 14px;
-  }
-
-  .brand {
-    font-size: 31px;
-  }
-
-  .card {
-    padding: 31px 21px 25px;
-    border-radius: 16px;
-  }
-
-  .brand-large {
-    font-size: 54px;
-  }
-
-  .heading h1 {
-    font-size: 23px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    scroll-behavior: auto !important;
-    transition: none !important;
-  }
+.primary:disabled,.secondary:disabled { opacity:.65; cursor:wait; }
+.separator { display:flex; align-items:center; gap:13px; margin:21px 0; color:#8c819b; font-size:11px; }
+.separator::before,.separator::after { content:""; height:1px; flex:1; background:#342b40; }
+.secondary { width:100%; min-height:47px; border:1px solid #514363; border-radius:11px; background:#0d0b13; color:#e0d9eb; font-size:12px; }
+.google-g { font:bold 18px Arial; margin-inline-end:10px; color:#4285f4; }
+.switch-text { text-align:center; color:var(--muted); font-size:12px; margin-top:24px; }
+.switch-text a { font-weight:700; margin-inline-start:5px; }
+.message { display:none; margin-bottom:15px; padding:10px 12px; border-radius:9px; font-size:12px; line-height:1.8; overflow-wrap:anywhere; }
+.message.error,.message.success { display:block; }
+.message.error { color:var(--danger); border:1px solid #ff8f9a25; }
+.message.success { color:var(--success); border:1px solid #b9e7ca22; }
+.footer { margin-top:20px; text-align:center; color:#716780; font-size:10px; line-height:2.2; }
+.ornament { color:var(--purple); letter-spacing:8px; font-size:16px; }
+.copyright { direction:ltr; letter-spacing:2px; font:12px "Cormorant Garamond",serif; }
+[hidden] { display:none!important; }
+@media(max-width:480px) {
+  body { padding:18px 13px; }
+  .card { padding:31px 21px 25px; border-radius:16px; }
+  .heading h1 { font-size:23px; }
 }
 </style>
 </head>
 
 <body>
-
 <header class="top">
-  <a class="brand" href="index.html" aria-label="NOIR Home">N<span>OIR.</span></a>
-
+  <a class="brand" href="index.html">N<span>OIR.</span></a>
   <div class="top-actions">
-    <button class="language" type="button" id="languageBtn">EN</button>
-    <a class="home-link" href="index.html" id="homeLink">العودة للرئيسية ←</a>
+    <button class="language" id="languageBtn" type="button">EN</button>
+    <a class="home-link" id="homeLink" href="index.html">العودة للرئيسية ←</a>
   </div>
 </header>
 
 <main class="card">
-  <a class="close" href="index.html" aria-label="العودة للرئيسية" id="closeLink">×</a>
-
   <div class="brand-large">N<span>OIR</span></div>
   <div class="tagline">MANGA &amp; MANHWA</div>
 
@@ -497,7 +117,7 @@ button {
     <p id="formSubtitle">سجّل دخولك إلى حسابك</p>
   </div>
 
-  <div class="tabs" id="tabs" role="tablist">
+  <div class="tabs" id="tabs">
     <button class="tab" type="button" id="loginTab" aria-selected="true">تسجيل الدخول</button>
     <button class="tab" type="button" id="registerTab" aria-selected="false">إنشاء حساب جديد</button>
   </div>
@@ -505,34 +125,26 @@ button {
   <div id="message" class="message" role="status" aria-live="polite"></div>
 
   <form id="authForm" novalidate>
-
     <div class="field" id="nameField" hidden>
       <label for="name" id="nameLabel">اسم المستخدم</label>
-      <div class="input-wrap">
-        <input id="name" name="name" type="text" autocomplete="nickname" placeholder="اكتب اسمك">
-      </div>
+      <div class="input-wrap"><input id="name" type="text" autocomplete="nickname" placeholder="اكتب اسمك" maxlength="60"></div>
     </div>
 
     <div class="field">
       <label for="email" id="emailLabel">البريد الإلكتروني</label>
-      <div class="input-wrap">
-        <input id="email" name="email" type="email" autocomplete="email" placeholder="name@example.com" required>
-      </div>
+      <div class="input-wrap"><input id="email" type="email" autocomplete="email" placeholder="name@example.com" required></div>
     </div>
 
     <div class="field" id="passwordField">
       <label for="password" id="passwordLabel">كلمة المرور</label>
       <div class="input-wrap">
-        <input id="password" class="password-input" name="password" type="password" autocomplete="current-password" placeholder="أدخل كلمة المرور" minlength="6" required>
-        <button class="show-password" type="button" id="togglePassword">إظهار</button>
+        <input id="password" class="password-input" type="password" autocomplete="current-password" placeholder="أدخل كلمة المرور" minlength="6" required>
+        <button class="show-password" id="togglePassword" type="button">إظهار</button>
       </div>
     </div>
 
     <div class="form-options" id="formOptions">
-      <label class="remember">
-        <input type="checkbox" id="remember">
-        <span id="rememberText">تذكرني</span>
-      </label>
+      <label class="remember"><input type="checkbox" id="remember" checked><span id="rememberText">تذكرني</span></label>
       <a href="#" class="text-link" id="forgotLink">نسيت كلمة المرور؟</a>
     </div>
 
@@ -541,16 +153,10 @@ button {
 
   <div id="extraOptions">
     <div class="separator" id="separator">أو</div>
-    <button class="secondary" type="button" id="googleButton">
-      <span class="google-g">G</span>
-      <span id="googleText">المتابعة باستخدام Google</span>
-    </button>
+    <button class="secondary" type="button" id="googleButton"><span class="google-g">G</span><span id="googleText">المتابعة باستخدام Google</span></button>
   </div>
 
-  <p class="switch-text" id="switchText">
-    ليس لديك حساب؟
-    <a href="#" class="text-link" id="switchLink">إنشاء حساب جديد</a>
-  </p>
+  <p class="switch-text" id="switchText">ليس لديك حساب؟ <a href="#" class="text-link" id="switchLink">إنشاء حساب جديد</a></p>
 </main>
 
 <footer class="footer">
@@ -559,286 +165,221 @@ button {
   <div class="copyright">NOIR • MANGA &amp; MANHWA • 2026</div>
 </footer>
 
-<script>
-const $ = id => document.getElementById(id);
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+import {
+  getAuth, setPersistence, browserLocalPersistence, browserSessionPersistence,
+  createUserWithEmailAndPassword, signInWithEmailAndPassword,
+  sendPasswordResetEmail, GoogleAuthProvider, signInWithPopup, updateProfile
+} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
 
-const form = $("authForm");
-const title = $("formTitle");
-const subtitle = $("formSubtitle");
-const nameField = $("nameField");
-const nameInput = $("name");
-const emailInput = $("email");
-const passwordInput = $("password");
-const passwordField = $("passwordField");
-const options = $("formOptions");
-const extra = $("extraOptions");
-const submitButton = $("submitButton");
-const switchText = $("switchText");
-const forgotLink = $("forgotLink");
-const togglePassword = $("togglePassword");
-const message = $("message");
-const loginTab = $("loginTab");
-const registerTab = $("registerTab");
-const tabs = $("tabs");
-const languageButton = $("languageBtn");
+const firebaseConfig = {
+  apiKey: "AIzaSyC1UPtUUM5C8UNLCdG5aH2ihKfHzyCEWUU",
+  authDomain: "noir-f2c25.firebaseapp.com",
+  projectId: "noir-f2c25",
+  storageBucket: "noir-f2c25.firebasestorage.app",
+  messagingSenderId: "106946634819",
+  appId: "1:106946634819:web:e62c3a7698d93fd8cee0f6",
+  measurementId: "G-116459HDRC"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const googleProvider = new GoogleAuthProvider();
+googleProvider.setCustomParameters({prompt:"select_account"});
+const $ = id => document.getElementById(id);
 
 let mode = "login";
 let lang = "ar";
+let busy = false;
 
 const translations = {
-  ar: {
-    home: "العودة للرئيسية ←",
-    loginTitle: "مرحبًا بك مجددًا",
-    loginSubtitle: "سجّل دخولك إلى حسابك",
-    registerTitle: "أنشئ حسابك",
-    registerSubtitle: "انضم إلى عالم NOIR وابدأ رحلتك",
-    forgotTitle: "استعادة كلمة المرور",
-    forgotSubtitle: "أدخل بريدك الإلكتروني لإرسال رابط الاستعادة",
-    login: "تسجيل الدخول",
-    register: "إنشاء حساب جديد",
-    name: "اسم المستخدم",
-    namePlaceholder: "اكتب اسمك",
-    email: "البريد الإلكتروني",
-    password: "كلمة المرور",
-    passwordPlaceholder: "أدخل كلمة المرور",
-    show: "إظهار",
-    hide: "إخفاء",
-    remember: "تذكرني",
-    forgot: "نسيت كلمة المرور؟",
-    send: "إرسال رابط الاستعادة",
-    or: "أو",
-    google: "المتابعة باستخدام Google",
-    noAccount: "ليس لديك حساب؟",
-    hasAccount: "لديك حساب بالفعل؟",
-    backLogin: "العودة إلى تسجيل الدخول",
-    footer: "عالم آخر، خلف كل صفحة.",
-    invalidEmail: "يرجى إدخال بريد إلكتروني صحيح.",
-    needName: "يرجى إدخال اسم المستخدم.",
-    shortPassword: "يجب أن تتكون كلمة المرور من 6 أحرف على الأقل.",
-    loginDemo: "الواجهة جاهزة، لكن تسجيل الدخول يحتاج إلى ربط خدمة مصادقة حقيقية.",
-    registerDemo: "الواجهة جاهزة، لكن إنشاء الحساب يحتاج إلى ربط خدمة مصادقة حقيقية.",
-    forgotDemo: "استعادة كلمة المرور تحتاج إلى ربط خدمة المصادقة.",
-    googleDemo: "تسجيل Google يحتاج إلى إعداد مزود Google داخل خدمة المصادقة."
-  },
-  en: {
-    home: "Back to home →",
-    loginTitle: "Welcome back",
-    loginSubtitle: "Sign in to your account",
-    registerTitle: "Create your account",
-    registerSubtitle: "Join NOIR and begin your journey",
-    forgotTitle: "Reset your password",
-    forgotSubtitle: "Enter your email to receive a reset link",
-    login: "Sign in",
-    register: "Create account",
-    name: "Username",
-    namePlaceholder: "Enter your name",
-    email: "Email address",
-    password: "Password",
-    passwordPlaceholder: "Enter your password",
-    show: "Show",
-    hide: "Hide",
-    remember: "Remember me",
-    forgot: "Forgot password?",
-    send: "Send reset link",
-    or: "OR",
-    google: "Continue with Google",
-    noAccount: "Don't have an account?",
-    hasAccount: "Already have an account?",
-    backLogin: "Back to sign in",
-    footer: "Another world, behind every page.",
-    invalidEmail: "Please enter a valid email address.",
-    needName: "Please enter a username.",
-    shortPassword: "Password must be at least 6 characters.",
-    loginDemo: "The interface is ready, but sign-in still needs a real authentication service.",
-    registerDemo: "The interface is ready, but account creation still needs a real authentication service.",
-    forgotDemo: "Password recovery needs to be connected to an authentication service.",
-    googleDemo: "Google sign-in requires configuring Google as an authentication provider."
-  }
-};
+ar:{
+ home:"العودة للرئيسية ←",loginTitle:"مرحبًا بك مجددًا",loginSubtitle:"سجّل دخولك إلى حسابك",
+ registerTitle:"أنشئ حسابك",registerSubtitle:"انضم إلى عالم NOIR وابدأ رحلتك",
+ forgotTitle:"استعادة كلمة المرور",forgotSubtitle:"أدخل بريدك الإلكتروني لإرسال رابط الاستعادة",
+ login:"تسجيل الدخول",register:"إنشاء حساب جديد",name:"اسم المستخدم",namePlaceholder:"اكتب اسمك",
+ email:"البريد الإلكتروني",password:"كلمة المرور",passwordPlaceholder:"أدخل كلمة المرور",
+ show:"إظهار",hide:"إخفاء",remember:"تذكرني",forgot:"نسيت كلمة المرور؟",
+ send:"إرسال رابط الاستعادة",or:"أو",google:"المتابعة باستخدام Google",
+ noAccount:"ليس لديك حساب؟",hasAccount:"لديك حساب بالفعل؟",backLogin:"العودة إلى تسجيل الدخول",
+ footer:"عالم آخر، خلف كل صفحة.",invalidEmail:"يرجى إدخال بريد إلكتروني صحيح.",
+ needName:"يرجى إدخال اسم المستخدم.",shortPassword:"كلمة المرور يجب أن تكون 6 أحرف على الأقل.",
+ successRegister:"تم إنشاء حسابك بنجاح!",successLogin:"تم تسجيل الدخول بنجاح!",
+ successGoogle:"تم تسجيل الدخول باستخدام Google بنجاح!",
+ resetSent:"إذا كان البريد مسجّلًا، فسيصلك رابط استعادة كلمة المرور.",
+ "auth/invalid-email":"البريد الإلكتروني غير صحيح.",
+ "auth/invalid-credential":"البريد الإلكتروني أو كلمة المرور غير صحيحة.",
+ "auth/email-already-in-use":"هذا البريد مسجّل مسبقًا.",
+ "auth/weak-password":"كلمة المرور ضعيفة؛ استخدم 6 أحرف على الأقل.",
+ "auth/popup-closed-by-user":"أُغلقت نافذة Google قبل إكمال تسجيل الدخول.",
+ "auth/popup-blocked":"اسمح بالنوافذ المنبثقة في المتصفح ثم حاول مجددًا.",
+ "auth/unauthorized-domain":"أضف نطاق موقعك إلى Authorized domains في Firebase.",
+ "auth/network-request-failed":"تحقق من اتصال الإنترنت ثم حاول مجددًا.",
+ "auth/too-many-requests":"محاولات كثيرة؛ انتظر قليلًا ثم حاول مجددًا.",
+ unknown:"حدث خطأ غير متوقع. حاول مرة أخرى."
+},
+en:{
+ home:"Back to home →",loginTitle:"Welcome back",loginSubtitle:"Sign in to your account",
+ registerTitle:"Create your account",registerSubtitle:"Join NOIR and begin your journey",
+ forgotTitle:"Reset your password",forgotSubtitle:"Enter your email to receive a reset link",
+ login:"Sign in",register:"Create account",name:"Username",namePlaceholder:"Enter your name",
+ email:"Email address",password:"Password",passwordPlaceholder:"Enter your password",
+ show:"Show",hide:"Hide",remember:"Remember me",forgot:"Forgot password?",
+ send:"Send reset link",or:"OR",google:"Continue with Google",
+ noAccount:"Don't have an account?",hasAccount:"Already have an account?",
+ backLogin:"Back to sign in",footer:"Another world, behind every page.",
+ invalidEmail:"Please enter a valid email address.",needName:"Please enter a username.",
+ shortPassword:"Password must be at least 6 characters.",
+ successRegister:"Your account was created!",successLogin:"Signed in successfully!",
+ successGoogle:"Signed in with Google!",resetSent:"If the email is registered, a reset link will be sent.",
+ "auth/invalid-email":"That email address is invalid.",
+ "auth/invalid-credential":"Email or password is incorrect.",
+ "auth/email-already-in-use":"That email is already registered.",
+ "auth/weak-password":"Use a stronger password with at least 6 characters.",
+ "auth/popup-closed-by-user":"The Google sign-in window was closed.",
+ "auth/popup-blocked":"Allow pop-ups in your browser and try again.",
+ "auth/unauthorized-domain":"Add your website domain to Firebase Authorized domains.",
+ "auth/network-request-failed":"Check your internet connection and try again.",
+ "auth/too-many-requests":"Too many attempts. Wait and try again.",
+ unknown:"Something went wrong. Please try again."
+}};
 
-function tr(key) {
-  return translations[lang][key];
+const tr = key => translations[lang][key] || translations[lang].unknown;
+function showMessage(text,type="error") {
+  $("message").textContent=text;
+  $("message").className="message "+type;
 }
-
-function showMessage(text, type = "error") {
-  message.textContent = text;
-  message.className = "message " + type;
-}
-
 function clearMessage() {
-  message.textContent = "";
-  message.className = "message";
+  $("message").textContent="";
+  $("message").className="message";
 }
-
+function setBusy(value) {
+  busy=value;
+  $("submitButton").disabled=value;
+  $("googleButton").disabled=value;
+  if(value) $("submitButton").textContent=lang==="ar"?"يرجى الانتظار…":"Please wait…";
+}
 function renderSwitch() {
-  const linkText =
-    mode === "login" ? tr("register") :
-    mode === "register" ? tr("login") :
-    tr("backLogin");
-
-  const prefix =
-    mode === "login" ? tr("noAccount") :
-    mode === "register" ? tr("hasAccount") :
-    "";
-
-  switchText.replaceChildren();
-
-  if (prefix) {
-    switchText.append(document.createTextNode(prefix + " "));
-  }
-
-  const link = document.createElement("a");
-  link.href = "#";
-  link.className = "text-link";
-  link.id = "switchLink";
-  link.textContent = linkText;
-
-  link.addEventListener("click", event => {
-    event.preventDefault();
-    setMode(mode === "login" ? "register" : "login");
-  });
-
-  switchText.append(link);
+  const box=$("switchText");
+  box.replaceChildren();
+  const prefix=mode==="login"?tr("noAccount"):mode==="register"?tr("hasAccount"):"";
+  if(prefix) box.append(document.createTextNode(prefix+" "));
+  const a=document.createElement("a");
+  a.href="#";a.className="text-link";
+  a.textContent=mode==="login"?tr("register"):mode==="register"?tr("login"):tr("backLogin");
+  a.onclick=e=>{e.preventDefault();setMode(mode==="login"?"register":"login");};
+  box.append(a);
 }
-
 function renderMode() {
-  loginTab.setAttribute("aria-selected", String(mode === "login"));
-  registerTab.setAttribute("aria-selected", String(mode === "register"));
-
-  tabs.hidden = mode === "forgot";
-  nameField.hidden = mode !== "register";
-  passwordField.hidden = mode === "forgot";
-  options.hidden = mode !== "login";
-  extra.hidden = mode === "forgot";
-
-  nameInput.required = mode === "register";
-  passwordInput.required = mode !== "forgot";
-  passwordInput.autocomplete =
-    mode === "register" ? "new-password" : "current-password";
-
-  title.textContent =
-    mode === "login" ? tr("loginTitle") :
-    mode === "register" ? tr("registerTitle") :
-    tr("forgotTitle");
-
-  subtitle.textContent =
-    mode === "login" ? tr("loginSubtitle") :
-    mode === "register" ? tr("registerSubtitle") :
-    tr("forgotSubtitle");
-
-  submitButton.textContent =
-    mode === "login" ? tr("login") :
-    mode === "register" ? tr("register") :
-    tr("send");
-
+  $("tabs").hidden=mode==="forgot";
+  $("nameField").hidden=mode!=="register";
+  $("passwordField").hidden=mode==="forgot";
+  $("formOptions").hidden=mode!=="login";
+  $("extraOptions").hidden=mode==="forgot";
+  $("name").required=mode==="register";
+  $("password").required=mode!=="forgot";
+  $("loginTab").setAttribute("aria-selected",String(mode==="login"));
+  $("registerTab").setAttribute("aria-selected",String(mode==="register"));
+  $("formTitle").textContent=mode==="login"?tr("loginTitle"):mode==="register"?tr("registerTitle"):tr("forgotTitle");
+  $("formSubtitle").textContent=mode==="login"?tr("loginSubtitle"):mode==="register"?tr("registerSubtitle"):tr("forgotSubtitle");
+  $("submitButton").textContent=mode==="login"?tr("login"):mode==="register"?tr("register"):tr("send");
   renderSwitch();
 }
-
-function setMode(nextMode) {
-  mode = nextMode;
+function setMode(next) {
+  mode=next;
   clearMessage();
-  form.reset();
-  passwordInput.type = "password";
+  $("authForm").reset();
+  $("password").type="password";
+  $("togglePassword").textContent=tr("show");
   renderMode();
-  togglePassword.textContent = tr("show");
 }
-
 function renderLanguage() {
-  document.documentElement.lang = lang;
-  document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
-
-  languageButton.textContent = lang === "ar" ? "EN" : "ع";
-  $("homeLink").textContent = tr("home");
-  $("nameLabel").textContent = tr("name");
-  nameInput.placeholder = tr("namePlaceholder");
-  $("emailLabel").textContent = tr("email");
-  $("passwordLabel").textContent = tr("password");
-  passwordInput.placeholder = tr("passwordPlaceholder");
-  $("rememberText").textContent = tr("remember");
-  forgotLink.textContent = tr("forgot");
-  $("googleText").textContent = tr("google");
-  $("separator").textContent = tr("or");
-  $("footerText").textContent = tr("footer");
-  loginTab.textContent = tr("login");
-  registerTab.textContent = tr("register");
-
-  togglePassword.textContent =
-    passwordInput.type === "password" ? tr("show") : tr("hide");
-
+  document.documentElement.lang=lang;
+  document.documentElement.dir=lang==="ar"?"rtl":"ltr";
+  $("languageBtn").textContent=lang==="ar"?"EN":"ع";
+  $("homeLink").textContent=tr("home");
+  $("nameLabel").textContent=tr("name");
+  $("name").placeholder=tr("namePlaceholder");
+  $("emailLabel").textContent=tr("email");
+  $("passwordLabel").textContent=tr("password");
+  $("password").placeholder=tr("passwordPlaceholder");
+  $("rememberText").textContent=tr("remember");
+  $("forgotLink").textContent=tr("forgot");
+  $("googleText").textContent=tr("google");
+  $("separator").textContent=tr("or");
+  $("footerText").textContent=tr("footer");
+  $("loginTab").textContent=tr("login");
+  $("registerTab").textContent=tr("register");
+  $("togglePassword").textContent=$("password").type==="password"?tr("show"):tr("hide");
   renderMode();
 }
 
-loginTab.addEventListener("click", () => setMode("login"));
-registerTab.addEventListener("click", () => setMode("register"));
+$("loginTab").onclick=()=>setMode("login");
+$("registerTab").onclick=()=>setMode("register");
+$("forgotLink").onclick=e=>{e.preventDefault();setMode("forgot");};
+$("togglePassword").onclick=()=>{
+  $("password").type=$("password").type==="password"?"text":"password";
+  $("togglePassword").textContent=$("password").type==="password"?tr("show"):tr("hide");
+};
+$("languageBtn").onclick=()=>{lang=lang==="ar"?"en":"ar";clearMessage();renderLanguage();};
 
-forgotLink.addEventListener("click", event => {
-  event.preventDefault();
-  setMode("forgot");
-});
-
-togglePassword.addEventListener("click", () => {
-  passwordInput.type =
-    passwordInput.type === "password" ? "text" : "password";
-
-  togglePassword.textContent =
-    passwordInput.type === "password" ? tr("show") : tr("hide");
-});
-
-languageButton.addEventListener("click", () => {
-  lang = lang === "ar" ? "en" : "ar";
-  clearMessage();
-  renderLanguage();
-});
-
-form.addEventListener("submit", event => {
-  event.preventDefault();
+$("authForm").addEventListener("submit",async e=>{
+  e.preventDefault();
+  if(busy)return;
   clearMessage();
 
-  const email = emailInput.value.trim();
-  const password = passwordInput.value;
-  const username = nameInput.value.trim();
+  const email=$("email").value.trim();
+  const password=$("password").value;
+  const username=$("name").value.trim();
 
-  if (!email || !emailInput.validity.valid) {
-    showMessage(tr("invalidEmail"));
-    emailInput.focus();
-    return;
+  if(!email || !$("email").validity.valid) {
+    showMessage(tr("invalidEmail"));$("email").focus();return;
+  }
+  if(mode==="register"&&!username) {
+    showMessage(tr("needName"));$("name").focus();return;
+  }
+  if(mode!=="forgot"&&password.length<6) {
+    showMessage(tr("shortPassword"));$("password").focus();return;
   }
 
-  if (mode === "register" && !username) {
-    showMessage(tr("needName"));
-    nameInput.focus();
-    return;
-  }
-
-  if (mode !== "forgot" && password.length < 6) {
-    showMessage(tr("shortPassword"));
-    passwordInput.focus();
-    return;
-  }
-
-  /*
-    هذه واجهة فقط.
-    اربط هذا الجزء بخدمة مصادقة حقيقية مثل Firebase Auth
-    قبل استخدام تسجيل الدخول أو إنشاء الحساب فعليًا.
-    لا تخزن كلمات المرور في localStorage.
-  */
-
-  if (mode === "login") {
-    showMessage(tr("loginDemo"));
-  } else if (mode === "register") {
-    showMessage(tr("registerDemo"));
-  } else {
-    showMessage(tr("forgotDemo"));
+  setBusy(true);
+  try {
+    if(mode==="register") {
+      const result=await createUserWithEmailAndPassword(auth,email,password);
+      await updateProfile(result.user,{displayName:username});
+      showMessage(tr("successRegister"),"success");
+    } else if(mode==="login") {
+      await setPersistence(auth,$("remember").checked?browserLocalPersistence:browserSessionPersistence);
+      await signInWithEmailAndPassword(auth,email,password);
+      showMessage(tr("successLogin"),"success");
+    } else {
+      await sendPasswordResetEmail(auth,email);
+      showMessage(tr("resetSent"),"success");
+    }
+  } catch(error) {
+    showMessage(tr(error.code));
+  } finally {
+    setBusy(false);
+    renderMode();
   }
 });
 
-$("googleButton").addEventListener("click", () => {
-  showMessage(tr("googleDemo"));
-});
+$("googleButton").onclick=async()=>{
+  if(busy)return;
+  clearMessage();setBusy(true);
+  try {
+    await signInWithPopup(auth,googleProvider);
+    showMessage(tr("successGoogle"),"success");
+  } catch(error) {
+    showMessage(tr(error.code));
+  } finally {
+    setBusy(false);renderMode();
+  }
+};
 
 renderLanguage();
 setMode("login");
 </script>
-
 </body>
 </html>
