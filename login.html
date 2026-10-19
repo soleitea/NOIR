@@ -1,9 +1,8 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#08070c">
 <title>NOIR | تسجيل الدخول</title>
 
@@ -14,14 +13,12 @@
 <style>
 :root {
   --bg: #08070c;
-  --panel: #100e17;
-  --panel-light: #171321;
   --purple: #a78bfa;
-  --purple-dark: #7851bd;
-  --silver: #e4e0ed;
-  --muted: #918a9f;
-  --border: #282231;
-  --danger: #ff8f9a;
+  --purple2: #8156d8;
+  --silver: #e9e4f2;
+  --muted: #9690a5;
+  --border: #30263f;
+  --danger: #ff9aa5;
   --success: #b9e7ca;
 }
 
@@ -31,22 +28,25 @@
   padding: 0;
 }
 
+html {
+  min-height: 100%;
+  background: var(--bg);
+}
+
 body {
+  margin: 0;
   min-height: 100vh;
-  font-family: "Cairo", sans-serif;
-  color: var(--silver);
-  background:
-    radial-gradient(
-      ellipse at 50% 0%,
-      rgba(110, 73, 160, 0.14),
-      transparent 48%
-    ),
-    var(--bg);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 35px 18px;
+  padding: 30px 18px 22px;
+  color: var(--silver);
+  font-family: "Cairo", sans-serif;
+  background:
+    radial-gradient(ellipse at 50% 8%, #39205255, transparent 42%),
+    radial-gradient(ellipse at 50% 100%, #20133344, transparent 45%),
+    var(--bg);
 }
 
 a {
@@ -54,8 +54,7 @@ a {
   text-decoration: none;
 }
 
-button,
-input {
+button, input {
   font: inherit;
 }
 
@@ -63,53 +62,67 @@ button {
   cursor: pointer;
 }
 
+.top, .card, .footer {
+  position: relative;
+  z-index: 1;
+}
+
 .top {
   width: 100%;
-  max-width: 430px;
+  max-width: 480px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 26px;
+  margin-bottom: 18px;
+  padding: 0 4px;
 }
 
 .brand {
-  direction: ltr;
   font-family: "Cormorant Garamond", serif;
-  font-size: 35px;
+  font-size: 36px;
   font-weight: 700;
   letter-spacing: 5px;
-  color: #f0edf6;
+  direction: ltr;
+  color: #f3effb;
 }
 
 .brand span {
   color: var(--purple);
 }
 
-.home-link {
+.top-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.home-link, .language {
   font-size: 12px;
   color: var(--muted);
   transition: color .2s;
 }
 
-.home-link:hover {
-  color: var(--silver);
+.home-link:hover, .language:hover {
+  color: var(--purple);
+}
+
+.language {
+  background: transparent;
+  border: 1px solid #3b304b;
+  border-radius: 7px;
+  padding: 5px 9px;
 }
 
 .card {
   width: 100%;
-  max-width: 430px;
-  background: linear-gradient(
-    145deg,
-    rgba(22, 18, 32, .98),
-    rgba(12, 10, 17, .99)
-  );
-  border: 1px solid var(--border);
+  max-width: 480px;
+  padding: 34px clamp(22px, 6vw, 42px) 30px;
+  border: 1px solid #3a2d4b;
   border-radius: 20px;
-  padding: 36px 34px 30px;
+  background: linear-gradient(145deg, #100d17f7, #09080efc);
   box-shadow:
-    0 25px 90px rgba(0, 0, 0, .38),
-    0 0 50px rgba(116, 76, 170, .045);
-  position: relative;
+    0 28px 100px #0009,
+    0 0 55px #9568df0c;
   overflow: hidden;
 }
 
@@ -117,59 +130,113 @@ button {
   content: "";
   position: absolute;
   top: 0;
-  left: 22%;
-  right: 22%;
+  left: 18%;
+  right: 18%;
   height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--purple-dark),
-    transparent
-  );
+  background: linear-gradient(90deg, transparent, #b79aff, transparent);
 }
 
-.symbol {
-  width: 42px;
-  height: 42px;
-  margin: 0 auto 18px;
-  border: 1px solid #403050;
-  border-radius: 13px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.close {
+  position: absolute;
+  top: 12px;
+  inset-inline-end: 14px;
+  border: 0;
+  background: none;
   color: var(--purple);
+  font-size: 24px;
+  line-height: 1;
+  padding: 4px;
+}
+
+.brand-large {
+  direction: ltr;
+  text-align: center;
   font-family: "Cormorant Garamond", serif;
-  font-size: 25px;
-  box-shadow: inset 0 0 20px #a78bfa08;
+  font-size: clamp(49px, 11vw, 65px);
+  font-weight: 700;
+  letter-spacing: 4px;
+  line-height: 1.05;
+  color: #f4efff;
+  margin: 5px 0 9px;
+  text-shadow: 0 0 24px #b99aff24;
+}
+
+.brand-large span {
+  background: linear-gradient(130deg, #fff, #c4a8ff 60%, #8d68dc);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.tagline {
+  text-align: center;
+  font-size: 10px;
+  letter-spacing: 4px;
+  color: #8f829f;
+  margin-bottom: 20px;
+  direction: ltr;
 }
 
 .heading {
   text-align: center;
-  margin-bottom: 27px;
+  margin-bottom: 24px;
 }
 
 .heading h1 {
-  font-size: 24px;
+  font-size: 25px;
+  line-height: 1.5;
   font-weight: 700;
-  color: #f1edf8;
-  margin-bottom: 7px;
+  color: #f2edf9;
+  margin-bottom: 3px;
 }
 
 .heading p {
   font-size: 12px;
-  color: var(--muted);
   line-height: 1.9;
+  color: var(--muted);
+}
+
+.tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid #342b40;
+  margin-bottom: 25px;
+}
+
+.tab {
+  position: relative;
+  background: transparent;
+  border: 0;
+  padding: 11px 5px 13px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.tab[aria-selected="true"] {
+  color: var(--purple);
+  font-weight: 700;
+}
+
+.tab[aria-selected="true"]::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #c9a9ff, #8658d9);
+  box-shadow: 0 0 13px #a78bfa55;
 }
 
 .field {
-  margin-bottom: 17px;
+  margin-bottom: 16px;
 }
 
 .field label {
   display: block;
-  margin-bottom: 8px;
+  margin-bottom: 7px;
   font-size: 12px;
-  color: #d3cddd;
+  color: #d8d0e4;
 }
 
 .input-wrap {
@@ -177,13 +244,12 @@ button {
 }
 
 .input-wrap input {
-  display: block;
   width: 100%;
-  height: 48px;
-  background: #0b0911;
+  height: 49px;
+  background: #09080f;
   color: var(--silver);
-  border: 1px solid #30283c;
-  border-radius: 10px;
+  border: 1px solid #342a43;
+  border-radius: 11px;
   outline: none;
   padding: 0 14px;
   font-size: 13px;
@@ -191,27 +257,26 @@ button {
 }
 
 .input-wrap input::placeholder {
-  color: #625a70;
+  color: #71697f;
 }
 
 .input-wrap input:focus {
-  border-color: #8a69c4;
-  box-shadow: 0 0 0 3px #a78bfa12;
+  border-color: #a080e4;
+  box-shadow: 0 0 0 3px #a78bfa17;
 }
 
-.input-wrap input[type="password"],
-.input-wrap input.password-input {
-  padding-left: 65px;
+.password-input {
+  padding-inline-end: 65px !important;
 }
 
 .show-password {
   position: absolute;
-  left: 12px;
+  inset-inline-end: 11px;
   top: 50%;
   transform: translateY(-50%);
   background: transparent;
   border: 0;
-  color: var(--muted);
+  color: #a99bbd;
   font-size: 11px;
 }
 
@@ -224,7 +289,7 @@ button {
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  margin: 1px 0 22px;
+  margin: 2px 0 21px;
   font-size: 11px;
 }
 
@@ -236,7 +301,7 @@ button {
 }
 
 .remember input {
-  accent-color: var(--purple-dark);
+  accent-color: var(--purple2);
 }
 
 .text-link {
@@ -245,19 +310,20 @@ button {
 }
 
 .text-link:hover {
-  color: #d1bfff;
+  color: #dacaff;
 }
 
 .primary {
   width: 100%;
-  min-height: 48px;
-  border: 1px solid #b5a0ed;
-  border-radius: 10px;
-  background: linear-gradient(110deg, #b7a1ed, #9171cf);
-  color: #100b19;
-  font-size: 13px;
+  min-height: 51px;
+  border: 1px solid #bba4f4;
+  border-radius: 11px;
+  background: linear-gradient(110deg, #c19df5, #a080ed 52%, #8259df);
+  color: #130d20;
+  font-size: 14px;
   font-weight: 800;
-  transition: transform .2s, filter .2s;
+  box-shadow: 0 7px 24px #8d63dc25;
+  transition: filter .2s, transform .2s;
 }
 
 .primary:hover {
@@ -265,91 +331,108 @@ button {
   transform: translateY(-1px);
 }
 
-.primary:disabled {
-  opacity: .6;
-  cursor: wait;
-  transform: none;
-}
-
 .separator {
   display: flex;
   align-items: center;
   gap: 13px;
-  margin: 23px 0;
-  color: #6e657c;
+  margin: 21px 0;
+  color: #8c819b;
   font-size: 11px;
 }
 
-.separator::before,
-.separator::after {
+.separator::before, .separator::after {
   content: "";
-  flex: 1;
   height: 1px;
-  background: var(--border);
+  flex: 1;
+  background: #342b40;
 }
 
 .secondary {
   width: 100%;
-  min-height: 45px;
-  border: 1px solid #332b40;
-  border-radius: 10px;
-  background: #100d17;
-  color: #d6d0e0;
+  min-height: 47px;
+  border: 1px solid #514363;
+  border-radius: 11px;
+  background: #0d0b13;
+  color: #e0d9eb;
   font-size: 12px;
   transition: background .2s, border-color .2s;
 }
 
 .secondary:hover {
-  background: #191423;
-  border-color: #56436e;
+  background: #171120;
+  border-color: #8b6bc2;
+}
+
+.google-g {
+  font-family: Arial, sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  margin-inline-end: 10px;
+  background: conic-gradient(from -45deg, #4285f4 0 25%, #34a853 0 50%, #fbbc05 0 75%, #ea4335 0);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .switch-text {
   text-align: center;
   color: var(--muted);
   font-size: 12px;
-  margin-top: 25px;
+  margin: 24px 0 0;
 }
 
 .switch-text a {
-  margin-right: 4px;
   font-weight: 700;
+  margin-inline-start: 5px;
 }
 
 .message {
   display: none;
-  margin-bottom: 17px;
-  padding: 11px 12px;
+  margin-bottom: 15px;
+  padding: 10px 12px;
   border-radius: 9px;
   font-size: 12px;
   line-height: 1.8;
 }
 
-.message.error {
+.message.error, .message.success {
   display: block;
+}
+
+.message.error {
   color: var(--danger);
   background: #ff8f9a0d;
   border: 1px solid #ff8f9a25;
 }
 
 .message.success {
-  display: block;
   color: var(--success);
   background: #b9e7ca0b;
   border: 1px solid #b9e7ca22;
 }
 
 .footer {
-  margin-top: 24px;
+  margin-top: 21px;
   text-align: center;
+  color: #716780;
   font-size: 10px;
-  line-height: 2;
-  color: #625a70;
+  line-height: 2.2;
 }
 
-.footer span {
-  color: #9385ac;
+.footer .ornament {
+  color: var(--purple);
+  font-size: 16px;
+  letter-spacing: 8px;
+}
+
+.footer .copyright {
+  direction: ltr;
   letter-spacing: 2px;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 12px;
+  color: #8e829f;
 }
 
 [hidden] {
@@ -358,11 +441,11 @@ button {
 
 @media (max-width: 480px) {
   body {
-    padding: 24px 15px;
+    padding: 18px 13px 16px;
   }
 
   .top {
-    margin-bottom: 21px;
+    margin-bottom: 14px;
   }
 
   .brand {
@@ -370,12 +453,23 @@ button {
   }
 
   .card {
-    padding: 30px 22px 25px;
+    padding: 31px 21px 25px;
     border-radius: 16px;
   }
 
+  .brand-large {
+    font-size: 54px;
+  }
+
   .heading h1 {
-    font-size: 22px;
+    font-size: 23px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    transition: none !important;
   }
 }
 </style>
@@ -384,20 +478,28 @@ button {
 <body>
 
 <header class="top">
-  <a class="brand" href="index.html" aria-label="NOIR Home">
-    N<span>OIR.</span>
-  </a>
+  <a class="brand" href="index.html" aria-label="NOIR Home">N<span>OIR.</span></a>
 
-  <a class="home-link" href="index.html">العودة للرئيسية ←</a>
+  <div class="top-actions">
+    <button class="language" type="button" id="languageBtn">EN</button>
+    <a class="home-link" href="index.html" id="homeLink">العودة للرئيسية ←</a>
+  </div>
 </header>
 
 <main class="card">
+  <a class="close" href="index.html" aria-label="العودة للرئيسية" id="closeLink">×</a>
 
-  <div class="symbol" aria-hidden="true">N</div>
+  <div class="brand-large">N<span>OIR</span></div>
+  <div class="tagline">MANGA &amp; MANHWA</div>
 
   <div class="heading">
-    <h1 id="formTitle">مرحبًا بعودتك</h1>
-    <p id="formSubtitle">سجّل دخولك وتابع رحلتك في عالم NOIR.</p>
+    <h1 id="formTitle">مرحبًا بك مجددًا</h1>
+    <p id="formSubtitle">سجّل دخولك إلى حسابك</p>
+  </div>
+
+  <div class="tabs" id="tabs" role="tablist">
+    <button class="tab" type="button" id="loginTab" aria-selected="true">تسجيل الدخول</button>
+    <button class="tab" type="button" id="registerTab" aria-selected="false">إنشاء حساب جديد</button>
   </div>
 
   <div id="message" class="message" role="status" aria-live="polite"></div>
@@ -405,73 +507,43 @@ button {
   <form id="authForm" novalidate>
 
     <div class="field" id="nameField" hidden>
-      <label for="name">اسم المستخدم</label>
+      <label for="name" id="nameLabel">اسم المستخدم</label>
       <div class="input-wrap">
-        <input
-          id="name"
-          name="name"
-          type="text"
-          autocomplete="nickname"
-          placeholder="اكتب اسمك"
-        >
+        <input id="name" name="name" type="text" autocomplete="nickname" placeholder="اكتب اسمك">
       </div>
     </div>
 
     <div class="field">
-      <label for="email">البريد الإلكتروني</label>
+      <label for="email" id="emailLabel">البريد الإلكتروني</label>
       <div class="input-wrap">
-        <input
-          id="email"
-          name="email"
-          type="email"
-          autocomplete="email"
-          placeholder="name@example.com"
-          required
-        >
+        <input id="email" name="email" type="email" autocomplete="email" placeholder="name@example.com" required>
       </div>
     </div>
 
     <div class="field" id="passwordField">
-      <label for="password">كلمة المرور</label>
+      <label for="password" id="passwordLabel">كلمة المرور</label>
       <div class="input-wrap">
-        <input
-          id="password"
-          class="password-input"
-          name="password"
-          type="password"
-          autocomplete="current-password"
-          placeholder="أدخل كلمة المرور"
-          minlength="6"
-          required
-        >
-        <button
-          class="show-password"
-          type="button"
-          id="togglePassword"
-          aria-label="إظهار كلمة المرور"
-        >إظهار</button>
+        <input id="password" class="password-input" name="password" type="password" autocomplete="current-password" placeholder="أدخل كلمة المرور" minlength="6" required>
+        <button class="show-password" type="button" id="togglePassword">إظهار</button>
       </div>
     </div>
 
     <div class="form-options" id="formOptions">
       <label class="remember">
         <input type="checkbox" id="remember">
-        تذكرني
+        <span id="rememberText">تذكرني</span>
       </label>
-
       <a href="#" class="text-link" id="forgotLink">نسيت كلمة المرور؟</a>
     </div>
 
-    <button class="primary" type="submit" id="submitButton">
-      تسجيل الدخول
-    </button>
-
+    <button class="primary" type="submit" id="submitButton">تسجيل الدخول</button>
   </form>
 
   <div id="extraOptions">
-    <div class="separator">أو</div>
+    <div class="separator" id="separator">أو</div>
     <button class="secondary" type="button" id="googleButton">
-      Continue with Google
+      <span class="google-g">G</span>
+      <span id="googleText">المتابعة باستخدام Google</span>
     </button>
   </div>
 
@@ -479,34 +551,114 @@ button {
     ليس لديك حساب؟
     <a href="#" class="text-link" id="switchLink">إنشاء حساب جديد</a>
   </p>
-
 </main>
 
 <footer class="footer">
-  <span>NOIR</span>
-  <p>عالم آخر، خلف كل صفحة.</p>
+  <div class="ornament">──── ✦ ────</div>
+  <p id="footerText">عالم آخر، خلف كل صفحة.</p>
+  <div class="copyright">NOIR • MANGA &amp; MANHWA • 2026</div>
 </footer>
 
 <script>
-const authForm = document.getElementById("authForm");
-const formTitle = document.getElementById("formTitle");
-const formSubtitle = document.getElementById("formSubtitle");
-const nameField = document.getElementById("nameField");
-const nameInput = document.getElementById("name");
-const emailInput = document.getElementById("email");
-const passwordInput = document.getElementById("password");
-const passwordField = document.getElementById("passwordField");
-const formOptions = document.getElementById("formOptions");
-const extraOptions = document.getElementById("extraOptions");
-const submitButton = document.getElementById("submitButton");
-const switchText = document.getElementById("switchText");
-const switchLink = document.getElementById("switchLink");
-const forgotLink = document.getElementById("forgotLink");
-const togglePassword = document.getElementById("togglePassword");
-const message = document.getElementById("message");
-const googleButton = document.getElementById("googleButton");
+const $ = id => document.getElementById(id);
 
-let currentMode = "login";
+const form = $("authForm");
+const title = $("formTitle");
+const subtitle = $("formSubtitle");
+const nameField = $("nameField");
+const nameInput = $("name");
+const emailInput = $("email");
+const passwordInput = $("password");
+const passwordField = $("passwordField");
+const options = $("formOptions");
+const extra = $("extraOptions");
+const submitButton = $("submitButton");
+const switchText = $("switchText");
+const forgotLink = $("forgotLink");
+const togglePassword = $("togglePassword");
+const message = $("message");
+const loginTab = $("loginTab");
+const registerTab = $("registerTab");
+const tabs = $("tabs");
+const languageButton = $("languageBtn");
+
+let mode = "login";
+let lang = "ar";
+
+const translations = {
+  ar: {
+    home: "العودة للرئيسية ←",
+    loginTitle: "مرحبًا بك مجددًا",
+    loginSubtitle: "سجّل دخولك إلى حسابك",
+    registerTitle: "أنشئ حسابك",
+    registerSubtitle: "انضم إلى عالم NOIR وابدأ رحلتك",
+    forgotTitle: "استعادة كلمة المرور",
+    forgotSubtitle: "أدخل بريدك الإلكتروني لإرسال رابط الاستعادة",
+    login: "تسجيل الدخول",
+    register: "إنشاء حساب جديد",
+    name: "اسم المستخدم",
+    namePlaceholder: "اكتب اسمك",
+    email: "البريد الإلكتروني",
+    password: "كلمة المرور",
+    passwordPlaceholder: "أدخل كلمة المرور",
+    show: "إظهار",
+    hide: "إخفاء",
+    remember: "تذكرني",
+    forgot: "نسيت كلمة المرور؟",
+    send: "إرسال رابط الاستعادة",
+    or: "أو",
+    google: "المتابعة باستخدام Google",
+    noAccount: "ليس لديك حساب؟",
+    hasAccount: "لديك حساب بالفعل؟",
+    backLogin: "العودة إلى تسجيل الدخول",
+    footer: "عالم آخر، خلف كل صفحة.",
+    invalidEmail: "يرجى إدخال بريد إلكتروني صحيح.",
+    needName: "يرجى إدخال اسم المستخدم.",
+    shortPassword: "يجب أن تتكون كلمة المرور من 6 أحرف على الأقل.",
+    loginDemo: "الواجهة جاهزة، لكن تسجيل الدخول يحتاج إلى ربط خدمة مصادقة حقيقية.",
+    registerDemo: "الواجهة جاهزة، لكن إنشاء الحساب يحتاج إلى ربط خدمة مصادقة حقيقية.",
+    forgotDemo: "استعادة كلمة المرور تحتاج إلى ربط خدمة المصادقة.",
+    googleDemo: "تسجيل Google يحتاج إلى إعداد مزود Google داخل خدمة المصادقة."
+  },
+  en: {
+    home: "Back to home →",
+    loginTitle: "Welcome back",
+    loginSubtitle: "Sign in to your account",
+    registerTitle: "Create your account",
+    registerSubtitle: "Join NOIR and begin your journey",
+    forgotTitle: "Reset your password",
+    forgotSubtitle: "Enter your email to receive a reset link",
+    login: "Sign in",
+    register: "Create account",
+    name: "Username",
+    namePlaceholder: "Enter your name",
+    email: "Email address",
+    password: "Password",
+    passwordPlaceholder: "Enter your password",
+    show: "Show",
+    hide: "Hide",
+    remember: "Remember me",
+    forgot: "Forgot password?",
+    send: "Send reset link",
+    or: "OR",
+    google: "Continue with Google",
+    noAccount: "Don't have an account?",
+    hasAccount: "Already have an account?",
+    backLogin: "Back to sign in",
+    footer: "Another world, behind every page.",
+    invalidEmail: "Please enter a valid email address.",
+    needName: "Please enter a username.",
+    shortPassword: "Password must be at least 6 characters.",
+    loginDemo: "The interface is ready, but sign-in still needs a real authentication service.",
+    registerDemo: "The interface is ready, but account creation still needs a real authentication service.",
+    forgotDemo: "Password recovery needs to be connected to an authentication service.",
+    googleDemo: "Google sign-in requires configuring Google as an authentication provider."
+  }
+};
+
+function tr(key) {
+  return translations[lang][key];
+}
 
 function showMessage(text, type = "error") {
   message.textContent = text;
@@ -518,141 +670,173 @@ function clearMessage() {
   message.className = "message";
 }
 
-function setMode(mode) {
-  currentMode = mode;
-  clearMessage();
-  authForm.reset();
+function renderSwitch() {
+  const linkText =
+    mode === "login" ? tr("register") :
+    mode === "register" ? tr("login") :
+    tr("backLogin");
 
-  passwordInput.type = "password";
-  togglePassword.textContent = "إظهار";
+  const prefix =
+    mode === "login" ? tr("noAccount") :
+    mode === "register" ? tr("hasAccount") :
+    "";
 
+  switchText.replaceChildren();
+
+  if (prefix) {
+    switchText.append(document.createTextNode(prefix + " "));
+  }
+
+  const link = document.createElement("a");
+  link.href = "#";
+  link.className = "text-link";
+  link.id = "switchLink";
+  link.textContent = linkText;
+
+  link.addEventListener("click", event => {
+    event.preventDefault();
+    setMode(mode === "login" ? "register" : "login");
+  });
+
+  switchText.append(link);
+}
+
+function renderMode() {
+  loginTab.setAttribute("aria-selected", String(mode === "login"));
+  registerTab.setAttribute("aria-selected", String(mode === "register"));
+
+  tabs.hidden = mode === "forgot";
   nameField.hidden = mode !== "register";
   passwordField.hidden = mode === "forgot";
-  formOptions.hidden = mode !== "login";
-  extraOptions.hidden = mode === "forgot";
+  options.hidden = mode !== "login";
+  extra.hidden = mode === "forgot";
 
   nameInput.required = mode === "register";
   passwordInput.required = mode !== "forgot";
   passwordInput.autocomplete =
     mode === "register" ? "new-password" : "current-password";
 
-  if (mode === "login") {
-    formTitle.textContent = "مرحبًا بعودتك";
-    formSubtitle.textContent =
-      "سجّل دخولك وتابع رحلتك في عالم NOIR.";
-    submitButton.textContent = "تسجيل الدخول";
-    switchText.innerHTML =
-      'ليس لديك حساب؟ <a href="#" class="text-link" id="switchLink">إنشاء حساب جديد</a>';
-  } else if (mode === "register") {
-    formTitle.textContent = "أنشئ حسابك";
-    formSubtitle.textContent =
-      "خطوتك الأولى نحو عالم NOIR.";
-    submitButton.textContent = "إنشاء الحساب";
-    switchText.innerHTML =
-      'لديك حساب بالفعل؟ <a href="#" class="text-link" id="switchLink">تسجيل الدخول</a>';
-  } else {
-    formTitle.textContent = "استعادة كلمة المرور";
-    formSubtitle.textContent =
-      "أدخل بريدك الإلكتروني لاستعادة حسابك.";
-    submitButton.textContent = "إرسال رابط الاستعادة";
-    switchText.innerHTML =
-      '<a href="#" class="text-link" id="switchLink">العودة إلى تسجيل الدخول</a>';
-  }
+  title.textContent =
+    mode === "login" ? tr("loginTitle") :
+    mode === "register" ? tr("registerTitle") :
+    tr("forgotTitle");
 
-  bindSwitchLink();
+  subtitle.textContent =
+    mode === "login" ? tr("loginSubtitle") :
+    mode === "register" ? tr("registerSubtitle") :
+    tr("forgotSubtitle");
+
+  submitButton.textContent =
+    mode === "login" ? tr("login") :
+    mode === "register" ? tr("register") :
+    tr("send");
+
+  renderSwitch();
 }
 
-function bindSwitchLink() {
-  const link = document.getElementById("switchLink");
-
-  link.addEventListener("click", function(event) {
-    event.preventDefault();
-
-    if (currentMode === "login") {
-      setMode("register");
-    } else {
-      setMode("login");
-    }
-  });
+function setMode(nextMode) {
+  mode = nextMode;
+  clearMessage();
+  form.reset();
+  passwordInput.type = "password";
+  renderMode();
+  togglePassword.textContent = tr("show");
 }
 
-switchLink.addEventListener("click", function(event) {
-  event.preventDefault();
-  setMode("register");
-});
+function renderLanguage() {
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
 
-forgotLink.addEventListener("click", function(event) {
+  languageButton.textContent = lang === "ar" ? "EN" : "ع";
+  $("homeLink").textContent = tr("home");
+  $("nameLabel").textContent = tr("name");
+  nameInput.placeholder = tr("namePlaceholder");
+  $("emailLabel").textContent = tr("email");
+  $("passwordLabel").textContent = tr("password");
+  passwordInput.placeholder = tr("passwordPlaceholder");
+  $("rememberText").textContent = tr("remember");
+  forgotLink.textContent = tr("forgot");
+  $("googleText").textContent = tr("google");
+  $("separator").textContent = tr("or");
+  $("footerText").textContent = tr("footer");
+  loginTab.textContent = tr("login");
+  registerTab.textContent = tr("register");
+
+  togglePassword.textContent =
+    passwordInput.type === "password" ? tr("show") : tr("hide");
+
+  renderMode();
+}
+
+loginTab.addEventListener("click", () => setMode("login"));
+registerTab.addEventListener("click", () => setMode("register"));
+
+forgotLink.addEventListener("click", event => {
   event.preventDefault();
   setMode("forgot");
 });
 
-togglePassword.addEventListener("click", function() {
-  const isHidden = passwordInput.type === "password";
-  passwordInput.type = isHidden ? "text" : "password";
-  togglePassword.textContent = isHidden ? "إخفاء" : "إظهار";
-  togglePassword.setAttribute(
-    "aria-label",
-    isHidden ? "إخفاء كلمة المرور" : "إظهار كلمة المرور"
-  );
+togglePassword.addEventListener("click", () => {
+  passwordInput.type =
+    passwordInput.type === "password" ? "text" : "password";
+
+  togglePassword.textContent =
+    passwordInput.type === "password" ? tr("show") : tr("hide");
 });
 
-authForm.addEventListener("submit", function(event) {
+languageButton.addEventListener("click", () => {
+  lang = lang === "ar" ? "en" : "ar";
+  clearMessage();
+  renderLanguage();
+});
+
+form.addEventListener("submit", event => {
   event.preventDefault();
   clearMessage();
 
   const email = emailInput.value.trim();
   const password = passwordInput.value;
-  const name = nameInput.value.trim();
+  const username = nameInput.value.trim();
 
   if (!email || !emailInput.validity.valid) {
-    showMessage("يرجى إدخال بريد إلكتروني صحيح.");
+    showMessage(tr("invalidEmail"));
     emailInput.focus();
     return;
   }
 
-  if (currentMode === "register" && !name) {
-    showMessage("يرجى إدخال اسم المستخدم.");
+  if (mode === "register" && !username) {
+    showMessage(tr("needName"));
     nameInput.focus();
     return;
   }
 
-  if (currentMode !== "forgot" && password.length < 6) {
-    showMessage("يجب أن تتكون كلمة المرور من 6 أحرف على الأقل.");
+  if (mode !== "forgot" && password.length < 6) {
+    showMessage(tr("shortPassword"));
     passwordInput.focus();
     return;
   }
 
   /*
-    واجهة تجريبية فقط:
-    اربط هذا الجزء بخدمة مصادقة حقيقية مثل Firebase Auth.
-    لا تحفظ كلمات المرور في localStorage أو داخل المتصفح.
+    هذه واجهة فقط.
+    اربط هذا الجزء بخدمة مصادقة حقيقية مثل Firebase Auth
+    قبل استخدام تسجيل الدخول أو إنشاء الحساب فعليًا.
+    لا تخزن كلمات المرور في localStorage.
   */
 
-  if (currentMode === "login") {
-    showMessage(
-      "واجهة تسجيل الدخول جاهزة، لكن يلزم ربط نظام Auth للتحقق من الحساب.",
-      "error"
-    );
-  } else if (currentMode === "register") {
-    showMessage(
-      "واجهة إنشاء الحساب جاهزة، لكن يلزم ربط نظام Auth لإنشاء حساب فعلي.",
-      "error"
-    );
+  if (mode === "login") {
+    showMessage(tr("loginDemo"));
+  } else if (mode === "register") {
+    showMessage(tr("registerDemo"));
   } else {
-    showMessage(
-      "يلزم ربط نظام Auth لإرسال رابط استعادة كلمة المرور.",
-      "error"
-    );
+    showMessage(tr("forgotDemo"));
   }
 });
 
-googleButton.addEventListener("click", function() {
-  showMessage(
-    "تسجيل Google يحتاج إعداد مزود Google داخل نظام المصادقة.",
-    "error"
-  );
+$("googleButton").addEventListener("click", () => {
+  showMessage(tr("googleDemo"));
 });
 
+renderLanguage();
 setMode("login");
 </script>
 
